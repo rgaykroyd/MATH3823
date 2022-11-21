@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MATH3823 Generalized Linear Models - 3&nbsp; GLM Theory</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./4_GLM-Fitting.html" rel="next">
+<link href="./2_linearmodels.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MATH3823 Generalized Linear Models</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1_intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_linearmodels.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Essentials of Gaussian Linear Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_GLM-Theory.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_GLM-Fitting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM fitting</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic regression model</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_loglinearmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_extendedloglinearmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Extensions to Loglinear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./revision.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix: Revision of vectors and matrices</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./formula-sheet.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Appendix: Standard distributions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#motivating-examples" id="toc-motivating-examples" class="nav-link active" data-scroll-target="#motivating-examples"><span class="toc-section-number">3.1</span>  Motivating examples</a></li>
+  <li><a href="#the-glm-structure" id="toc-the-glm-structure" class="nav-link" data-scroll-target="#the-glm-structure"><span class="toc-section-number">3.2</span>  The GLM structure</a></li>
+  <li><a href="#the-random-part-of-a-glm" id="toc-the-random-part-of-a-glm" class="nav-link" data-scroll-target="#the-random-part-of-a-glm"><span class="toc-section-number">3.3</span>  The random part of a GLM</a>
+  <ul class="collapse">
+  <li><a href="#example-poisson-distribution" id="toc-example-poisson-distribution" class="nav-link" data-scroll-target="#example-poisson-distribution"><span class="toc-section-number">3.3.1</span>  Example: Poisson distribution</a></li>
+  <li><a href="#sec-exponential-binomial" id="toc-sec-exponential-binomial" class="nav-link" data-scroll-target="#sec-exponential-binomial"><span class="toc-section-number">3.3.2</span>  Example: Binomial distribution</a></li>
+  <li><a href="#example-normal-distribution" id="toc-example-normal-distribution" class="nav-link" data-scroll-target="#example-normal-distribution"><span class="toc-section-number">3.3.3</span>  Example: Normal distribution</a></li>
+  </ul></li>
+  <li><a href="#sec-exponential-family" id="toc-sec-exponential-family" class="nav-link" data-scroll-target="#sec-exponential-family"><span class="toc-section-number">3.4</span>  Moments of exponential-family distributions</a></li>
+  <li><a href="#the-systematic-part-of-the-model" id="toc-the-systematic-part-of-the-model" class="nav-link" data-scroll-target="#the-systematic-part-of-the-model"><span class="toc-section-number">3.5</span>  The systematic part of the model</a></li>
+  <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function"><span class="toc-section-number">3.6</span>  The link function</a></li>
+  <li><a href="#the-canonical-links" id="toc-the-canonical-links" class="nav-link" data-scroll-target="#the-canonical-links"><span class="toc-section-number">3.7</span>  The canonical links</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">3.8</span>  Exercises</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="motivating-examples" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="motivating-examples"><span class="header-section-number">3.1</span> Motivating examples</h2>
+<p>We cannot always assume that the dependent variable <span class="math inline">\(y\)</span> is normally distributed. For example, for the beetle mortality data in <a href="1_intro.html#tbl-beetle-data">Table&nbsp;<span>1.1</span></a>, suppose each beetle subjected to a dose <span class="math inline">\(x_i\)</span> has a probability <span class="math inline">\(p_i\)</span> of being killed. Then the number of beetles killed <span class="math inline">\(y_i\)</span> out of a total number <span class="math inline">\(m_i\)</span> at dose-level <span class="math inline">\(x_i\)</span> will have a <span class="math inline">\(\text{Bin}(m_i,p_i)\)</span> distribution:</p>
+<p><span class="math display">\[
+\text{Pr}(y_i ;~ p_i,m_i) = \left(\begin{array}{c} m_i\\ y_i \end{array} \right) p_i^{y_i} (1-p_i)^{m_i-y_i}
+\]</span> where <span class="math inline">\(y_i\)</span> takes values in <span class="math inline">\(\{0,1,\dots,m_i\}\)</span>.</p>
+<p><a href="#tbl-cyclone-data">Table&nbsp;<span>3.1</span></a> contains seasonal data on tropical cyclones for 13 seasons. Suppose that, within season <span class="math inline">\(i\)</span>, there is a constant probability <span class="math inline">\(\lambda_i dt\)</span> of a cyclone occurring in any short time-interval <span class="math inline">\(dt\)</span>. Then the total number of cyclones <span class="math inline">\(y_i\)</span> during season <span class="math inline">\(i\)</span> will have a Poisson distribution with mean <span class="math inline">\(\lambda_i\)</span>, that is <span class="math inline">\(y_i\sim \text{Po}(\lambda_i)\)</span>:</p>
+<p><span class="math display">\[
+\text{Pr}(y_i ;~ \lambda_i) = \frac{\lambda_i^{y_i} e^{-\lambda_i} }{y_i!}
+\]</span> where <span class="math inline">\(y_i\)</span> takes values in <span class="math inline">\(\{0,1,2,\dots\}\)</span>.</p>
+<div id="tbl-cyclone-data" class="anchored">
+<table class="table">
+<caption>Table&nbsp;3.1: Numbers of tropical cyclones in <span class="math inline">\(n = 13\)</span> successive seasons<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></caption>
+<colgroup>
+<col style="width: 19%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Season</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td>No of cyclones</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In these two examples, we have non-normal data and would like to know whether and how the dependent variable <span class="math inline">\(y_i\)</span> depends on the covariate <span class="math inline">\(x_i\)</span> or <span class="math inline">\(i\)</span>.</p>
+<p>Generalized linear models provide a modelling framework for data analysis in the non-normal setting. We will revisit the beetle mortality and cyclone data sets after describing the structure of a generalized linear model.</p>
+</section>
+<section id="the-glm-structure" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-glm-structure"><span class="header-section-number">3.2</span> The GLM structure</h2>
+<p>A <em>generalized linear model</em> relates a continuous or discrete response variable <span class="math inline">\(y\)</span> to a set of explanatory variables <span class="math inline">\(x=(x_1, \ldots, x_p)\)</span>. The model contains three parts:</p>
+<p><strong>Random part:</strong> The probability function of <span class="math inline">\(y\)</span> is assumed to belong to the <em>two-parameter</em> <em>exponential family</em> of distributions with parameters <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span>:</p>
+<p><span id="eq-exponential-family"><span class="math display">\[
+f(y; \theta, \phi) = \exp \left\{ \frac{y \theta - b(\theta)}
+                  {\phi} + c(y, \phi) \right\},
+\tag{3.1}\]</span></span> where <span class="math inline">\(\phi&gt;0\)</span>. Here, <span class="math inline">\(\theta\)</span> is called the <em>canonical</em> or <em>natural</em> parameter of the distribution and <span class="math inline">\(\phi\)</span> is called the <em>scale</em> parameter. We show below that the mean <span class="math inline">\(\mbox{E}[y]\)</span> depends only on <span class="math inline">\(\theta\)</span>, and <span class="math inline">\(\mbox{Var}[y]\)</span> depends on <span class="math inline">\(\phi\)</span> and possibly also <span class="math inline">\(\theta\)</span>. Various choices for functions <span class="math inline">\(b(\cdot)\)</span> and <span class="math inline">\(c(\cdot)\)</span> produce a wide variety of familiar distributions (see below). Sometimes we may set <span class="math inline">\(\phi=1\)</span>; then <a href="#eq-exponential-family">Equation&nbsp;<span>3.1</span></a> is called the <em>one-parameter exponential family</em>.</p>
+<p>Further, note that in some references to generalized linear models (such as Dobson and Barnett, 3rd edn.), <span class="math inline">\(\phi\)</span> does not appear at all in the exponential family formula <a href="#eq-exponential-family">Equation&nbsp;<span>3.1</span></a>, instead it is absorbed into <span class="math inline">\(\theta\)</span> and <span class="math inline">\(b(\theta)\)</span>.</p>
+<p>In this module, we will generally assume that each observation <span class="math inline">\(y_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, is <em>independently</em> drawn from an exponential family where <span class="math inline">\(\theta\)</span> depends on the covariates for each unit of observation <span class="math inline">\(i\)</span>. Thus we write <span class="math display">\[
+f(y_i; \theta_i, \phi) = \exp \left\{ \frac{y_i \theta_i - b(\theta_i)}   {\phi} + c(y_i, \phi) \right\}.
+\]</span> Note the subscripts on both <span class="math inline">\(y\)</span> and <span class="math inline">\(\theta\)</span>.</p>
+<p><strong>Systematic part:</strong> This is a <em>linear predictor</em>: <span id="eq-linpred"><span class="math display">\[
+\eta = \sum_{j=1}^p \beta_j x_j.
+\tag{3.2}\]</span></span></p>
+<p><strong>Link function:</strong> This is an isomorphic function providing the link between the linear predictor <span class="math inline">\(\eta\)</span> and the mean <span class="math inline">\(\mu = \mbox{E}[y]\)</span>:</p>
+<p><span id="eq-link-functions"><span class="math display">\[
+\eta = g(\mu), \quad \mbox{and} \quad \mu  = g^{-1}(\eta) = h(\eta).
+\tag{3.3}\]</span></span></p>
+<p>Here, <span class="math inline">\(g(\mu)\)</span> is called the <em>link function</em>, and <span class="math inline">\(h(\eta)\)</span> is called the <em>inverse link function</em>.</p>
+<p>We will now discuss each of these parts in more detail.</p>
+</section>
+<section id="the-random-part-of-a-glm" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="the-random-part-of-a-glm"><span class="header-section-number">3.3</span> The random part of a GLM</h2>
+<p>We begin with some examples of exponential family members.</p>
+<section id="example-poisson-distribution" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="example-poisson-distribution"><span class="header-section-number">3.3.1</span> Example: Poisson distribution</h3>
+<p>If <span class="math inline">\(y\)</span> has a Poisson distribution with parameter <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(y \sim \text{Po}(\lambda)\)</span>, then <span class="math inline">\(y\)</span> takes values in <span class="math inline">\(\{0,1,2,\dots\}\)</span> and has probability mass function: <span id="eq-poisson-expanded"><span class="math display">\[
+f(y) = \frac{e^{-\lambda} \lambda^y} {y!}  
+     = \exp \left\{y \log \lambda - \lambda - \log y! \right\},
+\tag{3.4}\]</span></span> which has the form of <a href="#eq-exponential-family">Equation&nbsp;<span>3.1</span></a> with</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\theta\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\phi\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(b(\theta)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(c(y,\phi)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\log\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\lambda=e^\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\log y!\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>For example, to model the cyclones data in <a href="#tbl-cyclone-data">Table&nbsp;<span>3.1</span></a>, we might simply assume that the number of cyclones in each season has a Poisson distribution, assuming a constant rate <span class="math inline">\(\lambda\)</span> across all seasons <span class="math inline">\(i\)</span>. That is <span class="math inline">\(y_i \sim \text{Po}(\lambda).\)</span></p>
+</section>
+<section id="sec-exponential-binomial" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="sec-exponential-binomial"><span class="header-section-number">3.3.2</span> Example: Binomial distribution</h3>
+<p>Let <span class="math inline">\(y\)</span> have a Binomial distribution, (write <span class="math inline">\(y \sim \text{Bin}(m, p)\)</span> with <span class="math inline">\(m\)</span> fixed. Then <span class="math inline">\(y\)</span> is discrete, taking values in <span class="math inline">\(\{0,1,\dots,m\}\)</span>, and has probability mass function: <span class="math display">\[\begin{align}
+f(y) &amp;= {m \choose y} p^y (1 - p)^{m - y} = {m \choose y} \left(\frac{p}{1-p} \right)^y (1 - p)^m \\
+     &amp;= \exp \left\{ y\ \mbox{logit } p  + m \log (1-p) + \log {m \choose y}\right\},
+\end{align}\]</span> which has the form of with</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\theta\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\phi\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(b(\theta)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(c(y,\phi)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mbox{logit }p\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(m\log(1+e^\theta)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\log{m\choose y}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Where it can be shown that <span class="math inline">\(-m\log(1-p)=m\log(1+e^\theta)\)</span> – see Exercises.</p>
+</section>
+<section id="example-normal-distribution" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="example-normal-distribution"><span class="header-section-number">3.3.3</span> Example: Normal distribution</h3>
+<p>Let <span class="math inline">\(y\)</span> have a Normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then <span class="math inline">\(y\)</span> takes values on the whole real line and has probability density function</p>
+<p><span class="math display">\[\begin{align*}
+f(y; \mu, \sigma^2) &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left\{ \frac{-1}{2\sigma^2} (y - \mu)^2 \right\}, \notag \\
+                    &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left\{-\frac{y^2}{2 \sigma^2} + \frac{y\mu}{\sigma^2} - \frac{\mu^2}{2 \sigma^2}\right\}\\
+                    &amp;= \exp \left\{ \frac{y \mu - \mu^2/2}{\sigma^2} + \left[\frac{-y^2}{2\sigma^2} - \frac{1}{2} \log (2 \pi \sigma^2)
+                              \right]\right\},
+\end{align*}\]</span> which has the form of <a href="#eq-exponential-family">Equation&nbsp;<span>3.1</span></a> with</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\theta\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\phi\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(b(\theta)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(c(y,\phi)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta^2/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\frac{y^2}{2\phi} - \frac{1}{2} \log (2 \pi \phi)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Where it can be shown that <span class="math inline">\(\frac{-y^2}{2\sigma^2} - \frac{1}{2} \log (2 \pi \sigma^2)=-\frac{y^2}{2\phi} - \frac{1}{2} \log (2 \pi \phi)\)</span> – see Exercises.</p>
+<p>From the usual regression point of view, we write <span class="math inline">\(y = \alpha + \beta x + \epsilon\)</span>, with <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span>. From the point of view of a generalized linear model, we write <span class="math inline">\(y \sim N(\mu, \sigma^2)\)</span> where <span class="math inline">\(\mu(x) = \alpha + \beta x\)</span>.</p>
+</section>
+</section>
+<section id="sec-exponential-family" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-exponential-family"><span class="header-section-number">3.4</span> Moments of exponential-family distributions</h2>
+<p>It is straightforward to find the mean and variance of <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(b(\theta)\)</span> and <span class="math inline">\(\phi\)</span>. Since we want to explore the dependence of <span class="math inline">\(\mbox{E}[y]\)</span> on explanatory variables, this property makes the exponential family very convenient.</p>
+<p><strong>Proposition</strong> For random variables in the exponential family: <span id="eq-exponential-moments"><span class="math display">\[
+\mbox{E}[y] = b'(\theta), \quad \mbox{and } \quad \mbox{Var}[y] =  b''(\theta)\phi.
+\tag{3.5}\]</span></span></p>
+<p>\text{Differentiating both sides w.r.t.&nbsp;<span class="math inline">\(\theta\)</span> gives</p>
+<p><strong>Proof</strong> We give the proof for continuous <span class="math inline">\(y\)</span>. For discrete <span class="math inline">\(y\)</span>, replace all integrals by sums. We have <span class="math display">\[\begin{align}
+  1 &amp;= \int f(y; \theta) dy  \\
+0 &amp;= \frac{d}{d \theta} \int f(y; \theta)\ dy \nonumber \\
+  &amp;= \int \frac{d}{d \theta} \exp \left\{ \frac{y \theta - b(\theta)}{\phi} + c(y,\phi)\right\}\ dy \nonumber \\
+  &amp;= \int \left[\frac{ y - b'(\theta)}{\phi} \right] f(y; \theta)\ dy
+\\ \mathrlap{\mbox{using  again,}} &amp; \\
+  &amp;= \frac{1}{\phi} \left(\int y f(y; \theta) dy - b'(\theta) \int f(y;\theta)\ dy \right)\nonumber \\
+  &amp;= \frac{1}{\phi} \left(E(y) - b'(\theta)\right) \nonumber \\
+\mbox{E}[y] &amp;= b'(\theta),\notag
+\\ \rlap{\mbox{which proves. Differentiating by parts yields:}}\\
+0 &amp;= \int \left\{ -\frac{b''(\theta)}{\phi} + \left[\frac{ y - b'(\theta)}{\phi} \right]^2 \right\} f(y; \theta)\ dy \notag \\
+  &amp;=  -\frac{b''(\theta)}{\phi} +\int \left[\frac{ y - \mbox{E}[y]}{\phi} \right]^2  f(y; \theta)\ dy \notag \\
+  &amp;= -\frac{b''(\theta)}{\phi} + \frac{\mbox{Var}[y]}{\phi^2} \notag \\
+\mbox{Var}[y] &amp;= \phi b''(\theta).
+\end{align}\]</span></p>
+<div id="tbl-moments" class="anchored">
+<table class="table">
+<caption>Table&nbsp;3.2: Summary of moment calculations via exponential family peoperties</caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;"><span class="math inline">\(\theta\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(b(\theta)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\phi\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\mbox{E}[y]=b'(\theta)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(b''(\theta)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\mbox{Var}[y]=b''(\theta)\phi\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Poisson, <span class="math inline">\(Po(\lambda)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\log \lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^\theta=\lambda\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^\theta\times 1=\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td>Normal, <span class="math inline">\(N(\mu,\sigma^2)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta^2/2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta=\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\times \sigma^2=\sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="the-systematic-part-of-the-model" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="the-systematic-part-of-the-model"><span class="header-section-number">3.5</span> The systematic part of the model</h2>
+<p>The second part of the generalized linear model, the linear predictor, is given in as <span class="math inline">\(\eta = \sum_{j=1}^p \beta_j x_j\)</span>, where <span class="math inline">\(x_j\)</span> is the <span class="math inline">\(j\)</span>th explanatory variable (with <span class="math inline">\(x_1=1\)</span> for the intercept). Now, for each observation <span class="math inline">\(y_i,\ i=1,\dots,n\)</span>, the explanatory variables may differ. To make explicit this dependence on <span class="math inline">\(i\)</span>, we write: <span class="math display">\[
+\eta_i = \sum_{j=1}^p \beta_j x_{ij},
+\]</span> where <span class="math inline">\(x_{ij}\)</span> is the value of the <span class="math inline">\(j\)</span>th explanatory variable on individual <span class="math inline">\(i\)</span> (with <span class="math inline">\(x_{i1}=1\)</span>). Rewriting this in matrix notation: <span class="math display">\[
+\eta = X \beta,
+\]</span> where now <span class="math inline">\(\boldsymbol{\eta} = (\eta_1,\dots,\eta_n)\)</span> is a vector of linear predictor variables, <span class="math inline">\(\boldsymbol{\beta} = (\beta_1,\dots,\beta_p)\)</span> is a vector of regression parameters, and <span class="math inline">\(X\)</span> is an <span class="math inline">\(n\times p\)</span> design matrix.</p>
+<p>Recall from that we are concerned with two kinds of explanatory variable:</p>
+<p>Quantitative — e.g.&nbsp;<span class="math inline">\(x_j \in (-\infty, \infty)\)</span> etc.</p>
+<p>Qualitative — e.g.&nbsp;<span class="math inline">\(x_j \in \{A, B, C\}\)</span> etc.</p>
+<p>As discussed in , each quantitative variable is represented in <span class="math inline">\(X\)</span> by an <span class="math inline">\(n \times 1\)</span> column vector. Each qualitative variable, with <span class="math inline">\(k+1\)</span> levels, say, is represented by a dummy <span class="math inline">\(n \times k\)</span> matrix of 0’s and 1’s (one column, usually the first, being dropped to avoid identification problems).</p>
+</section>
+<section id="the-link-function" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="the-link-function"><span class="header-section-number">3.6</span> The link function</h2>
+<p>On we saw that the contribution of randomness to an observation <span class="math inline">\(y\)</span> might be described with a member of the exponential family. We also saw that the systematic part of <span class="math inline">\(y\)</span> might be described using a linear predictor <span class="math inline">\(\eta\)</span> of the explanatory variables. In we introduced the notion of a link function <span class="math inline">\(\eta = g(\mu)\)</span> to link these two parts together, where <span class="math inline">\(\mu\)</span> is the mean of <span class="math inline">\(y\)</span>.</p>
+<p>Rarely, the choice of link function <span class="math inline">\(g(\mu)\)</span> is motivated by theory underlying the data at hand. For example, in a dose–response setting, the appropriate model could possibly be motivated by the solution to a set of partial differential equations describing the flow through the body of a dose of a drug.</p>
+<p>When there is no compelling underlying substantive theory, we typically choose a link function that will transform a restricted range of the dependent variable onto the whole real line. For example, when observations are measurements they are typically positive, so we have <span class="math inline">\(\mu&gt;0\)</span> and might choose the logarithmic link: <span class="math display">\[
+g(\mu) = \log(\mu).
+\]</span>When observations are binomial counts from <span class="math inline">\(B(m,p), \ 0 &lt; p &lt; 1\)</span>, with mean <span class="math inline">\(\mu = mp\)</span>, we might choose the <em>logit</em> link from</p>
+<p><span class="math display">\[\begin{align}
+\eta &amp;= g(\mu) = \text{logit}(\mu/m)= \text{logit}(p) = \log\{p/(1-p)\}
+\intertext{ or the {\it probit} link which is the inverse of the cdf of the N(0,1)~distribution:}
+\eta &amp;= g(\mu) = \Phi^{-1}(\mu/m) = \Phi^{-1}(p), \label{eq:probit.link}
+\intertext{or the {\it complementary log-log (cloglog)} link:}
+\eta &amp;= g(\mu) = \log(-\log(1-\mu/m))= \log(-\log(1-p)), \label{eq:cloglog.link}
+\intertext{or the {\it cauchit} link which is the inverse of the cdf of the Cauchy ($t_1$) distribution:}
+\eta &amp;= g(\mu) = \tan(\pi(\mu/m-\tfrac{1}{2}))
+               = \tan(\pi(p-\tfrac{1}{2})). \label{eq:cauchit.link}
+\end{align}\]</span> shows these link functions for proportions fitted to the beetle mortality data. This demonstrates that the logit and probit links are very similar, that the complementary log-log link fits these data slightly better in the extremes, but that the cauchit link fits these data quite poorly in the extremes.</p>
+</section>
+<section id="the-canonical-links" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="the-canonical-links"><span class="header-section-number">3.7</span> The canonical links</h2>
+<p>A mathematically and computationally convenient choice of link function <span class="math inline">\(g(\mu)\)</span> can be constructed by setting: <span class="math display">\[
+\theta =\eta,
+\]</span> where <span class="math inline">\(\theta\)</span> is the canonical parameter of the exponential family~<span class="math inline">\(\eqref{eq:exponential.family}\)</span>. Equation~<span class="math inline">\(\eqref{eq:exponential.family.E}\)</span> on page~ shows that the mean <span class="math inline">\(\mu\)</span> is a function of <span class="math inline">\(\theta\)</span>. Therefore, <span class="math inline">\(\eqref{eq:canonical.linkfun.theta}\)</span> indirectly provides a link between <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\eta\)</span>. That is, <span class="math inline">\(\eqref{eq:canonical.linkfun.theta}\)</span> implicitly defines a link function <span class="math inline">\(\eta=g(\mu)\)</span>. What is the form of this <span class="math inline">\(g(\cdot)\)</span>?</p>
+<p>From~<span class="math inline">\(\eqref{eq:exponential.family.E}\)</span>, <span class="math display">\[\begin{align}
+    \mu &amp;= b'(\theta). \notag
+    \shortintertext{So, provided function $b'(\cdot)$ has an inverse $(b')^{-1}(\cdot)$, we may write}
+    \theta &amp;= (b')^{-1}(\mu). \label{eq:dbinv}
+    \intertext{Now, from~(\ref{eq:linkfun}), $g(\mu) = \eta$, so using~\eqref{eq:canonical.linkfun.theta}:}
+    g(\mu) &amp;= \theta \label{eq:canonical.linkfun.theta.2} \\
+           &amp;= (b')^{-1}(\mu), \label{eq:canonical.linkfun}
+\end{align}\]</span> % from <span class="math inline">\(\eqref{eq:dbinv}\)</span>. This makes explicit the <span class="math inline">\(g(\mu)\)</span> that is implicitly asserted by <span class="math inline">\(\eqref{eq:canonical.linkfun.theta}\)</span>. Equation~<span class="math inline">\(\eqref{eq:canonical.linkfun}\)</span> is called the {} link function.</p>
+<p>% {} From~(<span class="math inline">\(\ref{eq:exponential.family.E}\)</span>), <span class="math inline">\(\mu = b'(\theta)\)</span>, so <span class="math display">\[\begin{align*}
+\frac{\text{d} \mu }{\text{d} \theta} &amp;= b''(\theta).
+\intertext{From~(\ref{eq:canonical.linkfun.theta.2}), for the canonical link function, we have $\theta = g(\mu)$, so}
+\frac{\text{d} \theta }{ \text{d} \mu} &amp;= g'(\mu).
+\intertext{Now $\tfrac{\text{d} \theta }{ \text{d} \mu}  = \left(\tfrac{\text{d} \mu }{\text{d} \theta}\right)^{-1}$. Hence }
+g'(\mu) &amp;= 1/b''(\theta).
+\end{align*}\]</span> </p>
+<p>For the Poisson distribution <span class="math inline">\(\text{Po}(\lambda)\)</span>, we have from~<span class="math inline">\(\eqref{eq:poisson-theta}\)</span> that <span class="math inline">\(b(\theta) = e^\theta\)</span>. Therefore, % <span class="math display">\[\begin{align}
+b'(\theta) &amp;= e^\theta, \notag
+\intertext{so the inverse of function $b'(\cdot)$ exists and is the inverse of the exponential function, which is the logarithmic function. Then, applying~\eqref{eq:canonical.linkfun},}
+g(\mu) &amp;= \log(\mu) .\label{eq:canonical.linkfun.poisson}
+\end{align}\]</span> % Thus the canonical link for the Poisson distribution is <span class="math inline">\(\log\)</span>. %</p>
+<p>For the Normal distribution <span class="math inline">\(N(\mu, \sigma^2)\)</span>, we have from~<span class="math inline">\(\eqref{eq:normal-theta}\)</span> that <span class="math inline">\(b(\theta) = \theta^2/2\)</span>. Therefore % <span class="math display">\[\begin{align}
+b'(\theta) &amp;= \theta, \notag
+\intertext{so the inverse of function $b'(\cdot)$ exists and is the inverse of the identity function, which is the identity function. (The identity function is that which maps a value onto itself.) Then, applying~\eqref{eq:canonical.linkfun},
+}
+g(\mu) &amp;= \mu. \label{eq:canonical.linkfun.normal}
+\end{align}\]</span> % Thus the canonical link for the Normal distribution is the identity function. %</p>
+<p>For many models, <span class="math inline">\(\mu\)</span> has a restricted range, but we would like <span class="math inline">\(\eta\)</span> to have unlimited range. It turns out, for several members of the exponential family, that the canonical link function provides <span class="math inline">\(\eta\)</span> with unlimited range. However, Table~<span class="math inline">\(\ref{tab:canonical.range}\)</span> shows that this is not always so.</p>
+<p>Why is the canonical link function~<span class="math inline">\(\eqref{eq:canonical.linkfun}\)</span> convenient? The assertion~<span class="math inline">\(\eqref{eq:canonical.linkfun.theta}\)</span> means that, in the exponential-family formula~<span class="math inline">\(\eqref{eq:exponential.family}\)</span>, we can simply substitute the linear predictor <span class="math inline">\(\eta=\sum_j \beta_j x_j\)</span> from (<span class="math inline">\(\ref{eq:linpred}\)</span>) in place of <span class="math inline">\(\theta\)</span>, to give: % <span class="math display">\[\begin{equation} \label{eq:canonical.linkfun.f}
+    f(y; \{x_{j}\}, \{\beta_j\},\phi) = \exp \left\{ \frac{y \left[\sum_j \beta_j x_j\right] - b\left(\left[\sum_j \beta_j x_j\right]\right)}
+                                            {\phi} + c(y, \phi) \right\},
+\end{equation}\]</span> % where <span class="math inline">\(\{x_{j}\}=\{x_{j}, j=1,\dots,p\}\)</span> and <span class="math inline">\(\{\beta_j\}=\{\beta_j, j=1,\dots,p\}\)</span>. Suppose we have <span class="math inline">\(n\)</span> independent observations, <span class="math inline">\(\{y_i,\ i=1,\ldots,n\}\)</span>. As discussed in Section~<span class="math inline">\(\ref{sect:systematic}\)</span>, the explanatory variables <span class="math inline">\((x_{1},\ldots,x_{p})\)</span> will depend on~<span class="math inline">\(i\)</span>, and so <span class="math inline">\(\eta\)</span> will also depend on~<span class="math inline">\(i\)</span>. Therefore, we attach subscript <span class="math inline">\(i\)</span> to <span class="math inline">\(y\)</span> and to each <span class="math inline">\(x_j\)</span>, giving: % <span class="math display">\[\begin{align}
+    f(y_i; \{x_{ij}\}, \{\beta_j\}, \phi) &amp;= \exp \left\{ \frac{y_i \left[\sum_j \beta_j x_{ij}\right] - b\left(\left[\sum_j \beta_j x_{ij}\right]\right)}
+                                            {\phi} + c(y_i, \phi) \right\}. \label{eq:canonical.linkfun.f2}
+%
+\intertext{By independence, the joint distribution of all observations $\{y_i\} = \{y_i,\ i=1,\dots,n\}$ is:}
+%
+f(\{y_i\}; \{x_{ij}\}, \{\beta_j\},\phi) &amp;= \prod_{i=1}^n f(y_i; \theta_i, \phi), \notag
+%
+\intertext{so\vspace{-3mm}}
+%
+\log f(\{y_i\}; \{x_{ij}\}, \{\beta_j\},\phi)
+                                   &amp;= \sum_{i=1}^n \log f(y_i; \theta_i, \phi) \notag \\
+                                   &amp;= \sum_{i=1}^n   \frac{y_i \left[\sum_j \beta_j x_{ij}\right] - b\left(\left[\sum_j \beta_j x_{ij}\right]\right)}
+                                            {\phi} + c(y_i, \phi)  \notag \\
+                                   &amp;= \frac{\sum_j \beta_j S_j - \sum_i b\left(\left[\sum_j \beta_j x_{ij}\right]\right)}
+                                            {\phi} + \sum_i c(y_i, \phi) , \label{eq:canonical.linkfun.loglik}
+\intertext{where\vspace{-3mm}}
+%
+S_j &amp;= \sum_{i=1}^n  y_i  x_{ij}.
+\end{align}\]</span> % Thus, in the log-likelihood~<span class="math inline">\(\eqref{eq:canonical.linkfun.loglik}\)</span>, it is only the first term that involves both the observations <span class="math inline">\(\{y_i,\ i=1,\dots,n\}\)</span> and the parameters <span class="math inline">\(\{\beta_j\}\)</span>, and this term depends on the observations only through the statistics <span class="math inline">\(\{S_j\}\)</span>. These are called {}, and their appearance in~<span class="math inline">\(\eqref{eq:canonical.linkfun.loglik}\)</span> confers both theoretical and practical advantages.</p>
+<p>%% %\begin{align} %_i &amp;= b’(_i), \[0mm] %_i &amp;= g(_i) \[-6mm] % %x_i /&amp;= _i.\[-6mm] % %x_i /&amp;= g(_i) = g(b’(i))* .\[-5mm] % %x_i /&amp;= i.* %\end{align} %% %Thus, from~(<span class="math inline">\(\ref{eq:ltheta}\)</span>), we have the log-likelihood of the <span class="math inline">\(n\)</span> observations:%% %\begin{align} %l(/; /y) %&amp; = %^n / a_i() + \ %&amp; = %^n / a_i() + , %\end{align} %% %where <span class="math inline">\(x_i\)</span> denotes the vector <span class="math inline">\((x_{i1},\ldots,x_{ir})\)</span>, <span class="math inline">\(\beta\)</span> denotes a column vector of regression parameters of length <span class="math inline">\(r\)</span> and ``<span class="math inline">\(\mbox{const}\)</span>” denotes a function which does not depend on <span class="math inline">\(\beta\)</span>. %%This is the log-likelihood of the %% %</p>
+<p>% %The canonical link function is such that <span class="math inline">\(\theta=g(\mu)\)</span> in equation~<span class="math inline">\(\eqref{eq:exponential.family}\)</span>. Now, we have seen in <span class="math inline">\(\eqref{eq:exponential.family.E}\)</span> that <span class="math inline">\(\mu = b'(\theta)\)</span>. Therefore, for the canonical link, %% %\begin{align} %&amp;= g() \ % &amp;= g(b’()) % %h() &amp;= b’() % %&amp;= (b’)^{-1}h(). %\end{align} % % %has the property that its inverse is defined as the function that is the first derivative w.r.t.~<span class="math inline">\(\theta\)</span> of <span class="math inline">\(b(\theta)\)</span> in the definition of the exponential family~<span class="math inline">\(\eqref{eq:exponential.family}\)</span>: %% %\begin{align} %h() &amp;= (b’)(). % %g() &amp;= (b’)^{-1}() . % %&amp;= g() \ % &amp;= (b’)^{-1}() \ % &amp;= (b’)^{-1}(b’()) \[-5mm] % %&amp;= g() = . %\end{align} %</p>
+<p>%\begin{figure}[htb] % % the following figures were generated in R from directory C:/Users/wally/Documents/Leeds_University/MATH3823-5824/WallyGilksFiles/MATH3823/Rcode: % % % % % %</p>
+</section>
+<section id="exercises" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.8</span> Exercises</h2>
+<ol type="1">
+<li><p>In the binomial distribution, show that <span class="math inline">\(-m\log(1-p)=m\log(1+e^\theta)\)</span> where <span class="math inline">\(\theta=\mbox{logit }p\)</span>.</p></li>
+<li><p>Use the results in <a href="#sec-exponential-family"><span>Section&nbsp;3.4</span></a> and the exponential family description of the Binomial distribution in <a href="#sec-exponential-binomial"><span>Section&nbsp;3.3.2</span></a> to show that the mean and variance of a <span class="math inline">\(\text{Bin}(m,p)\)</span> are <span class="math inline">\(mp\)</span> and <span class="math inline">\(mp(1-p)\)</span>.</p>
+<p><em>Hint:</em> <span class="math inline">\(f'(g(x)) = f'(g(x)) g'(x)\)</span></p></li>
+</ol>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Dobson and Barnett, 3rd edn, Table 1.2<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2_linearmodels.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Essentials of Gaussian Linear Models</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./4_GLM-Fitting.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM fitting</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
