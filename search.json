@@ -263,7 +263,7 @@
     "href": "index.html",
     "title": "MATH3823 Generalized Linear Models",
     "section": "",
-    "text": "These lecture notes are based on those used previously for this module and I am grateful to Lapeng Ji, Amanda Minter, John Kent, Wally Gilks, and Stuart Barber."
+    "text": "These lecture notes are produced for the University of Leeds module “MATH3823 - Generalized Linear Models” for the academic year 2022-23. They are based on those used previously for this module and I am grateful to previous module lecturers for their considerable effort: Lanpeng Ji, Amanda Minter, John Kent, Wally Gilks, and Stuart Barber. This is the first year, however, that they have been produced in accessible format and hence some errors might occur during this conversion process. For information, I am using Quarto (a successor to RMarkdown) from RStudio to produce both the html and PDF, and then GitHub to create the website which can be accessed at rgaykroyd.github.io/MATH3823/. Please note that the PDF versions will only be made available on the University of Leeds Minerva. Although I am a long-term user of RStudio, I have not previously used Quarto/RMarkdown nor Github and hence please be patient if thee hitches along the way.\nRG Aykroyd, Leeds, November 22, 2022"
   },
   {
     "objectID": "3_GLM-Theory.html#sec-exponential-family",
