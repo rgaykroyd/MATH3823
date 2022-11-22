@@ -204,12 +204,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./revision.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix: Revision of vectors and matrices</span></a>
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formula-sheet.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Appendix: Standard distributions</span></a>
+  <a href="./revision.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A: Revision of vectors and matrices</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./formula-sheet.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix: Standard distributions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -474,8 +479,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Of course, there are very many possible models, but here we will consider the following:</p>
 <table class="table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 73%">
+<col style="width: 30%">
+<col style="width: 69%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -497,6 +502,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>In these models, <span class="math inline">\(\texttt{Weight}\)</span> is called the <em>response</em> variable (sometimes called the <em>dependent</em> variable) and <span class="math inline">\(\texttt{Age}\)</span> and <span class="math inline">\(\texttt{Sex}\)</span> are called the <em>covariates</em> or <em>explanatory</em> variables (sometimes called the <em>predictor</em> or <em>independent</em> variables). Here, <span class="math inline">\(\texttt{Age}\)</span> is a continuous variable whereas <span class="math inline">\(\texttt{Sex}\)</span> is coded as a <em>dummy</em> variable taking the value 0 for girls and 1 for boys; it is an example of a <em>factor</em>, in this case with just two <em>levels</em>: Boy and Girl.</p>
+<p>Note that <span class="math inline">\(\texttt{Model 0}\)</span> is a special case of <span class="math inline">\(\texttt{Model 1}\)</span> (consider the case when <span class="math inline">\(\beta=0\)</span>) and that <span class="math inline">\(\texttt{Model 1}\)</span> is a special case of <span class="math inline">\(\texttt{Model 2}\)</span> (consider the case when <span class="math inline">\(\gamma=0\)</span>) and finally that <span class="math inline">\(\texttt{Model 2}\)</span> is a special case of <span class="math inline">\(\texttt{Model 3}\)</span> (consider the case when <span class="math inline">\(\delta=0\)</span>) – such models are called <em>nested</em>.</p>
 <p>In these models, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\delta\)</span> are <em>model parameters</em>. Parameter <span class="math inline">\(\alpha\)</span> is called the <em>intercept</em> term; <span class="math inline">\(\beta\)</span> is called the <em>main effect</em> of <span class="math inline">\(\texttt{Age}\)</span>; and is interpreted as the effect on birth weight <em>per week</em> of gestational age. Similarly, <span class="math inline">\(\gamma\)</span> is the main effect of <span class="math inline">\(\texttt{Sex}\)</span>, interpreted as the effect on birth weight of being a boy (because girl is the <em>baseline</em> category).</p>
 <p>Parameter <span class="math inline">\(\delta\)</span> is called the <em>interaction effect</em> between <span class="math inline">\(\texttt{Age}\)</span> and <span class="math inline">\(\texttt{Sex}\)</span>. <strong>Take care when interpreting an interaction effect.</strong> Here, it does not mean that age somehow affects sex, or vice-versa. It means that the effect of gestational age on birth weight depends on whether the baby is a boy or a girl.</p>
 <p>These models can be fitted to the data using (Ordinary) <em>Least Squares</em> to produce the results presented in <a href="#fig-birthweight-fitted">Figure&nbsp;<span>2.3</span></a>.</p>
@@ -602,12 +608,12 @@ R_k = \sum_{i=1}^n (y_i - \hat{\mu}_{ki})^2,
 <p><span class="math display">\[
 H_0: \texttt{Model } 0 \text{ is true}; \hspace{5mm} H_1: \texttt{Model } 1 \text{ is true}.
 \]</span></p>
-<p>Under the null hypothesis <span class="math inline">\(H_0\)</span>, the difference between <span class="math inline">\(R_0\)</span> and <span class="math inline">\(R_1\)</span> will be purely random, so the between-model mean-square <span class="math inline">\((R_0 - R_1)/(r_0 - r_1)\)</span> should be comparable to the residual mean-square <span class="math inline">\(R_1/r_1\)</span>. Thus our test statistic for comparing Model 1 to the simpler Model 0 is:</p>
+<p>Under the null hypothesis <span class="math inline">\(H_0\)</span>, the difference between <span class="math inline">\(R_0\)</span> and <span class="math inline">\(R_1\)</span> will be purely random, so the between-model mean-square <span class="math inline">\((R_0 - R_1)/(r_0 - r_1)\)</span> should be comparable to the residual mean-square <span class="math inline">\(R_1/r_1\)</span>. Thus our test statistic for comparing <span class="math inline">\(\texttt{Model } 1\)</span> to the simpler <span class="math inline">\(\texttt{Model } 0\)</span> is:</p>
 <p><span id="eq-F01"><span class="math display">\[
-F_{01} = \frac{(R_0 - R_1)/(r_0 - r_1)}{R_1/r_1}.
+\text{F}_{01} = \frac{(R_0 - R_1)/(r_0 - r_1)}{R_1/r_1}.
 \tag{2.2}\]</span></span></p>
-<p>It can be shown that, under the null hypothesis <span class="math inline">\(H_0\)</span>, the statistic <span class="math inline">\(F_{01}\)</span> will have an <span class="math inline">\(F\)</span>-distribution on <span class="math inline">\(r_0 - r_1\)</span> and <span class="math inline">\(r_1\)</span> degrees of freedom, which we write: <span class="math inline">\(F_{r_0-r_1, r_1}\)</span>. Under the alternative hypothesis <span class="math inline">\(H_1\)</span>, the difference <span class="math inline">\(R_0-R_1\)</span> will tend to be larger than expected under <span class="math inline">\(H_0\)</span>, and so the observed value <span class="math inline">\(F_{01}\)</span> will probably lie in the upper tail of the <span class="math inline">\(F_{r_0-r_1; r_1}\)</span> distribution.</p>
-<p>Returning to the birth weight data, we obtain the following output from R:</p>
+<p>It can be shown that, under the null hypothesis <span class="math inline">\(H_0\)</span>, the statistic <span class="math inline">\(F_{01}\)</span> will have an <span class="math inline">\(F\)</span>-distribution on <span class="math inline">\(r_0 - r_1\)</span> and <span class="math inline">\(r_1\)</span> degrees of freedom, which we write: <span class="math inline">\(F_{r_0-r_1, r_1}\)</span>. Under the alternative hypothesis <span class="math inline">\(H_1\)</span>, the difference <span class="math inline">\(R_0-R_1\)</span> will tend to be larger than expected under <span class="math inline">\(H_0\)</span>, and so the observed value <span class="math inline">\(F_{01}\)</span> will probably lie in the upper tail of the <span class="math inline">\(F_{r_0-r_1, r_1}\)</span> distribution.</p>
+<p>Returning to the birth weight data, we obtain the following output from <span class="math inline">\(\b{R}\)</span>:</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -642,9 +648,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>Thus we have parameter estimates: <span class="math inline">\(\hat\alpha = -1484.98\)</span> and <span class="math inline">\(\hat\beta = 115.5\)</span>. The Analysis of Variance (ANOVA) gives: <span class="math inline">\(R_0-R_1 = 1013799\)</span> with <span class="math inline">\(r_1-r_1 = 1\)</span> and <span class="math inline">\(R_1 = 816074\)</span> with <span class="math inline">\(r_1 = 22\)</span>.</p>
 <p>If we wanted <span class="math inline">\(R_0\)</span> and <span class="math inline">\(r_0\)</span> then we can either fit <span class="math inline">\(\texttt{Model 0}\)</span> or get them <em>by subtraction.</em></p>
-<p>The <span class="math inline">\(F_{01}\)</span> statistic, <a href="#eq-F01">Equation&nbsp;<span>2.2</span></a>, is then</p>
+<p>The <span class="math inline">\(\text{F}_{01}\)</span> statistic, <a href="#eq-F01">Equation&nbsp;<span>2.2</span></a>, is then</p>
 <p><span class="math display">\[
-F_{01} = \frac{113799/1}{816074/22} = 27.33,
+\text{F}_{01} = \frac{113799/1}{816074/22} = 27.33,
 \]</span></p>
 <p>which can read directly from the ANOVA table in the column headed ‘F value’. Is <span class="math inline">\(F_{01} = 27.33\)</span> in the upper tail of the <span class="math inline">\(F_{1,22}\)</span> distribution? (See <a href="#fig-F01-PDF">Figure&nbsp;<span>2.4</span></a> and note that 27.33 is very far to the right.) The final column of the ANOVA table tells us that the probability of observing <span class="math inline">\(F_{01} &gt; 27.33\)</span> is only <span class="math inline">\(3.04\times10^5\)</span> – this is called a p-value. The *** beside this p-value highlights that its value lies between 0 and 0.001. This indicates that we should reject <span class="math inline">\(H_0\)</span> in favour of <span class="math inline">\(H_1\)</span>. Thus we would conclude that the effect of gestational age is statistically significant in these data.</p>
 <div class="cell">
@@ -670,7 +676,7 @@ H_0: \texttt{Model } 1 \text{ is true}; \hspace{5mm} H_1: \texttt{Model } 2 \tex
 <p><span id="eq-F12"><span class="math display">\[
 F_{12} = \frac{(R_1 - R_2)/(r_1 - r_2)}{R_2/r_2}.
 \tag{2.3}\]</span></span></p>
-<p>Under the null hypothesis <span class="math inline">\(H_0\)</span>, the statistic <span class="math inline">\(F_{12}\)</span> will have an <span class="math inline">\(F\)</span>-distribution on <span class="math inline">\(r_1 - r_2\)</span> and <span class="math inline">\(r_2\)</span> degrees of freedom, which we write: <span class="math inline">\(F_{r_1-r_2, r_2}\)</span>. Under the alternative hypothesis <span class="math inline">\(H_1\)</span>, the difference <span class="math inline">\(R_1-R_2\)</span> will tend to be larger than expected under <span class="math inline">\(H_0\)</span>, and so the observed value <span class="math inline">\(F_{12}\)</span> will probably lie in the upper tail of the <span class="math inline">\(F_{r_1-r_2; r_2}\)</span> distribution.</p>
+<p>Under the null hypothesis <span class="math inline">\(H_0\)</span>, the statistic <span class="math inline">\(F_{12}\)</span> will have an <span class="math inline">\(F\)</span>-distribution on <span class="math inline">\(r_1 - r_2\)</span> and <span class="math inline">\(r_2\)</span> degrees of freedom, which we write: <span class="math inline">\(F_{r_1-r_2, r_2}\)</span>. Under the alternative hypothesis <span class="math inline">\(H_1\)</span>, the difference <span class="math inline">\(R_1-R_2\)</span> will tend to be larger than expected under <span class="math inline">\(H_0\)</span>, and so the observed value <span class="math inline">\(F_{12}\)</span> will probably lie in the upper tail of the <span class="math inline">\(F_{r_1-r_2, r_2}\)</span> distribution.</p>
 <p>Returning to the birth weight data, we obtain the following output from R (where <span class="math inline">\(\texttt{sexM}\)</span> denotes Boy):</p>
 <div class="cell">
 <details>
@@ -716,7 +722,7 @@ F_{12} = \frac{157304/1}{658771/21} = 5.0145,
 <table class="table">
 <caption>Table&nbsp;2.2: Types of normal linear model and their explanatory variable types where indicator function <span class="math inline">\(I(x=j)=1\)</span> if <span class="math inline">\(x=j\)</span> and <span class="math inline">\(0\)</span> otherwise.</caption>
 <colgroup>
-<col style="width: 24%">
+<col style="width: 25%">
 <col style="width: 27%">
 <col style="width: 47%">
 </colgroup>

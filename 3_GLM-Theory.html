@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -141,12 +141,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./revision.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix: Revision of vectors and matrices</span></a>
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formula-sheet.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Appendix: Standard distributions</span></a>
+  <a href="./revision.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A: Revision of vectors and matrices</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./formula-sheet.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix: Standard distributions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,6 +203,13 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="hidden">
+<p><span class="math display">\[
+\def\b#1{\mathbf{#1}}
+\def\E{\mbox{E}
+\def\V{\mbox{Var}
+\]</span></p>
+</div>
 <section id="motivating-examples" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="motivating-examples"><span class="header-section-number">3.1</span> Motivating examples</h2>
 <p>We cannot always assume that the dependent variable <span class="math inline">\(y\)</span> is normally distributed. For example, for the beetle mortality data in <a href="1_intro.html#tbl-beetle-data">Table&nbsp;<span>1.1</span></a>, suppose each beetle subjected to a dose <span class="math inline">\(x_i\)</span> has a probability <span class="math inline">\(p_i\)</span> of being killed. Then the number of beetles killed <span class="math inline">\(y_i\)</span> out of a total number <span class="math inline">\(m_i\)</span> at dose-level <span class="math inline">\(x_i\)</span> will have a <span class="math inline">\(\text{Bin}(m_i,p_i)\)</span> distribution:</p>
@@ -383,25 +395,50 @@ f(y; \mu, \sigma^2) &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left\{ \frac{-1
 <section id="sec-exponential-family" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="sec-exponential-family"><span class="header-section-number">3.4</span> Moments of exponential-family distributions</h2>
 <p>It is straightforward to find the mean and variance of <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(b(\theta)\)</span> and <span class="math inline">\(\phi\)</span>. Since we want to explore the dependence of <span class="math inline">\(\mbox{E}[y]\)</span> on explanatory variables, this property makes the exponential family very convenient.</p>
-<p><strong>Proposition</strong> For random variables in the exponential family: <span id="eq-exponential-moments"><span class="math display">\[
+<div id="prp-moments" class="proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 3.1 </strong></span>For random variables in the exponential family: <span id="eq-exponential-moments"><span class="math display">\[
 \mbox{E}[y] = b'(\theta), \quad \mbox{and } \quad \mbox{Var}[y] =  b''(\theta)\phi.
 \tag{3.5}\]</span></span></p>
-<p>\text{Differentiating both sides w.r.t.&nbsp;<span class="math inline">\(\theta\)</span> gives</p>
-<p><strong>Proof</strong> We give the proof for continuous <span class="math inline">\(y\)</span>. For discrete <span class="math inline">\(y\)</span>, replace all integrals by sums. We have <span class="math display">\[\begin{align}
-  1 &amp;= \int f(y; \theta) dy  \\
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>We give the proof for continuous <span class="math inline">\(y\)</span>. For discrete <span class="math inline">\(y\)</span>, replace all integrals by sums. We have</p>
+<p><span class="math display">\[\begin{align}
+  1 &amp;= \int f(y; \theta) dy \\
+\\
+\mathrlap{\mbox{Differentiating both sides w.r.t. $\theta$ gives}} \hspace{50mm}
+\\
 0 &amp;= \frac{d}{d \theta} \int f(y; \theta)\ dy \nonumber \\
-  &amp;= \int \frac{d}{d \theta} \exp \left\{ \frac{y \theta - b(\theta)}{\phi} + c(y,\phi)\right\}\ dy \nonumber \\
-  &amp;= \int \left[\frac{ y - b'(\theta)}{\phi} \right] f(y; \theta)\ dy
-\\ \mathrlap{\mbox{using  again,}} &amp; \\
-  &amp;= \frac{1}{\phi} \left(\int y f(y; \theta) dy - b'(\theta) \int f(y;\theta)\ dy \right)\nonumber \\
+  &amp;= \int \frac{d}{d \theta}
+  \exp \left\{ \frac{y \theta - b(\theta)}{\phi} + c(y,\phi)\right\}\ dy \\
+\\
+\mathrlap{\mbox{using the definition of the exponential-family}} \hspace{50mm}
+\\
+  &amp;= \int \left[\frac{ y - b'(\theta)}{\phi} \right] f(y; \theta)\  dy \tag{**}\label{eq:a}\\
+\\
+\mathrlap{\mbox{using the definition again,}}
+\hspace{50mm}
+\\
+  &amp;= \frac{1}{\phi} \left(\int y f(y; \theta) dy - b'(\theta) \int f(y;\theta)\ dy \right) \nonumber \\
   &amp;= \frac{1}{\phi} \left(E(y) - b'(\theta)\right) \nonumber \\
+\mathrlap{\mbox{which implies that}}
+\hspace{100mm} \\
 \mbox{E}[y] &amp;= b'(\theta),\notag
-\\ \rlap{\mbox{which proves. Differentiating by parts yields:}}\\
+\\
+\mathrlap{\mbox{which proves the first part of the proposition.}}
+\hspace{100mm}
+\\
+\end{align}\]</span></p>
+<p>Differentiating <span class="math inline">\(\eqref{eq:a}\)</span> by parts yields: <span class="math display">\[\begin{align}
 0 &amp;= \int \left\{ -\frac{b''(\theta)}{\phi} + \left[\frac{ y - b'(\theta)}{\phi} \right]^2 \right\} f(y; \theta)\ dy \notag \\
+\mathrlap{\mbox{and using the first part gives,}}
+\hspace{50mm} \\
   &amp;=  -\frac{b''(\theta)}{\phi} +\int \left[\frac{ y - \mbox{E}[y]}{\phi} \right]^2  f(y; \theta)\ dy \notag \\
   &amp;= -\frac{b''(\theta)}{\phi} + \frac{\mbox{Var}[y]}{\phi^2} \notag \\
+  \mathrlap{\mbox{which implies that}}
+\hspace{50mm} \\
 \mbox{Var}[y] &amp;= \phi b''(\theta).
 \end{align}\]</span></p>
+</div>
 <div id="tbl-moments" class="anchored">
 <table class="table">
 <caption>Table&nbsp;3.2: Summary of moment calculations via exponential family peoperties</caption>
@@ -533,17 +570,14 @@ f(\{y_i\}; \{x_{ij}\}, \{\beta_j\},\phi) &amp;= \prod_{i=1}^n f(y_i; \theta_i, \
 %
 S_j &amp;= \sum_{i=1}^n  y_i  x_{ij}.
 \end{align}\]</span> % Thus, in the log-likelihood~<span class="math inline">\(\eqref{eq:canonical.linkfun.loglik}\)</span>, it is only the first term that involves both the observations <span class="math inline">\(\{y_i,\ i=1,\dots,n\}\)</span> and the parameters <span class="math inline">\(\{\beta_j\}\)</span>, and this term depends on the observations only through the statistics <span class="math inline">\(\{S_j\}\)</span>. These are called {}, and their appearance in~<span class="math inline">\(\eqref{eq:canonical.linkfun.loglik}\)</span> confers both theoretical and practical advantages.</p>
-<p>%% %\begin{align} %_i &amp;= b’(_i), \[0mm] %_i &amp;= g(_i) \[-6mm] % %x_i /&amp;= _i.\[-6mm] % %x_i /&amp;= g(_i) = g(b’(i))* .\[-5mm] % %x_i /&amp;= i.* %\end{align} %% %Thus, from~(<span class="math inline">\(\ref{eq:ltheta}\)</span>), we have the log-likelihood of the <span class="math inline">\(n\)</span> observations:%% %\begin{align} %l(/; /y) %&amp; = %^n / a_i() + \ %&amp; = %^n / a_i() + , %\end{align} %% %where <span class="math inline">\(x_i\)</span> denotes the vector <span class="math inline">\((x_{i1},\ldots,x_{ir})\)</span>, <span class="math inline">\(\beta\)</span> denotes a column vector of regression parameters of length <span class="math inline">\(r\)</span> and ``<span class="math inline">\(\mbox{const}\)</span>” denotes a function which does not depend on <span class="math inline">\(\beta\)</span>. %%This is the log-likelihood of the %% %</p>
+<p>%% %\begin{align} %_i &amp;= b’(_i), \[0mm] %_i &amp;= g(_i) \[-6mm] % %x_i /&amp;= _i.\[-6mm] % %x_i /&amp;= g(_i) = g(b’(*i))* .\[-5mm] % %x_i /&amp;= *i.* %\end{align} %% %Thus, from~(<span class="math inline">\(\ref{eq:ltheta}\)</span>), we have the log-likelihood of the <span class="math inline">\(n\)</span> observations:%% %\begin{align} %l(/; /y) %&amp; = %^n / a_i() + \ %&amp; = %^n / a_i() + , %\end{align} %% %where <span class="math inline">\(x_i\)</span> denotes the vector <span class="math inline">\((x_{i1},\ldots,x_{ir})\)</span>, <span class="math inline">\(\beta\)</span> denotes a column vector of regression parameters of length <span class="math inline">\(r\)</span> and ``<span class="math inline">\(\mbox{const}\)</span>” denotes a function which does not depend on <span class="math inline">\(\beta\)</span>. %%This is the log-likelihood of the %% %</p>
 <p>% %The canonical link function is such that <span class="math inline">\(\theta=g(\mu)\)</span> in equation~<span class="math inline">\(\eqref{eq:exponential.family}\)</span>. Now, we have seen in <span class="math inline">\(\eqref{eq:exponential.family.E}\)</span> that <span class="math inline">\(\mu = b'(\theta)\)</span>. Therefore, for the canonical link, %% %\begin{align} %&amp;= g() \ % &amp;= g(b’()) % %h() &amp;= b’() % %&amp;= (b’)^{-1}h(). %\end{align} % % %has the property that its inverse is defined as the function that is the first derivative w.r.t.~<span class="math inline">\(\theta\)</span> of <span class="math inline">\(b(\theta)\)</span> in the definition of the exponential family~<span class="math inline">\(\eqref{eq:exponential.family}\)</span>: %% %\begin{align} %h() &amp;= (b’)(). % %g() &amp;= (b’)^{-1}() . % %&amp;= g() \ % &amp;= (b’)^{-1}() \ % &amp;= (b’)^{-1}(b’()) \[-5mm] % %&amp;= g() = . %\end{align} %</p>
-<p>%\begin{figure}[htb] % % the following figures were generated in R from directory C:/Users/wally/Documents/Leeds_University/MATH3823-5824/WallyGilksFiles/MATH3823/Rcode: % % % % % %</p>
 </section>
 <section id="exercises" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.8</span> Exercises</h2>
-<ol type="1">
-<li><p>In the binomial distribution, show that <span class="math inline">\(-m\log(1-p)=m\log(1+e^\theta)\)</span> where <span class="math inline">\(\theta=\mbox{logit }p\)</span>.</p></li>
-<li><p>Use the results in <a href="#sec-exponential-family"><span>Section&nbsp;3.4</span></a> and the exponential family description of the Binomial distribution in <a href="#sec-exponential-binomial"><span>Section&nbsp;3.3.2</span></a> to show that the mean and variance of a <span class="math inline">\(\text{Bin}(m,p)\)</span> are <span class="math inline">\(mp\)</span> and <span class="math inline">\(mp(1-p)\)</span>.</p>
-<p><em>Hint:</em> <span class="math inline">\(f'(g(x)) = f'(g(x)) g'(x)\)</span></p></li>
-</ol>
+<p>3.1 In the binomial distribution, show that <span class="math inline">\(-m\log(1-p)=m\log(1+e^\theta)\)</span> where <span class="math inline">\(\theta=\mbox{logit }p\)</span>.</p>
+<p>3.2 Use the results in <a href="#sec-exponential-family"><span>Section&nbsp;3.4</span></a> and the exponential family description of the Binomial distribution in <a href="#sec-exponential-binomial"><span>Section&nbsp;3.3.2</span></a> to show that the mean and variance of a <span class="math inline">\(\text{Bin}(m,p)\)</span> are <span class="math inline">\(mp\)</span> and <span class="math inline">\(mp(1-p)\)</span>.</p>
+<pre><code>*Hint:* $f'(g(x)) = f'(g(x)) g'(x)$</code></pre>
 
 
 </section>

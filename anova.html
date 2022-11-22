@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MATH3823 Generalized Linear Models - 10&nbsp; A: Revision of vectors and matrices</title>
+<title>MATH3823 Generalized Linear Models - 9&nbsp; Background to analysis of variance</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./formula-sheet.html" rel="next">
-<link href="./anova.html" rel="prev">
+<link href="./revision.html" rel="next">
+<link href="./8_summary.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A: Revision of vectors and matrices</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,12 +141,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./anova.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./revision.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A: Revision of vectors and matrices</span></a>
+  <a href="./revision.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A: Revision of vectors and matrices</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -168,11 +168,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#a.1-notation" id="toc-a.1-notation" class="nav-link active" data-scroll-target="#a.1-notation"><span class="toc-section-number">10.1</span>  A.1 Notation</a></li>
-  <li><a href="#operations" id="toc-operations" class="nav-link" data-scroll-target="#operations"><span class="toc-section-number">10.2</span>  Operations</a></li>
-  <li><a href="#special-vectors-and-matrices" id="toc-special-vectors-and-matrices" class="nav-link" data-scroll-target="#special-vectors-and-matrices"><span class="toc-section-number">10.3</span>  Special vectors and matrices</a></li>
-  <li><a href="#operations-1" id="toc-operations-1" class="nav-link" data-scroll-target="#operations-1"><span class="toc-section-number">10.4</span>  Operations</a></li>
-  <li><a href="#special-vectors-and-matrices-1" id="toc-special-vectors-and-matrices-1" class="nav-link" data-scroll-target="#special-vectors-and-matrices-1"><span class="toc-section-number">10.5</span>  Special vectors and matrices</a></li>
+  <li><a href="#basic-definitions" id="toc-basic-definitions" class="nav-link active" data-scroll-target="#basic-definitions"><span class="toc-section-number">9.1</span>  Basic definitions</a></li>
+  <li><a href="#the-chi2--and-the-f-distributions" id="toc-the-chi2--and-the-f-distributions" class="nav-link" data-scroll-target="#the-chi2--and-the-f-distributions"><span class="toc-section-number">9.2</span>  The <span class="math inline">\(\chi^2\)</span>- and the F-distributions</a></li>
+  <li><a href="#analysis-of-variance" id="toc-analysis-of-variance" class="nav-link" data-scroll-target="#analysis-of-variance"><span class="toc-section-number">9.3</span>  Analysis of variance</a></li>
   </ul>
 </nav>
     </div>
@@ -181,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec:matrices" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A: Revision of vectors and matrices</span></span></h1>
+<h1 class="title"><span id="sec-anova" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></span></h1>
 </div>
 
 
@@ -195,199 +193,15 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="a.1-notation" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="a.1-notation"><span class="header-section-number">10.1</span> A.1 Notation</h2>
-<p>Note that in these notes we use lowercase <span class="math inline">\(y\)</span> or <span class="math inline">\(y_i\)</span> to denote both observed values or random variables, which should be clear from the context.</p>
-<p>Similarly, although all vectors are column vectors, for ease of writing, we may write simply as a horizontal list. Again, the meaning will be clear from context.</p>
-<p>Examples of scalars: <span class="math display">\[
-x, y, \alpha, \beta, \gamma, \delta, \epsilon
-\hspace{5mm} \text{or} \hspace{5mm}
-x_i, y_i, \alpha_i, \beta_j, \gamma_j, \delta_j, \epsilon_i
-\]</span> Examples of <span class="math inline">\(n\times 1\)</span> vectors: <span class="math display">\[
-\mathbf{y}=(y_i)=(y_1, y_2, \ldots, y_n),
-\mathbf{Y}=(Y_i)=(Y_1, Y_2, \ldots, Y_n),
-\]</span> <span class="math display">\[
-\boldsymbol{\epsilon} = (\epsilon_i)=(\epsilon_1, \epsilon_2,\ldots, \epsilon_n)
-\]</span> or as: <span class="math display">\[
-\mathbf{y}=(y_i)=
-\begin{bmatrix} y_1\\ y_2\\ \vdots \\ y_n \end{bmatrix},
-\mathbf{Y}=(Y_i)=
-\begin{bmatrix} Y_1\\ Y_2\\ \vdots \\ Y_n \end{bmatrix},
-\boldsymbol{\epsilon} = (\epsilon_i)=
-\begin{bmatrix} \epsilon_1\\ \epsilon_2\\ \vdots \\ \epsilon_n \end{bmatrix}
-\]</span></p>
-<p>Examples of <span class="math inline">\(p\times 1\)</span> vectors: <span class="math display">\[
-\mathbf{x}=(x_j) = (x_1, x_2, \ldots, x_p),
-\mathbf{X}=(X_j) = (X_1, X_2, \ldots, X_p),
-\]</span> <span class="math display">\[
-\boldsymbol{\beta}=(\beta_j)=(\beta_1, \beta_2, \ldots, \beta_p)
-\]</span> or as <span class="math display">\[
-\mathbf{x}=(x_j) =
-\begin{bmatrix}x_1\\ x_2\\ \vdots\\ x_p\end{bmatrix},
-\mathbf{X}=(X_j) = \begin{bmatrix}X_1\\ X_2\\ \vdots\\ X_p\end{bmatrix},
-\boldsymbol{\beta}=\begin{bmatrix}\beta_1\\ \beta_2\\ \vdots\\ \beta_p\end{bmatrix},
-\]</span></p>
-<p>Examples of <span class="math inline">\(n\times p\)</span> matrices:</p>
-<p><span class="math display">\[
-X= (X_{ij})=
-\begin{pmatrix}
-x_{11} &amp; x_{12}&amp; \ \ldots &amp; x_{1p} \\
-x_{21} &amp; x_{22}&amp; \ \ldots &amp; x_{2p} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{n1} &amp; x_{n2}&amp; \ \ldots &amp; x_{np} \\
-\end{pmatrix}
-\]</span></p>
+<section id="basic-definitions" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="basic-definitions"><span class="header-section-number">9.1</span> Basic definitions</h2>
+<p>Suppose that</p>
 </section>
-<section id="operations" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="operations"><span class="header-section-number">10.2</span> Operations</h2>
-<p>Examples of addition:</p>
-<p><span class="math display">\[
-\alpha + \boldsymbol{\beta} =
-\begin{bmatrix}
-\alpha +\beta_1 \\
-\alpha +\beta_2 \\
-\vdots \\
-\alpha +\beta_p \\
-\end{bmatrix}
-\hspace{5mm}
-\mathbf{x} +\boldsymbol{\beta} =
-\begin{bmatrix}
-x_1 +\beta_1 \\
-x_2 +\beta_2 \\
-\vdots \\
-x_p +\beta_p \\
-\end{bmatrix}
-\]</span></p>
-<p>Examples of multiplication:</p>
-<p><span class="math display">\[
-\alpha \boldsymbol{\beta} =
-\alpha \times \boldsymbol{\beta} =
-\alpha \cdot \boldsymbol{\beta} =
-\begin{bmatrix}
-\alpha \beta_1 \\
-\alpha \beta_2 \\
-\vdots \\
-\alpha \beta_p \\
-\end{bmatrix}
-\hspace{5mm}
-\mathbf{x} \cdot \boldsymbol{\beta} =
-\mathbf{x}^T \boldsymbol{\beta} =
-x_1\beta_1 +
-x_2\beta_2 +
-\dots +
-x_p\beta_p
-\]</span> <span class="math display">\[
-X \boldsymbol{\beta} =
-\begin{bmatrix}
-x_{11}\beta_1 + x_{12}\beta_2+ \dots + x_{1p}\beta_p \\
-x_{21}\beta_1 + x_{22}\beta_2+ \dots + x_{2p}\beta_p \\
-\vdots \\
-x_{n1}\beta_1 + x_{n2}\beta_2+ \dots + x_{np}\beta_p \\
-\end{bmatrix}
-\]</span></p>
+<section id="the-chi2--and-the-f-distributions" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="the-chi2--and-the-f-distributions"><span class="header-section-number">9.2</span> The <span class="math inline">\(\chi^2\)</span>- and the F-distributions</h2>
 </section>
-<section id="special-vectors-and-matrices" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="special-vectors-and-matrices"><span class="header-section-number">10.3</span> Special vectors and matrices</h2>
-<p>Vector of zero’s or one’s: <span class="math display">\[
-\mathbf{0} = (0,0,\dots,0),
-\hspace{5mm}
-\mathbf{1} = (1,1,\dots,1)
-\]</span></p>
-<p>Similarly, although all vectors are column vectors, for ease of writing, we may write simply as a horizontal list. Again, the meaning will be clear from context.</p>
-<p>Examples of scalars: <span class="math display">\[
-x, y, \alpha, \beta, \gamma, \delta, \epsilon
-\hspace{5mm} \text{or} \hspace{5mm}
-x_i, y_i, \alpha_i, \beta_j, \gamma_j, \delta_j, \epsilon_i
-\]</span> Examples of <span class="math inline">\(n\times 1\)</span> vectors: <span class="math display">\[
-\mathbf{y}=(y_i)=(y_1, y_2, \ldots, y_n),
-\mathbf{Y}=(Y_i)=(Y_1, Y_2, \ldots, Y_n),
-\]</span> <span class="math display">\[
-\boldsymbol{\epsilon} = (\epsilon_i)=(\epsilon_1, \epsilon_2,\ldots, \epsilon_n)
-\]</span> or as: <span class="math display">\[
-\mathbf{y}=(y_i)=
-\begin{bmatrix} y_1\\ y_2\\ \vdots \\ y_n \end{bmatrix},
-\mathbf{Y}=(Y_i)=
-\begin{bmatrix} Y_1\\ Y_2\\ \vdots \\ Y_n \end{bmatrix},
-\boldsymbol{\epsilon} = (\epsilon_i)=
-\begin{bmatrix} \epsilon_1\\ \epsilon_2\\ \vdots \\ \epsilon_n \end{bmatrix}
-\]</span></p>
-<p>Examples of <span class="math inline">\(p\times 1\)</span> vectors: <span class="math display">\[
-\mathbf{x}=(x_j) = (x_1, x_2, \ldots, x_p),
-\mathbf{X}=(X_j) = (X_1, X_2, \ldots, X_p),
-\]</span> <span class="math display">\[
-\boldsymbol{\beta}=(\beta_j)=(\beta_1, \beta_2, \ldots, \beta_p)
-\]</span> or as <span class="math display">\[
-\mathbf{x}=(x_j) =
-\begin{bmatrix}x_1\\ x_2\\ \vdots\\ x_p\end{bmatrix},
-\mathbf{X}=(X_j) = \begin{bmatrix}X_1\\ X_2\\ \vdots\\ X_p\end{bmatrix},
-\boldsymbol{\beta}=\begin{bmatrix}\beta_1\\ \beta_2\\ \vdots\\ \beta_p\end{bmatrix},
-\]</span></p>
-<p>Examples of <span class="math inline">\(n\times p\)</span> matrices:</p>
-<p><span class="math display">\[
-X= (X_{ij})=
-\begin{pmatrix}
-x_{11} &amp; x_{12}&amp; \ \ldots &amp; x_{1p} \\
-x_{21} &amp; x_{22}&amp; \ \ldots &amp; x_{2p} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{n1} &amp; x_{n2}&amp; \ \ldots &amp; x_{np} \\
-\end{pmatrix}
-\]</span></p>
-</section>
-<section id="operations-1" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="operations-1"><span class="header-section-number">10.4</span> Operations</h2>
-<p>Examples of addition:</p>
-<p><span class="math display">\[
-\alpha + \boldsymbol{\beta} =
-\begin{bmatrix}
-\alpha +\beta_1 \\
-\alpha +\beta_2 \\
-\vdots \\
-\alpha +\beta_p \\
-\end{bmatrix}
-\hspace{5mm}
-\mathbf{x} +\boldsymbol{\beta} =
-\begin{bmatrix}
-x_1 +\beta_1 \\
-x_2 +\beta_2 \\
-\vdots \\
-x_p +\beta_p \\
-\end{bmatrix}
-\]</span></p>
-<p>Examples of multiplication:</p>
-<p><span class="math display">\[
-\alpha \boldsymbol{\beta} =
-\alpha \times \boldsymbol{\beta} =
-\alpha \cdot \boldsymbol{\beta} =
-\begin{bmatrix}
-\alpha \beta_1 \\
-\alpha \beta_2 \\
-\vdots \\
-\alpha \beta_p \\
-\end{bmatrix}
-\hspace{5mm}
-\mathbf{x} \cdot \boldsymbol{\beta} =
-\mathbf{x}^T \boldsymbol{\beta} =
-x_1\beta_1 +
-x_2\beta_2 +
-\dots +
-x_p\beta_p
-\]</span> <span class="math display">\[
-X \boldsymbol{\beta} =
-\begin{bmatrix}
-x_{11}\beta_1 + x_{12}\beta_2+ \dots + x_{1p}\beta_p \\
-x_{21}\beta_1 + x_{22}\beta_2+ \dots + x_{2p}\beta_p \\
-\vdots \\
-x_{n1}\beta_1 + x_{n2}\beta_2+ \dots + x_{np}\beta_p \\
-\end{bmatrix}
-\]</span></p>
-</section>
-<section id="special-vectors-and-matrices-1" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="special-vectors-and-matrices-1"><span class="header-section-number">10.5</span> Special vectors and matrices</h2>
-<p>Vector of zero’s or one’s: <span class="math display">\[
-\mathbf{0} = (0,0,\dots,0),
-\hspace{5mm}
-\mathbf{1} = (1,1,\dots,1)
-\]</span></p>
+<section id="analysis-of-variance" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="analysis-of-variance"><span class="header-section-number">9.3</span> Analysis of variance</h2>
 
 
 </section>
@@ -493,13 +307,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./anova.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="./8_summary.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./formula-sheet.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix: Standard distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./revision.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A: Revision of vectors and matrices</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
