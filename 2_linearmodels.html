@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -258,9 +258,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="hidden">
+<p><span class="math display">\[
+\def\b#1{\mathbf{#1}}
+\]</span></p>
+</div>
 <section id="overview" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">2.1</span> Overview</h2>
-<p>In many fields of application, we might assume the dependent variable is Gaussian, that is normally distributed; for example: heights, weights, log prices.</p>
+<p>In many fields of application, we might assume the response variable is Gaussian, that is normally distributed; for example: heights, weights, log prices.</p>
 <p>The data<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> in <a href="#tbl-birthweight">Table&nbsp;<span>2.1</span></a> record the birth weights of 12 girls and 12 boys and their gestational ages (time from conception to birth).</p>
 <div id="tbl-birthweight" class="tbl-parent quarto-layout-panel anchored">
 <div class="panel-caption table-caption">
@@ -391,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>A key question is can we predict the birth weight of a baby born at a given gestational age using these data. For this we will need to make assumptions about the relationship between birth weight and gestational age, and the corresponding natural variation – that is we require a model.</p>
+<p>A key question is can we predict the birth weight of a baby born at a given gestational age using these data. For this we will need to make assumptions about the relationship between birth weight and gestational age, and any associated natural variation – that is we require a model.</p>
 <p>First we should explore the data. <a href="#fig-birthweightA-1">Figure&nbsp;<span>2.1 (a)</span></a> shows a histogram of the birth weights indicating a spread with modal group 2800-300grams; <a href="#fig-birthweightA-2">Figure&nbsp;<span>2.1 (b)</span></a> indicates slightly higher birth weights for the boys than the girls; and <a href="#fig-birthweightA-3">Figure&nbsp;<span>2.1 (c)</span></a> shows an increasing relationship between weight and age. Together, these suggest that gestational age and sex are likely to be important for predicting weight.</p>
 <div>
 <details>
@@ -404,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(weight, <span class="at">breaks=</span><span class="dv">6</span>, <span class="at">probability =</span> T, <span class="at">main =</span> <span class="st">""</span>, </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(weight<span class="sc">~</span>sex)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(weight<span class="sc">~</span>sex, <span class="at">names=</span><span class="fu">c</span>(<span class="st">"Girl"</span>, <span class="st">"Boy"</span>))</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>, </span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
@@ -454,7 +459,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> birthweight<span class="sc">$</span>age</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">=</span> birthweight<span class="sc">$</span>sex</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">col=</span>sex<span class="sc">+</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">col=</span><span class="dv">2</span><span class="sc">-</span>sex, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-birthweightB" class="quarto-figure quarto-figure-center anchored">
@@ -468,8 +474,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Of course, there are very many possible models, but here we will consider the following:</p>
 <table class="table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 75%">
+<col style="width: 26%">
+<col style="width: 73%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -517,22 +523,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M1.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M1.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span>sex<span class="sc">+</span><span class="dv">1</span>, </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="dv">2</span><span class="sc">-</span>sex, </span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>M1.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">pch=</span><span class="dv">16</span>)</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M1.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M1.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">1</span>)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M1.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M1.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M1.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span>sex<span class="sc">+</span><span class="dv">1</span>, </span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>M1.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex<span class="sc">+</span>age<span class="sc">*</span>sex)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M1.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M1.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">1</span>)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M1.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M1.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M1.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">+</span>M1.fit<span class="sc">$</span>coefficients[<span class="dv">4</span>], <span class="at">col=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>M2.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M2.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M2.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">1</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M2.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M2.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M2.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="dv">2</span><span class="sc">-</span>sex, </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>M3.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex<span class="sc">+</span>age<span class="sc">*</span>sex)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M3.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M3.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">1</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M3.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M3.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M3.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">+</span>M3.fit<span class="sc">$</span>coefficients[<span class="dv">4</span>], <span class="at">col=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-birthweight-fitted" class="cell quarto-layout-panel">
 <figure class="figure">
@@ -701,14 +711,14 @@ F_{12} = \frac{157304/1}{658771/21} = 5.0145,
 </section>
 <section id="types-of-gaussian-linear-model" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="types-of-gaussian-linear-model"><span class="header-section-number">2.2</span> Types of Gaussian linear model</h2>
-<p>We consider how Gaussian linear models can be set up for different types of explanatory variable. The dependent variable <span class="math inline">\(y\)</span> is modelled as a linear combination of <span class="math inline">\(p\)</span> explanatory variables <span class="math inline">\(x = (x_j)=(x_1, x_2,\ldots, x_p)\)</span> plus a random error <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span>, where ‘~’ means ‘is distributed as’. Several models are of this kind, depending on the number and type of explanatory variables. <a href="#tbl-linear_models">Table&nbsp;<span>2.2</span></a> lists some types of Gaussian linear models with their explanatory variable types.</p>
+<p>We consider how Gaussian linear models can be set up for different types of explanatory variable. The dependent variable <span class="math inline">\(y\)</span> is modelled as a linear combination of <span class="math inline">\(p\)</span> explanatory variables <span class="math inline">\(\b{x} =(x_1, x_2,\ldots, x_p)\)</span> plus a random error <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span>, where ‘~’ means ‘is distributed as’. Several models are of this kind, depending on the number and type of explanatory variables. <a href="#tbl-linear_models">Table&nbsp;<span>2.2</span></a> lists some types of Gaussian linear models with their explanatory variable types.</p>
 <div id="tbl-linear_models" class="anchored">
 <table class="table">
 <caption>Table&nbsp;2.2: Types of normal linear model and their explanatory variable types where indicator function <span class="math inline">\(I(x=j)=1\)</span> if <span class="math inline">\(x=j\)</span> and <span class="math inline">\(0\)</span> otherwise.</caption>
 <colgroup>
-<col style="width: 23%">
+<col style="width: 24%">
 <col style="width: 27%">
-<col style="width: 49%">
+<col style="width: 47%">
 </colgroup>
 <tbody>
 <tr class="odd">

@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -253,6 +253,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="hidden">
+<p><span class="math display">\[
+\def\b#1{\mathbf{#1}}
+\]</span></p>
+</div>
 <section id="overview" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1.1</span> Overview</h2>
 <p>In previous modules you have studied linear models with a normally distributed error term, such as simple linear regression, multiple linear regression and ANOVA for normally distributed observations. In this module we will study <strong>generalized</strong> linear models.</p>
@@ -263,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Logistic regression models.</li>
 <li>Loglinear models, including contingency tables.</li>
 </ol>
-<p>The purpose of a generalized linear model is to model the dependence of a <em>dependent</em> variable <span class="math inline">\(y\)</span> on a set of <span class="math inline">\(p\)</span> <em>explanatory</em> variables <span class="math inline">\(x=(x_1, x_2, \ldots, x_p),\)</span> where conditionally on <span class="math inline">\(x\)</span>, observation <span class="math inline">\(y\)</span> has a distribution which is <strong>not necessarily normal</strong>.</p>
+<p>The purpose of a generalized linear model is to describe the dependence of a <em>response</em> variable <span class="math inline">\(y\)</span> on a set of <span class="math inline">\(p\)</span> <em>explanatory</em> variables <span class="math inline">\(\b{x}=(x_1, x_2, \ldots, x_p),\)</span> where conditionally on <span class="math inline">\(\b{x}\)</span>, observation <span class="math inline">\(y\)</span> has a distribution which is <strong>not necessarily</strong> normal.</p>
 <p>Note that in these notes we use lowercase <span class="math inline">\(y\)</span> or <span class="math inline">\(y_i\)</span> to denote both observed values or random variables, which should be clear from the context.</p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -276,7 +281,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Statistical ethics and sensitive data<br>
-</strong>Please note that from time to time we will be using data sets from situations which might be perceived as sensitive. All such data sets will, however, be derived from real-world studies which appear in textbooks or in scientific journals. The daily work of many statisticians involves applying their professional skills in a wide variety of situations and as such it is important to include a range of common examples in this module. Whenever possible, sensitive topics will be signposted in advance. If you feel that any examples may be personally upsetting then, if possible, please contact the module lecturer in advance. If necessary, then please consider talking with the <a href="https://students.leeds.ac.uk/info/100001/counselling">Student Counselling and Wellbeing service</a>.</p>
+</strong>Please note that from time to time we will be using data sets from situations which might be perceived as sensitive. All such data sets will, however, be derived from real-world studies which appear in textbooks or in scientific journals. The daily work of many statisticians involves applying their professional skills in a wide variety of situations and as such it is important to include a range of common types of examples in this module. Whenever possible, sensitive topics will be signposted in advance. If you feel that any examples may be personally upsetting then, if possible, please contact the module lecturer in advance. If you are effected by any of these situations, then please consider talking with the <a href="https://students.leeds.ac.uk/info/100001/counselling">Student Counselling and Wellbeing service</a>.</p>
 </div>
 </div>
 </section>
@@ -287,7 +292,7 @@ Warning
 <table class="table">
 <caption>Table&nbsp;1.1: Numbers of beetles killed by five hours of exposure to 8 different concentrations of gaseous carbon disulphide</caption>
 <colgroup>
-<col style="width: 12%">
+<col style="width: 18%">
 <col style="width: 22%">
 <col style="width: 18%">
 </colgroup>
@@ -345,7 +350,7 @@ Warning
 </tbody>
 </table>
 </div>
-<p><a href="#fig-beetle-fitted-1">Figure&nbsp;<span>1.1 (a)</span></a> shows the same data with a linear regression line superimposed. Although this line goes close to the plotted points, we can see some fluctuations around it. More seriously, this is a stupid model: it would predict a mortality rate &gt;100% at a dose of 1.9units, and a negative mortality rate at 1.65units!</p>
+<p><a href="#fig-beetle-fitted-1">Figure&nbsp;<span>1.1 (a)</span></a> shows the same data with a linear regression line superimposed. Although this line goes close to the plotted points, we can see some fluctuations around it. More seriously, this is a stupid model: it would predict a mortality rate of greater than 100% at a dose of 1.9 units, and a negative mortality rate at 1.65 units!</p>
 <div>
 <details>
 <summary>Code</summary>
@@ -426,7 +431,7 @@ s^2_x = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar x)^2
 \]</span></p>
 <p>is the sample variance of the <span class="math inline">\(x\)</span> values. It can be shown that these estimators are unbiased, that is <span class="math inline">\(\mbox{E}[\hat\alpha]=\alpha\)</span> and <span class="math inline">\(\mbox{E}[\hat\beta]=\beta\)</span>.</p>
 <p>The fitted regression lines is then given by <span class="math inline">\(\hat y = \hat \alpha +\hat \beta x\)</span>, the fitted values by <span class="math inline">\(\hat y_i = \hat \alpha +\hat \beta x_i\)</span>, and the model residuals by <span class="math inline">\(r_i= \hat \epsilon_i= y_i-\hat y_i\)</span> for all <span class="math inline">\(i\in \{1,\dots,n\}\)</span>.</p>
-<p>To complete the model fitting, we must also estimate the residual variance, <span class="math inline">\(\sigma^2\)</span> which is given by</p>
+<p>To complete the model fitting, we also estimate the error variance, <span class="math inline">\(\sigma^2\)</span>, using</p>
 <p><span id="eq-simple-variance"><span class="math display">\[
 \hat \sigma^2 = \frac{1}{n-2} \sum _{i=1}^n r_i^2.
 \tag{1.3}\]</span></span></p>
@@ -446,7 +451,7 @@ s^2_x = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar x)^2
 </details>
 </div>
 <p>Returning to the above beetle data example, we have <span class="math inline">\(\hat\alpha=\)</span>-8.947843, <span class="math inline">\(\hat\beta=\)</span> 5.324937, and <span class="math inline">\(\hat \sigma^2 =\)</span> 0.0075151.</p>
-<p>In R, the fitting can be done with a single command with</p>
+<p>We will interpret the output later, but in <span class="math inline">\(\b{R}\)</span>, the fitting can be done with a single command with corresponding fitting output from a second command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lm.fit <span class="ot">=</span> <span class="fu">lm</span>(mortality <span class="sc">~</span> dose)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -479,7 +484,7 @@ F-statistic: 120.2 on 1 and 6 DF,  p-value: 3.422e-05</code></pre>
 <ol type="1">
 <li>Quantitative
 <ol type="a">
-<li>Continuous: for example, height; weight; duration. Real valued – data is rounded but still usually best regarded as continuous.</li>
+<li>Continuous: for example, height; weight; duration. Real valued. Note that although recorded data is rounded it is still usually best regarded as continuous.</li>
 <li>Count (discrete): for example, number of children in a family; accidents at a road junction; number of items sold. Non-negative and integer-valued.</li>
 </ol></li>
 <li>Qualitative
@@ -492,6 +497,7 @@ F-statistic: 120.2 on 1 and 6 DF,  p-value: 3.422e-05</code></pre>
 </ul></li>
 </ol></li>
 </ol>
+<p>Note that although dichotomous is clearly a special case of polytomous, making the distincsion is usually worthwhile as it often leads to a simplified modelling and testing approach.</p>
 </section>
 <section id="exercises" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.5</span> Exercises</h2>
@@ -499,15 +505,15 @@ F-statistic: 120.2 on 1 and 6 DF,  p-value: 3.422e-05</code></pre>
 <p>1.1 Consider the following synthetic data:</p>
 <table class="table">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -550,9 +556,8 @@ F-statistic: 120.2 on 1 and 6 DF,  p-value: 3.422e-05</code></pre>
 <p>Plot the data to check that a linear model is suitable and then fit a linear regression model. Do you think that the fitted model can be reliably used to predict the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x=10\)</span>? Justify your answer.</p>
 <p>1.2 Starting from <a href="#eq-RSS">Equation&nbsp;<span>1.1</span></a>, derive the estimation equations given in <a href="#eq-simple_estimation">Equation&nbsp;<span>1.2</span></a>. Further, show that <span class="math inline">\(\hat\alpha\)</span>, <span class="math inline">\(\hat\beta\)</span> and <span class="math inline">\(\hat\sigma^2\)</span> are unbiased estimators.</p>
 <p>Hint: Check your MATH1712 lecture notes.</p>
-<p>1.3 In an experiment conducted by de Silva et al.&nbsp;in 2020<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> data was obtained to investigate falling objects and gravity, as first consider by Galileo and Newton.</p>
-<p>A copy of the data is available on Minerva in the file: physics_from_data.csv</p>
-<p>Read the data file into RStudio and perform a simple linear regression of the maximum Reynolds number as the response variables and, in turn, each of the other variables as the explanatory variable.</p>
+<p>1.3 In an experiment conducted by de Silva et al.&nbsp;in 2020<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> data was obtained to investigate falling objects and gravity, as first consider by Galileo and Newton. A copy of the data is available on Minerva in the file: physics_from_data.csv</p>
+<p>Read the data file into RStudio and perform a simple linear regression of the maximum Reynolds number as the response variable and, in turn, each of the other variables as the explanatory variable.</p>
 <p>Plot the data and add the corresponding fitted linear models. Which variable do you think helps explain Reynolds number the best? Why do you think this?</p>
 </div>
 <hr>
@@ -674,7 +679,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Acknowledgements</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
