@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MATH3823 Generalized Linear Models - 9&nbsp; Background to analysis of variance</title>
+<title>MATH3823 Generalized Linear Models - 9&nbsp; Appendix: Background to analysis of variance</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix: Background to analysis of variance</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./anova.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></a>
+  <a href="./anova.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix: Background to analysis of variance</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -168,9 +168,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#basic-definitions" id="toc-basic-definitions" class="nav-link active" data-scroll-target="#basic-definitions"><span class="toc-section-number">9.1</span>  Basic definitions</a></li>
-  <li><a href="#the-chi2--and-the-f-distributions" id="toc-the-chi2--and-the-f-distributions" class="nav-link" data-scroll-target="#the-chi2--and-the-f-distributions"><span class="toc-section-number">9.2</span>  The <span class="math inline">\(\chi^2\)</span>- and the F-distributions</a></li>
-  <li><a href="#analysis-of-variance" id="toc-analysis-of-variance" class="nav-link" data-scroll-target="#analysis-of-variance"><span class="toc-section-number">9.3</span>  Analysis of variance</a></li>
+  <li><a href="#analysis-of-variance" id="toc-analysis-of-variance" class="nav-link active" data-scroll-target="#analysis-of-variance"><span class="toc-section-number">9.1</span>  Analysis of variance</a></li>
+  <li><a href="#distributions-derived-from-the-gaussian-distribution" id="toc-distributions-derived-from-the-gaussian-distribution" class="nav-link" data-scroll-target="#distributions-derived-from-the-gaussian-distribution"><span class="toc-section-number">9.2</span>  Distributions derived from the Gaussian distribution</a>
+  <ul class="collapse">
+  <li><a href="#the-gaussian-normal-distribution" id="toc-the-gaussian-normal-distribution" class="nav-link" data-scroll-target="#the-gaussian-normal-distribution"><span class="toc-section-number">9.2.1</span>  The Gaussian (normal) distribution</a></li>
+  <li><a href="#the-chi2-distribution" id="toc-the-chi2-distribution" class="nav-link" data-scroll-target="#the-chi2-distribution"><span class="toc-section-number">9.2.2</span>  The <span class="math inline">\(\chi^2\)</span>-distribution</a></li>
+  <li><a href="#the-t--and-f-distributions" id="toc-the-t--and-f-distributions" class="nav-link" data-scroll-target="#the-t--and-f-distributions"><span class="toc-section-number">9.2.3</span>  The t- and F-distributions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -179,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-anova" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Background to analysis of variance</span></span></h1>
+<h1 class="title"><span id="sec-anova" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Appendix: Background to analysis of variance</span></span></h1>
 </div>
 
 
@@ -193,17 +197,208 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="basic-definitions" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="basic-definitions"><span class="header-section-number">9.1</span> Basic definitions</h2>
-<p>Suppose that</p>
+<div class="hidden">
+<p><span class="math display">\[
+\def\b#1{\mathbf{#1}}
+\def\half{\frac12}
+\def\E{\mbox{E}}
+\def\V{\mbox{Var}}
+\]</span></p>
+</div>
+<section id="analysis-of-variance" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="analysis-of-variance"><span class="header-section-number">9.1</span> Analysis of variance</h2>
+<p>Consider the four models fitted to the birth weight data. <a href="#fig-birthweight-fitted">Figure&nbsp;<span>9.1</span></a> shows the data set along with the corresponding fitted model as a single line, for the models which do not take <span class="math inline">\(\texttt{Sex}\)</span> into account, and two lines, for the models which include <span class="math inline">\(\texttt{Sex}\)</span>.</p>
+<div id="fig-birthweight-fitted" class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-birthweight-fitted-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="anova_files/figure-html/fig-birthweight-fitted-1.png" class="img-fluid figure-img" data-ref-parent="fig-birthweight-fitted" width="672"></p>
+<p></p><figcaption class="figure-caption">(a) Model 0</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-birthweight-fitted-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="anova_files/figure-html/fig-birthweight-fitted-2.png" class="img-fluid figure-img" data-ref-parent="fig-birthweight-fitted" width="672"></p>
+<p></p><figcaption class="figure-caption">(b) Model 1</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-birthweight-fitted-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="anova_files/figure-html/fig-birthweight-fitted-3.png" class="img-fluid figure-img" data-ref-parent="fig-birthweight-fitted" width="672"></p>
+<p></p><figcaption class="figure-caption">(c) Model 2</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-birthweight-fitted-4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="anova_files/figure-html/fig-birthweight-fitted-4.png" class="img-fluid figure-img" data-ref-parent="fig-birthweight-fitted" width="672"></p>
+<p></p><figcaption class="figure-caption">(d) Model 3</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9.1: Birthweight and gestational age data with superimposed fitted regression lines from various competing models.</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+
+</div>
+<p>The <em>residual sum of squares</em> (RSS) takes into account the vertical distance between the fitted model and the data values. Let <span class="math inline">\(R_k\)</span> denote the residual sum of squares for Model <span class="math inline">\(k:\)</span> <span class="math inline">\(R_k = \sum_{i=1}^n (y_i - \hat{\mu}_{ki})^2,\)</span> where <span class="math inline">\(\hat{\mu}_{ki}\)</span> is the fitted value for individual <span class="math inline">\(i\)</span> under <span class="math inline">\(\texttt{Model}\)</span> <span class="math inline">\(k\)</span> and let <span class="math inline">\(r_k\)</span> denote the corresponding <em>residual degrees of freedom</em> for <span class="math inline">\(\texttt{Model}\)</span> <span class="math inline">\(k\)</span> (the number of observations minus the number of model parameters). The table below shows these values for the four models fitted to the data.</p>
+<div id="tbl-RSS" class="anchored">
+<table class="table">
+<caption>Table&nbsp;9.1: Summary of the residual sums of squares</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 25%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\texttt{Model}~k\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(R_k\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(r_k\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(R_k-R_{k-1}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(r_k-r_{k-1}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\texttt{0}\)</span></td>
+<td style="text-align: center;">1829873</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\texttt{1}\)</span></td>
+<td style="text-align: center;">816074</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">1013799</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\texttt{2}\)</span></td>
+<td style="text-align: center;">658771</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">157304</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\texttt{3}\)</span></td>
+<td style="text-align: center;">652425</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">6346</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The table also shows the change in residual sums of squares, <span class="math inline">\(R_k-R_{k-1}\)</span>, which measures the improvement in the fit due to the extra parameters used in Model <span class="math inline">\(k\)</span> compared to Model <span class="math inline">\(k-1\)</span>. The RSS and changes in RSS values are also shown in <a href="#fig-temp">Figure&nbsp;<span>9.2</span></a>. It is clear that there is a substantial reduction in RSS moving from Model <span class="math inline">\(0\)</span> to Model <span class="math inline">\(1\)</span>, but small reductions as further parameters are added to the model. We might guess that Model <span class="math inline">\(1\)</span> will be the ``best’’ model, but a it is not acceptable to base a choice on our personal subjective opinion but instead a sequence of hypothesis tests will be used.</p>
+<div id="fig-temp" class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-temp-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="anova_files/figure-html/fig-temp-1.png" class="img-fluid figure-img" data-ref-parent="fig-temp" width="672"></p>
+<p></p><figcaption class="figure-caption">(a) Residual sum of squares</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-temp-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="anova_files/figure-html/fig-temp-2.png" class="img-fluid figure-img" data-ref-parent="fig-temp" width="672"></p>
+<p></p><figcaption class="figure-caption">(b) Change in RSS</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9.2: Birthweight and gestational age data with superimposed fitted regression lines from various competing models.</figcaption><p></p>
+</figure>
+</div>
+<p>Here, a sequence of three hypothesis tests is considered: Starting with <span class="math display">\[\mbox{Test 1} \quad H_0: \texttt{Model } 0 \text{ is true};  H_1: \texttt{Model } 1 \text{ is true}.\]</span> Which can be judged by comparing <span class="math inline">\(R_1-R_0=\)</span> 1013799 which follows a <span class="math inline">\(\sigma^2\chi^2\)</span> distribution on <span class="math inline">\(r_1-r_0=1\)</span> degrees of freedom (<span class="math inline">\((R_1-R_0)/\sigma^2\)</span> follows a <span class="math inline">\(\chi^2_1\)</span>distribution) with <span class="math inline">\(R_1=\)</span> 816074 which follows a <span class="math inline">\(\sigma^2\chi^2\)</span> distribution on <span class="math inline">\(r_1=22\)</span> degrees of freedom (<span class="math inline">\(R_1/\sigma^2\)</span> follows a <span class="math inline">\(\chi^2_{22}\)</span> distribution. Fortunately, taking the ratio eliminates <span class="math inline">\(\sigma^2\)</span> giving the test statistics <span class="math display">\[
+F_{01} = \frac{(R_1-R_0)/(r_1-r_0)}{R_1/r_1}=\frac{1013799/1}{816074/22}=27.33
+\]</span> If <span class="math inline">\(H_0\)</span> is true, then we would expect this to be close to 1. The 5%, 1% and 0.1% critical values for the distribution are 4.3, 7.95, 14.38, and the observed F statistics is much larger than all these and hence <span class="math inline">\(\mbox{p-value}&lt;0.001\)</span> meaning we reject <span class="math inline">\(H_0\)</span> in favour of <span class="math inline">\(H_1\)</span>.</p>
+<p>If <span class="math inline">\(H_0\)</span> had been accepted then the sequence would stops and <span class="math inline">\(\texttt{Model}~0\)</span> declared the best, whereas <span class="math inline">\(H_0\)</span> is rejected and the next test is considered <span class="math display">\[\mbox{Test 2} \quad H_0: \texttt{Model } 1 \text{ is true};  H_1: \texttt{Model } 2 \text{ is true}.\]</span> If <span class="math inline">\(H_0\)</span> is accepted here then the sequence stops and <span class="math inline">\(\texttt{Model}~1\)</span> is declared the best, whereas is <span class="math inline">\(H_0\)</span> is rejected then the last test is considered <span class="math display">\[\mbox{Test 3} \quad H_1: \texttt{Model } 2 \text{ is true};  H_1: \texttt{Model } 3 \text{ is true}.\]</span> If <span class="math inline">\(H_0\)</span> is accepted here then the sequence stops and <span class="math inline">\(\texttt{Model}~2\)</span> is declared the best, whereas if <span class="math inline">\(H_0\)</span> is rejected then <span class="math inline">\(\texttt{Model } 3\)</span> is declared the best.</p>
 </section>
-<section id="the-chi2--and-the-f-distributions" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="the-chi2--and-the-f-distributions"><span class="header-section-number">9.2</span> The <span class="math inline">\(\chi^2\)</span>- and the F-distributions</h2>
+<section id="distributions-derived-from-the-gaussian-distribution" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="distributions-derived-from-the-gaussian-distribution"><span class="header-section-number">9.2</span> Distributions derived from the Gaussian distribution</h2>
+<section id="the-gaussian-normal-distribution" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="the-gaussian-normal-distribution"><span class="header-section-number">9.2.1</span> The Gaussian (normal) distribution</h3>
+<p>If <span class="math inline">\(X\sim N(\mu, \sigma^2)\)</span> then <span class="math display">\[
+f(x) = \frac{1}{ \sqrt {2\pi \sigma^2} }
+\exp \left\{ - \half
+\frac{(x-\mu)^2}{\sigma^2} \right\} , \hspace{10mm}
+-\infty &lt;x &lt;\infty .
+\]</span> Properties:</p>
+<ol type="1">
+<li>The parameter <span class="math inline">\(\mu=\E[X]\)</span> is a location parameter and <span class="math inline">\(\sigma^2=\V[X]\)</span> is a scale parameter.</li>
+<li>If <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> then <span class="math inline">\(aX+b \sim N(a\mu+b, a^2\sigma^2).\)</span></li>
+<li>If <span class="math inline">\(X_i \sim N(\mu_i, \sigma_i^2), i=1,...,n\)</span> (independent) then <span class="math inline">\(\sum a_i X_i \sim N(\sum a_i\mu, \sum a_i^2\sigma^2).\)</span></li>
+<li>A special case is when <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span> which is called the <em>standard normal</em> distribution.</li>
+</ol>
 </section>
-<section id="analysis-of-variance" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="analysis-of-variance"><span class="header-section-number">9.3</span> Analysis of variance</h2>
+<section id="the-chi2-distribution" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="the-chi2-distribution"><span class="header-section-number">9.2.2</span> The <span class="math inline">\(\chi^2\)</span>-distribution</h3>
+<p>If <span class="math inline">\(X\)</span> has a Chi-squared distribution, <span class="math inline">\(X\sim \chi_\nu ^2\)</span> then <span class="math display">\[
+f(x) = \frac{ (\half) ^{\frac{\nu}{2}} x^{\frac{\nu}{2}-1} e^{-\half x}}{\Gamma \left(\frac{\nu}{2}\right)}, \hspace{10mm}
+x\ge 0, \nu &gt;0 \mbox{ and integer}.
+\]</span> with <span class="math inline">\(\E[X] = \nu\)</span> and <span class="math inline">\(\V[X] = 2 \nu\)</span>.</p>
+<p>Properties:</p>
+<ol type="1">
+<li>The parameter <span class="math inline">\(\nu\)</span> is a shape parameter and is called the <em>degrees of freedom</em>. The pdf is positive skew, but becomes more symmetric as <span class="math inline">\(\nu\)</span> increases.</li>
+<li>If <span class="math inline">\(Z \sim N(0,1)\)</span> then <span class="math inline">\(Z^2 \sim \chi_1^2\)</span>.</li>
+<li>If <span class="math inline">\(X_i \sim \chi_{\nu_i} ^2, i=1,...,n\)</span> (independent) then <span class="math inline">\(\sum X_i \sim \chi_\nu ^2\)</span>, where <span class="math inline">\(\nu = \sum \nu_i\)</span>.</li>
+<li>If <span class="math inline">\(Z_i \sim N(0,1), i=1,...,n\)</span> (independent) then <span class="math inline">\(\sum Z_i^2 \sim \chi_n ^2\)</span>.</li>
+<li>This is a special case of the gamma distribution, with <span class="math inline">\(\alpha = \nu/2\)</span> and <span class="math inline">\(\lambda = \half\)</span>, that is <span class="math inline">\(\gamma ({\frac{\nu}{2}}, \half)\)</span>.</li>
+</ol>
+</section>
+<section id="the-t--and-f-distributions" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="the-t--and-f-distributions"><span class="header-section-number">9.2.3</span> The t- and F-distributions</h3>
+<p>If <span class="math inline">\(X\)</span> has a t-distribution, <span class="math inline">\(X\sim t_{\nu}\)</span> then <span class="math display">\[
+f(x) =
+\frac{1}{\sqrt {\pi \nu}}
+\frac{\Gamma ((\nu+1)/2)}{\Gamma(\nu/2)}
+\left(1+ \frac{x^2}{\nu}\right)^{-\half (\nu+1)}
+\hspace{5mm} -\infty&lt;x&lt;\infty,
+\]</span> where <span class="math inline">\(\nu &gt;0\)</span> and integer.</p>
+<p>Properties:</p>
+<ol type="1">
+<li>The parameter <span class="math inline">\(\nu\)</span> is called the <em>degrees of freedom</em>.</li>
+<li>If <span class="math inline">\(X \sim N(0,1)\)</span> and <span class="math inline">\(Y \sim \chi_\nu ^2\)</span> (independent) then <span class="math display">\[
+\frac{X}{\sqrt {Y/\nu}} \sim t_\nu .
+\]</span></li>
+<li>If <span class="math inline">\(X \sim t_{\nu}\)</span> then <span class="math inline">\(X^2 \sim F_{1,\nu}\)</span>.</li>
+<li><span class="math inline">\(t_{\nu} \rightarrow N(0,1)\)</span> as <span class="math inline">\(\nu \rightarrow \infty\)</span>.</li>
+</ol>
+<p>If <span class="math inline">\(X\)</span> has an F-distribution, <span class="math inline">\(X\sim F_{\nu_1, \nu_2}\)</span> then <span class="math display">\[
+f (x) =
+\frac{\nu_1 ^{\frac{\nu_1}{2}} \nu_2 ^{\frac{\nu_2}{2}} x ^{\frac{\nu_1}{2}-1} }
+{B(\frac{\nu_1}{2}, \frac{\nu_2}{2}) (\nu_2+\nu_1 x)^{\frac{\nu_2+\nu_1}{2}} } \hspace{10mm} x\ge 0.
+\]</span> where <span class="math inline">\(\nu_1, \nu_2 &gt; 0\)</span> and integer are know as the <em>degrees of freedom</em>.</p>
+<p>Properties:</p>
+<ol type="1">
+<li>The parameters <span class="math inline">\(\nu_1\)</span> and <span class="math inline">\(\nu_2\)</span> are called the degrees of freedom.</li>
+<li>If <span class="math inline">\(X_1 \sim \chi_{\nu_2} ^2\)</span> and <span class="math inline">\(X_2 \sim \chi_{\nu_2} ^2\)</span> (independent) then <span class="math display">\[
+\frac{X_1/\nu_1}{X_2/\nu_2} \sim F_{\nu_1, \nu_2}.
+\]</span></li>
+<li>If <span class="math inline">\(X \sim F_{\nu_1, \nu_2}\)</span> then <span class="math inline">\(1/X \sim F_{\nu_2, \nu_1}\)</span>, hence, <span class="math inline">\(Pr(F_{\nu_1, \nu_2} &lt; c) = Pr(F_{\nu_2, \nu_1} &gt; 1/c).\)</span></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
