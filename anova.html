@@ -257,11 +257,11 @@ ul.task-list li input[type="checkbox"] {
 <table class="table">
 <caption>Table&nbsp;9.1: Summary of the residual sums of squares</caption>
 <colgroup>
-<col style="width: 33%">
-<col style="width: 16%">
-<col style="width: 11%">
-<col style="width: 25%">
-<col style="width: 11%">
+<col style="width: 29%">
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -339,12 +339,12 @@ F_{01} = \frac{(R_1-R_0)/(r_1-r_0)}{R_1/r_1}=\frac{1013799/1}{816074/22}=27.33
 <h3 data-number="9.2.1" class="anchored" data-anchor-id="the-gaussian-normal-distribution"><span class="header-section-number">9.2.1</span> The Gaussian (normal) distribution</h3>
 <p>If <span class="math inline">\(X\sim N(\mu, \sigma^2)\)</span> then <span class="math display">\[
 f(x) = \frac{1}{ \sqrt {2\pi \sigma^2} }
-\exp \left\{ - \half
+\exp \left\{ - \frac12
 \frac{(x-\mu)^2}{\sigma^2} \right\} , \hspace{10mm}
 -\infty &lt;x &lt;\infty .
 \]</span> Properties:</p>
 <ol type="1">
-<li>The parameter <span class="math inline">\(\mu=\E[X]\)</span> is a location parameter and <span class="math inline">\(\sigma^2=\V[X]\)</span> is a scale parameter.</li>
+<li>The parameter <span class="math inline">\(\mu=\mbox{E}[X]\)</span> is a location parameter and <span class="math inline">\(\sigma^2=\mbox{Var}[X]\)</span> is a scale parameter.</li>
 <li>If <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span> then <span class="math inline">\(aX+b \sim N(a\mu+b, a^2\sigma^2).\)</span></li>
 <li>If <span class="math inline">\(X_i \sim N(\mu_i, \sigma_i^2), i=1,...,n\)</span> (independent) then <span class="math inline">\(\sum a_i X_i \sim N(\sum a_i\mu, \sum a_i^2\sigma^2).\)</span></li>
 <li>A special case is when <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma^2=1\)</span> which is called the <em>standard normal</em> distribution.</li>
@@ -353,16 +353,16 @@ f(x) = \frac{1}{ \sqrt {2\pi \sigma^2} }
 <section id="the-chi2-distribution" class="level3" data-number="9.2.2">
 <h3 data-number="9.2.2" class="anchored" data-anchor-id="the-chi2-distribution"><span class="header-section-number">9.2.2</span> The <span class="math inline">\(\chi^2\)</span>-distribution</h3>
 <p>If <span class="math inline">\(X\)</span> has a Chi-squared distribution, <span class="math inline">\(X\sim \chi_\nu ^2\)</span> then <span class="math display">\[
-f(x) = \frac{ (\half) ^{\frac{\nu}{2}} x^{\frac{\nu}{2}-1} e^{-\half x}}{\Gamma \left(\frac{\nu}{2}\right)}, \hspace{10mm}
+f(x) = \frac{ (\frac12) ^{\frac{\nu}{2}} x^{\frac{\nu}{2}-1} e^{-\frac12 x}}{\Gamma \left(\frac{\nu}{2}\right)}, \hspace{10mm}
 x\ge 0, \nu &gt;0 \mbox{ and integer}.
-\]</span> with <span class="math inline">\(\E[X] = \nu\)</span> and <span class="math inline">\(\V[X] = 2 \nu\)</span>.</p>
+\]</span> with <span class="math inline">\(\mbox{E}[X] = \nu\)</span> and <span class="math inline">\(\mbox{Var}[X] = 2 \nu\)</span>.</p>
 <p>Properties:</p>
 <ol type="1">
 <li>The parameter <span class="math inline">\(\nu\)</span> is a shape parameter and is called the <em>degrees of freedom</em>. The pdf is positive skew, but becomes more symmetric as <span class="math inline">\(\nu\)</span> increases.</li>
 <li>If <span class="math inline">\(Z \sim N(0,1)\)</span> then <span class="math inline">\(Z^2 \sim \chi_1^2\)</span>.</li>
 <li>If <span class="math inline">\(X_i \sim \chi_{\nu_i} ^2, i=1,...,n\)</span> (independent) then <span class="math inline">\(\sum X_i \sim \chi_\nu ^2\)</span>, where <span class="math inline">\(\nu = \sum \nu_i\)</span>.</li>
 <li>If <span class="math inline">\(Z_i \sim N(0,1), i=1,...,n\)</span> (independent) then <span class="math inline">\(\sum Z_i^2 \sim \chi_n ^2\)</span>.</li>
-<li>This is a special case of the gamma distribution, with <span class="math inline">\(\alpha = \nu/2\)</span> and <span class="math inline">\(\lambda = \half\)</span>, that is <span class="math inline">\(\gamma ({\frac{\nu}{2}}, \half)\)</span>.</li>
+<li>This is a special case of the gamma distribution, with <span class="math inline">\(\alpha = \nu/2\)</span> and <span class="math inline">\(\lambda = \frac12\)</span>, that is <span class="math inline">\(\gamma ({\frac{\nu}{2}}, \frac12)\)</span>.</li>
 </ol>
 </section>
 <section id="the-t--and-f-distributions" class="level3" data-number="9.2.3">
@@ -371,7 +371,7 @@ x\ge 0, \nu &gt;0 \mbox{ and integer}.
 f(x) =
 \frac{1}{\sqrt {\pi \nu}}
 \frac{\Gamma ((\nu+1)/2)}{\Gamma(\nu/2)}
-\left(1+ \frac{x^2}{\nu}\right)^{-\half (\nu+1)}
+\left(1+ \frac{x^2}{\nu}\right)^{-\frac12 (\nu+1)}
 \hspace{5mm} -\infty&lt;x&lt;\infty,
 \]</span> where <span class="math inline">\(\nu &gt;0\)</span> and integer.</p>
 <p>Properties:</p>

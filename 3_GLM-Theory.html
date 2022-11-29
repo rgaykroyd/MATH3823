@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -242,8 +179,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#sec-exponential-family" id="toc-sec-exponential-family" class="nav-link" data-scroll-target="#sec-exponential-family"><span class="toc-section-number">3.4</span>  Moments of exponential-family distributions</a></li>
   <li><a href="#the-systematic-part-of-the-model" id="toc-the-systematic-part-of-the-model" class="nav-link" data-scroll-target="#the-systematic-part-of-the-model"><span class="toc-section-number">3.5</span>  The systematic part of the model</a></li>
   <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function"><span class="toc-section-number">3.6</span>  The link function</a></li>
-  <li><a href="#the-canonical-links" id="toc-the-canonical-links" class="nav-link" data-scroll-target="#the-canonical-links"><span class="toc-section-number">3.7</span>  The canonical links</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">3.8</span>  Exercises</a></li>
+  <li><a href="#the-canonical-links" id="toc-the-canonical-links" class="nav-link" data-scroll-target="#the-canonical-links"><span class="toc-section-number">3.7</span>  The canonical links</a>
+  <ul class="collapse">
+  <li><a href="#example-canonical-link-function-for-poisson-distribution" id="toc-example-canonical-link-function-for-poisson-distribution" class="nav-link" data-scroll-target="#example-canonical-link-function-for-poisson-distribution"><span class="toc-section-number">3.7.1</span>  Example: canonical link function for Poisson distribution</a></li>
+  <li><a href="#example-canonical-link-function-for-normal-distribution" id="toc-example-canonical-link-function-for-normal-distribution" class="nav-link" data-scroll-target="#example-canonical-link-function-for-normal-distribution"><span class="toc-section-number">3.7.2</span>  Example: canonical link function for Normal distribution</a></li>
+  <li><a href="#range-of-canonical-link-functions" id="toc-range-of-canonical-link-functions" class="nav-link" data-scroll-target="#range-of-canonical-link-functions"><span class="toc-section-number">3.7.3</span>  Range of canonical link functions</a></li>
+  <li><a href="#sec-canonicallinkconvenience" id="toc-sec-canonicallinkconvenience" class="nav-link" data-scroll-target="#sec-canonicallinkconvenience"><span class="toc-section-number">3.7.4</span>  Convenience of the canonical link function</a></li>
+  </ul></li>
+  <li><a href="#sec-mle" id="toc-sec-mle" class="nav-link" data-scroll-target="#sec-mle"><span class="toc-section-number">3.8</span>  Maximum likelihood estimation for generalized linear models</a>
+  <ul class="collapse">
+  <li><a href="#sec-mle.iid" id="toc-sec-mle.iid" class="nav-link" data-scroll-target="#sec-mle.iid"><span class="toc-section-number">3.8.1</span>  The i.i.d. case</a></li>
+  <li><a href="#accuracy-of-mles-in-the-i.i.d.-case" id="toc-accuracy-of-mles-in-the-i.i.d.-case" class="nav-link" data-scroll-target="#accuracy-of-mles-in-the-i.i.d.-case"><span class="toc-section-number">3.8.2</span>  Accuracy of MLEs in the i.i.d. case</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">3.9</span>  Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -440,10 +388,10 @@ f(y; \mu, \sigma^2) &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left\{ \frac{-1
 <table class="table">
 <caption>Table&nbsp;3.4: Exponential model components for the Gaussian</caption>
 <colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 42%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 34%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -572,57 +520,6 @@ g(\mu) = \log(\mu).
 \tag{3.16}\]</span></span> or the <em>cauchit</em> link which is the inverse of the cumulative distribution function of the Cauchy (<span class="math inline">\(t_1\)</span>) distribution: <span id="eq-cauchitlink"><span class="math display">\[
 \eta = g(\mu) = \tan(\pi(\mu/m-\tfrac{1}{2})) = \tan(\pi(p-\tfrac{1}{2})).
 \tag{3.17}\]</span></span> shows these link functions for proportions fitted to the beetle mortality data. This demonstrates that the logit and probit links are very similar, that the complementary log-log link fits these data slightly better in the extremes, but that the cauchit link fits these data quite poorly in the extremes.</p>
-<div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">3.5</span>,<span class="fl">3.5</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">0.75</span>,<span class="dv">0</span>))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>beetle <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"data/beetle.txt"</span>, <span class="at">header=</span>T)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">=</span> beetle<span class="sc">$</span>dose</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mortality <span class="ot">=</span> beetle<span class="sc">$</span>died<span class="sc">/</span>beetle<span class="sc">$</span>total</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ym <span class="ot">=</span> <span class="fu">cbind</span>(beetle<span class="sc">$</span>died,beetle<span class="sc">$</span>total<span class="sc">-</span>beetle<span class="sc">$</span>died)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dose, mortality, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.90</span>), <span class="at">xlab =</span><span class="st">"Dose"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.1</span>), <span class="at">ylab=</span><span class="st">"Mortality"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>glm.fit <span class="ot">=</span> <span class="fu">glm</span>(ym<span class="sc">~</span>dose, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">'logit'</span>))</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">seq</span>(<span class="fl">1.6</span>,<span class="fl">1.95</span>,<span class="fl">0.001</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">=</span> <span class="fu">predict</span>(glm.fit, <span class="fu">data.frame</span>(<span class="at">dose=</span>tmp), <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(tmp, fitted)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dose, mortality, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.90</span>), <span class="at">xlab =</span><span class="st">"Dose"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.1</span>), <span class="at">ylab=</span><span class="st">"Mortality"</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>glm.fit <span class="ot">=</span> <span class="fu">glm</span>(ym<span class="sc">~</span>dose, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">'probit'</span>))</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">seq</span>(<span class="fl">1.6</span>,<span class="fl">1.95</span>,<span class="fl">0.001</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">=</span> <span class="fu">predict</span>(glm.fit, <span class="fu">data.frame</span>(<span class="at">dose=</span>tmp), <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(tmp, fitted)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dose, mortality, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.90</span>), <span class="at">xlab =</span><span class="st">"Dose"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.1</span>), <span class="at">ylab=</span><span class="st">"Mortality"</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>glm.fit <span class="ot">=</span> <span class="fu">glm</span>(ym<span class="sc">~</span>dose, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">'cloglog'</span>))</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">seq</span>(<span class="fl">1.6</span>,<span class="fl">1.95</span>,<span class="fl">0.001</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">=</span> <span class="fu">predict</span>(glm.fit, <span class="fu">data.frame</span>(<span class="at">dose=</span>tmp), <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(tmp, fitted)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dose, mortality, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.90</span>), <span class="at">xlab =</span><span class="st">"Dose"</span>,</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">1.1</span>), <span class="at">ylab=</span><span class="st">"Mortality"</span>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>glm.fit <span class="ot">=</span> <span class="fu">glm</span>(ym<span class="sc">~</span>dose, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">'cauchit'</span>))</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">seq</span>(<span class="fl">1.6</span>,<span class="fl">1.95</span>,<span class="fl">0.001</span>)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">=</span> <span class="fu">predict</span>(glm.fit, <span class="fu">data.frame</span>(<span class="at">dose=</span>tmp), <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(tmp, fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div id="fig-beetle-links" class="cell quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -664,7 +561,6 @@ g(\mu) = \log(\mu).
 <p></p><figcaption class="figure-caption">Figure&nbsp;3.1: Dose–response curves fitted to the beetle mortality data from Table 1.1 with different choices of link function.</figcaption><p></p>
 </figure>
 </div>
-</div>
 </section>
 <section id="the-canonical-links" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="the-canonical-links"><span class="header-section-number">3.7</span> The canonical links</h2>
@@ -688,15 +584,190 @@ g'(\mu) = 1/b''(\theta).
 \frac{\text{d} \mu }{\text{d} \theta} = b''(\theta).
 \]</span> From <a href="#eq-canonicallinkfun">Equation&nbsp;<span>3.20</span></a>, for the canonical link function, we have <span class="math inline">\(\theta = g(\mu)\)</span>, so <span class="math display">\[
 \frac{\text{d} \theta }{ \text{d} \mu} = g'(\mu).
-\]</span> Now <span class="math inline">\(\text{d} \theta /\text{d} \mu = \left(\text{d} \mu / \text{d} \theta\right)^{-1}\)</span>. Hence <span class="math display">\[
+\]</span> Now <span class="math inline">\(\text{d} \theta /\text{d} \mu = \left(\text{d} \mu / \text{d} \theta\right)^{-1}\)</span> and hence <span class="math display">\[
 g'(\mu) = 1/b''(\theta).
 \]</span> Which proves the proposition.</p>
+<section id="example-canonical-link-function-for-poisson-distribution" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="example-canonical-link-function-for-poisson-distribution"><span class="header-section-number">3.7.1</span> Example: canonical link function for Poisson distribution</h3>
+<p>For the Poisson distribution <span class="math inline">\(\text{Po}(\lambda)\)</span>, we have from <a href="#tbl-GLM-poisson">Table&nbsp;<span>3.2</span></a> that <span class="math inline">\(b(\theta) = e^\theta\)</span>. Therefore,</p>
+<p><span class="math display">\[
+b'(\theta) = e^\theta,
+\]</span> so the inverse of function <span class="math inline">\(b'(\cdot)\)</span> exists and is the inverse of the exponential function, which is the logarithmic function. Then, applying <a href="#eq-canonicallinkfun">Equation&nbsp;<span>3.20</span></a> <span id="eq-canonicallinkfunpoisson"><span class="math display">\[
+g(\mu) = \log(\mu)
+\tag{3.21}\]</span></span> Thus the canonical link for the Poisson distribution is <span class="math inline">\(\log\)</span>.</p>
 </section>
-<section id="exercises" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.8</span> Exercises</h2>
+<section id="example-canonical-link-function-for-normal-distribution" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="example-canonical-link-function-for-normal-distribution"><span class="header-section-number">3.7.2</span> Example: canonical link function for Normal distribution</h3>
+<p>For the Normal distribution <span class="math inline">\(N(\mu, \sigma^2)\)</span>, we have from <a href="#tbl-GLM-gaussian">Table&nbsp;<span>3.4</span></a> that <span class="math inline">\(b(\theta) = \theta^2/2\)</span>. Therefore <span class="math display">\[
+b'(\theta) = \theta
+\]</span> so the inverse of function <span class="math inline">\(b'(\cdot)\)</span> exists and is the inverse of the identity function, which is the identity function. (The identity function is that which maps a value onto itself.) Then, applying <a href="#eq-canonicallinkfun">Equation&nbsp;<span>3.20</span></a>, <span class="math display">\[
+g(\mu) = \mu. \label{eq:canonical.linkfun.normal}
+\]</span> Thus the canonical link for the Normal distribution is the identity function.</p>
+</section>
+<section id="range-of-canonical-link-functions" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="range-of-canonical-link-functions"><span class="header-section-number">3.7.3</span> Range of canonical link functions</h3>
+<p>For many models, <span class="math inline">\(\mu\)</span> has a restricted range, but we would like <span class="math inline">\(\eta\)</span> to have unlimited range. It turns out, for several members of the exponential family, that the canonical link function provides <span class="math inline">\(\eta\)</span> with unlimited range. However, Table <a href="#tbl-canonicalrange">Table&nbsp;<span>3.6</span></a> shows that this is not always so.</p>
+<div id="tbl-canonicalrange" class="anchored">
+<table class="table">
+<caption>Table&nbsp;3.6: Canonical link functions and their ranges (see McCullagh and Nelder, 2nd Edn., p291 with <span class="math inline">\(\dagger\)</span>binomial distribution with index <span class="math inline">\(m\)</span> and mean <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\ddagger\)</span>gamma distribution with mean <span class="math inline">\(\mu\)</span> (see Exercises for details).</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(f(y)\)</span></th>
+<th style="text-align: center;">Range of <span class="math inline">\(\mu\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(b(\theta)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\mu=b'(\theta)\)</span></th>
+<th style="text-align: center;">Canonical link, <span class="math inline">\(g(\mu)\)</span></th>
+<th style="text-align: center;">Range of <span class="math inline">\(\eta\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Normal</td>
+<td style="text-align: center;"><span class="math inline">\((-\infty, \infty)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac12 \theta^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-\infty, \infty)\)</span></td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td style="text-align: center;"><span class="math inline">\((0,\infty)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\log\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-\infty, \infty)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Binomial<span class="math inline">\(\dagger\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0, m)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(m\log(1-e^\theta)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(m/(1+e^{-\theta})\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mbox{logit}(\mu/m)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-\infty, \infty)\)</span></td>
+</tr>
+<tr class="even">
+<td>Gamma<span class="math inline">\(\ddagger\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,\infty)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\log (-\theta)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\theta^{-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\mu^{-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((-\infty, 0)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sec-canonicallinkconvenience" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="sec-canonicallinkconvenience"><span class="header-section-number">3.7.4</span> Convenience of the canonical link function</h3>
+<p>Why is the canonical link function <a href="#eq-canonicallinkfun">Equation&nbsp;<span>3.20</span></a> convenient? The assertion <a href="#eq-G3">Equation&nbsp;<span>3.18</span></a> means that, in the exponential-family formula <a href="#eq-exponential-family">Equation&nbsp;<span>3.3</span></a>, we can simply substitute the linear predictor <span class="math display">\[
+\eta=\sum_j \beta_j x_j
+\]</span> from <a href="#eq-linpred">Equation&nbsp;<span>3.4</span></a> in place of <span class="math inline">\(\theta\)</span>, to give:</p>
+<p><span id="eq-canonicallinkfunf"><span class="math display">\[
+    f(y; \mathbf{x}, \boldsymbol{\beta},\phi) = \exp \left\{ \frac{y \left[\sum_j \beta_j x_j\right] - b\left(\left[\sum_j \beta_j x_j\right]\right)}
+                                            {\phi} + c(y, \phi) \right\},
+\tag{3.22}\]</span></span> where <span class="math inline">\(\mathbf{x}=\{x_{j}, j=1,\dots,p\}\)</span> and <span class="math inline">\(\boldsymbol{\beta}=\{\beta_j, j=1,\dots,p\}\)</span>.</p>
+<p>Suppose we have <span class="math inline">\(n\)</span> independent observations, <span class="math inline">\(\{y_i,\ i=1,\ldots,n\}\)</span>. As discussed in Section~<span class="math inline">\(\ref{sect:systematic}\)</span>, the explanatory variables <span class="math inline">\((x_{1},\ldots,x_{p})\)</span> will depend on~<span class="math inline">\(i\)</span>, and so <span class="math inline">\(\eta\)</span> will also depend on~<span class="math inline">\(i\)</span>. Therefore, we attach subscript <span class="math inline">\(i\)</span> to <span class="math inline">\(y\)</span> and to each <span class="math inline">\(x_j\)</span>, giving: <span id="eq-canonicallinkfunf2"><span class="math display">\[
+    f(y_i; \{x_{ij}\}, \{\beta_j\}, \phi) =
+    \exp \left\{ \frac{y_i \left[\sum_j \beta_j x_{ij}\right] - b\left(\left[\sum_j \beta_j x_{ij}\right]\right)}
+                                            {\phi} + c(y_i, \phi) \right\}.
+\tag{3.23}\]</span></span> By independence, the joint distribution of all observations <span class="math inline">\(\{y_i\} = \{y_i,\ i=1,\dots,n\}\)</span> is: <span class="math display">\[
+f(\mathbf{y}; X, \boldsymbol{\beta},\phi) = \prod_{i=1}^n f(y_i; \theta_i, \phi),
+\]</span> so</p>
+<p><span class="math display">\[
+\log f(\mathbf{y}; X, \boldsymbol{\beta},\phi) =
+\sum_{i=1}^n \log f(y_i; \theta_i, \phi)
+\]</span> then substituting in <span class="math display">\[
+\log f(\mathbf{y}; X, \boldsymbol{\beta},\phi) =
+\sum_{i=1}^n
+\left\{  \frac{y_i \left[\sum_j \beta_j x_{ij}\right] - b\left(\left[\sum_j \beta_j x_{ij}\right]\right)}{\phi} + c(y_i, \phi)\right\}
+\]</span> and finally simplifying to give <span id="eq-canonicallinkfunloglik"><span class="math display">\[
+\log f(\mathbf{y}; X, \boldsymbol{\beta},\phi) =
+\frac{\sum_j \beta_j S_j - \sum_i b\left(\left[\sum_j \beta_j x_{ij}\right]\right)}
+{\phi} + \sum_i c(y_i, \phi)
+\tag{3.24}\]</span></span> where <span class="math display">\[
+S_j = \sum_{i=1}^n  y_i  x_{ij}.
+\]</span> Thus, in the log-likelihood <a href="#eq-canonicallinkfunloglik">Equation&nbsp;<span>3.24</span></a>, it is only the first term that involves both the observations <span class="math inline">\(\mathbf{y}=\{y_i,\ i=1,\dots,n\}\)</span> and the parameters <span class="math inline">\(\boldsymbol{\beta}=\{\beta_j, j=1,\dots,p\}\)</span>, and this term depends on the observations only through the statistics <span class="math inline">\(\mathbf{S}=\{S_j, j=1,\dots,p\}\)</span>. These are called <em>sufficient statistics</em>, and their appearance in <a href="#eq-canonicallinkfunloglik">Equation&nbsp;<span>3.24</span></a> confers both theoretical and practical advantages.</p>
+</section>
+</section>
+<section id="sec-mle" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="sec-mle"><span class="header-section-number">3.8</span> Maximum likelihood estimation for generalized linear models</h2>
+<p>Throughout this module we use the principle of maximum likelihood estimation (MLE) to estimate regression parameters.</p>
+<section id="sec-mle.iid" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="sec-mle.iid"><span class="header-section-number">3.8.1</span> The i.i.d. case</h3>
+<p>Suppose we have <span class="math inline">\(n\)</span> i.i.d. observations <span class="math inline">\(\{y_i,\ i=1,\ldots,n\}\)</span>, where each <span class="math inline">\(y_i\)</span> is sampled from the same exponential family density <a href="#eq-exponential-family">Equation&nbsp;<span>3.3</span></a> <span id="eq-iidobs"><span class="math display">\[
+f(y_i; \theta,\phi) = \exp \left\{ \frac{\theta y_i - b(\theta)}{\phi} + c(y_i, \phi) \right\}.
+\tag{3.25}\]</span></span> For simplicity we assume the canonical parameter <span class="math inline">\(\theta\)</span> does not depend on <span class="math inline">\(i\)</span>. Later, we will consider the case where <span class="math inline">\(\theta\)</span> depends on <span class="math inline">\(i\)</span> through covariates <span class="math inline">\(\{x_{ij},\ j=1,\dots,p\}\)</span>, as in Section <a href="#sec-canonicallinkconvenience"><span>Section&nbsp;3.7.4</span></a>.</p>
+<p>By independence, the joint distribution of all the observations <span class="math inline">\(\{y_i\} = \{y_i,\ i=1,\dots,n\}\)</span> is: <span class="math display">\[
+f(\{y_i\}; \theta,\phi) = \prod_{i=1}^n f(y_i; \theta, \phi).
+\]</span> So <span class="math display">\[
+\log f(\{y_i\}; \theta,\phi) = \sum_{i=1}^n \log f(y_i; \theta, \phi)
+= \sum_{i=1}^n \left[\frac{\theta y_i - b(\theta)}{\phi} + c(y_i, \phi)\right].
+\]</span> Regarding the observations <span class="math inline">\(\{y_i\}\)</span> as constants (which they are, once we have them) and the scale parameter <span class="math inline">\(\phi\)</span> as a fixed <em>nuisance</em> parameter (whose value we may not know), the log-likelihood as a function of the parameter <span class="math inline">\(\theta\)</span> of interest is: <span id="eq-ltheta"><span class="math display">\[
+l(\theta; \{y_i\},\phi)  = n\ \frac{\theta \bar{y} -  b(\theta)}{\phi} + \mbox{constant},
+\tag{3.26}\]</span></span> where <span class="math inline">\(\bar{y}= \frac{1}{n} \sum_{i=1}^n y_i\)</span>.</p>
+<p>We estimate <span class="math inline">\(\theta\)</span> by maximizing the log likelihood – i.e.&nbsp;given the data <span class="math inline">\(\{y_i,\ i=1,\dots,n\}\)</span>, we estimate the value of <span class="math inline">\(\theta\)</span> to be that value for which the likelihood, and hence the log-likelihood, is greatest.</p>
+<p>We maximize the log-likelihood by differentiating it and setting it to zero: <span class="math display">\[
+\frac{d l(\theta; \{y_i\},\phi)}{d \theta}  = n\ \frac{\bar{y} -  b'(\theta)}{\phi}
+\]</span> and hence the MLE for <span class="math inline">\(\theta\)</span>, which we denote <span class="math inline">\(\hat\theta\)</span>, satisfies <span id="eq-exponentialfamilybary"><span class="math display">\[
+b'(\hat\theta) = \bar{y}.
+\tag{3.27}\]</span></span> Now, we showed in <a href="#prp-moments">Proposition&nbsp;<span>3.1</span></a> that <span class="math display">\[
+\mbox{E}[Y] = \mu =b'(\theta).
+\]</span> Let <span class="math inline">\(\hat\mu\)</span> denote the MLE of <span class="math inline">\(\mu\)</span>. Then <span class="math display">\[
+\hat\mu = b'(\hat{\theta}),
+\]</span> because the MLE of any function <span class="math inline">\(\zeta = h(\theta)\)</span> of the parameters is <span class="math inline">\(\hat{\zeta} = h(\hat{\theta})\)</span>. Therefore, we have <span id="eq-exponentialfamilymuhat"><span class="math display">\[
+\hat\mu = \bar{y}.
+\tag{3.28}\]</span></span> So we find that <span class="math inline">\(\hat\theta\)</span> is the value of <span class="math inline">\(\theta\)</span> for which the theoretical mean <span class="math inline">\(\hat\mu = b'(\hat\theta)\)</span> matches the sample mean <span class="math inline">\(\bar{y}\)</span>.</p>
+</section>
+<section id="accuracy-of-mles-in-the-i.i.d.-case" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="accuracy-of-mles-in-the-i.i.d.-case"><span class="header-section-number">3.8.2</span> Accuracy of MLEs in the i.i.d. case</h3>
+<p>For our i.i.d. sample <span class="math inline">\(\{y_i,\ i=1,\ldots,n\}\)</span>, we have <span class="math inline">\(b'(\hat\theta) = \hat\mu = \bar y\)</span>. Let <span class="math inline">\(\theta_0\)</span> be the true value of <span class="math inline">\(\theta\)</span> with corresponding mean <span class="math inline">\(\mu_0\)</span>, i.e. <span id="eq-mu0"><span class="math display">\[
+b'(\theta_0) = \mu_0.  
+\tag{3.29}\]</span></span> How accurate is <span class="math inline">\(\hat\theta\)</span>? We know that <span id="eq-Ebary"><span class="math display">\[
+\mbox{E}[\bar Y] = \mbox{E}\left(\frac{1}{n}\sum_{i=1}^n y_i\right)
+= \frac{1}{n} \sum_{i=1}^n \mbox{E}(y_i)
+= \mu_0  
+= b'(\theta_0),
+\tag{3.30}\]</span></span> using <a href="#eq-mu0">Equation&nbsp;<span>3.29</span></a>, and <span class="math display">\[
+\mbox{Var}[\bar Y] = \mbox{Var}\left(\frac{1}{n} \sum_{i=1}^n y_i\right)
+= \frac{1}{n^2}  \sum_{i=1}^n \mbox{Var}(y_i)
+\]</span> because the observations are independent, <span id="eq-varbary"><span class="math display">\[
+= \frac{1}{n} \ b''(\theta_0) \phi,
+\tag{3.31}\]</span></span> using the result <a href="#eq-exponential-moments">Equation&nbsp;<span>3.8</span></a>.</p>
+<p>We can use Taylor’s theorem to expand <span class="math inline">\(b'(\hat\theta)\)</span> about <span class="math inline">\(\theta_0\)</span>: <span class="math display">\[
+\bar y = b'(\hat\theta) \approx  b'(\theta_0) + (\hat\theta - \theta_0) b''(\theta_0),
+\]</span> which implies that <span id="eq-hattheta-theta0"><span class="math display">\[
+(\hat\theta - \theta_0) \approx  b''(\theta_0)^{-1}\{b'(\hat\theta) - b'(\theta_0)\}  
+= b''(\theta_0)^{-1}(\bar y - \mu_0),
+\tag{3.32}\]</span></span> using <a href="#eq-exponentialfamilybary">Equation&nbsp;<span>3.27</span></a> and <a href="#eq-mu0">Equation&nbsp;<span>3.29</span></a>. We can use <a href="#eq-hattheta-theta0">Equation&nbsp;<span>3.32</span></a> to get approximations to the mean and variance of <span class="math inline">\(\hat\theta\)</span>:} <span class="math display">\[
+\mbox{E}[\hat\theta - \theta_0]  \approx   b''(\theta_0)^{-1} \mbox{E}(\bar y - \mu_0)  
+= 0,
+\]</span> using <a href="#eq-Ebary">Equation&nbsp;<span>3.30</span></a>, so <span id="eq-Ehattheta"><span class="math display">\[
+\mbox{E}(\hat\theta) \approx \theta_0,
+\tag{3.33}\]</span></span> and <span class="math display">\[
+\mbox{Var}(\hat\theta) \approx \mbox{E}\left[(\hat\theta - \theta_0)^2\right]
+\]</span> using <a href="#eq-Ehattheta">Equation&nbsp;<span>3.33</span></a>, <span class="math display">\[
+\mbox{Var}(\hat\theta) \approx \mbox{E}\left[\left(b''(\theta_0)^{-1}(\bar y - \mu_0)\right)^2\right]
+\]</span> using <a href="#eq-hattheta-theta0">Equation&nbsp;<span>3.32</span></a>, <span class="math display">\[
+\mbox{Var}(\hat\theta)\approx  \left(b''(\theta_0)\right)^{-2} \mbox{Var}[(\bar Y)]  
+\]</span> using <a href="#eq-Ebary">Equation&nbsp;<span>3.30</span></a>, <span id="eq-Varhattheta"><span class="math display">\[
+\mbox{Var}(\hat\theta) = \frac{\phi}{n \ b''(\theta_0)}
+\tag{3.34}\]</span></span> using <a href="#eq-varbary">Equation&nbsp;<span>3.31</span></a>.</p>
+<p>Thus we see that the first two derivatives of <span class="math inline">\(b(\theta)\)</span> play a key role in inference.</p>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.9</span> Exercises</h2>
 <p>3.1 In the binomial distribution, show that <span class="math inline">\(-m\log(1-p)=m\log(1+e^\theta)\)</span> where <span class="math inline">\(\theta=\mbox{logit }p\)</span>.</p>
 <p>3.2 Use the results in <a href="#sec-exponential-family"><span>Section&nbsp;3.4</span></a> and the exponential family description of the Binomial distribution in <a href="#sec-exponential-binomial"><span>Section&nbsp;3.3.2</span></a> to show that the mean and variance of a <span class="math inline">\(\text{Bin}(m,p)\)</span> are <span class="math inline">\(mp\)</span> and <span class="math inline">\(mp(1-p)\)</span>.</p>
-<pre><code>*Hint:* $f'(g(x)) = f'(g(x)) g'(x)$</code></pre>
+<p><em>Hint: <span class="math inline">\(f'(g(x)) = f'(g(x)) g'(x)\)</span></em></p>
 
 
 </section>
