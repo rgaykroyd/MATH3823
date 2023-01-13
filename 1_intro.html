@@ -238,6 +238,19 @@ Important
 </div>
 <p>The purpose of a generalized linear model is to describe the dependence of a <em>response</em> variable <span class="math inline">\(y\)</span> on a set of <span class="math inline">\(p\)</span> <em>explanatory</em> variables <span class="math inline">\(\b{x}=(x_1, x_2, \ldots, x_p)\)</span> where, conditionally on <span class="math inline">\(\b{x}\)</span>, observation <span class="math inline">\(y\)</span> has a distribution which is <strong>not necessarily</strong> normal.</p>
 <p>Note that in these notes we may use lowercase letters, for example <span class="math inline">\(y\)</span> or <span class="math inline">\(y_i,\)</span> to denote both observed values or random variables, which is being considered should be clear from the context.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This module will make extensive use of many basic ideas from statistics. If you need some revision, then see <em>Appendix A: Basic material</em> on Minerva under <em>Basic Pre-requisite Material</em>.</p>
+</div>
+</div>
 </section>
 <section id="motivating-example" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="motivating-example"><span class="header-section-number">1.2</span> Motivating example</h2>
@@ -308,7 +321,7 @@ Important
 <div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beetle <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"https://rgaykroyd.github.io/Datasets/beetle.txt"</span>, <span class="at">header=</span>T)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beetle <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"https://rgaykroyd.github.io/MATH3823/Datasets/beetle.txt"</span>, <span class="at">header=</span>T)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">=</span> beetle<span class="sc">$</span>dose</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mortality <span class="ot">=</span> beetle<span class="sc">$</span>died<span class="sc">/</span>beetle<span class="sc">$</span>total</span>
@@ -369,7 +382,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Warning of potential sensitive material.</strong> For further information on dose-response experiments see, for example, <a href="https://www.britannica.com/science/dose-response-relationship">www.britannica.com/science/dose-response-relationship</a>.</p>
+<p><strong>Warning of potentially sensitive material.</strong> For further information on dose-response experiments see, for example, <a href="https://www.britannica.com/science/dose-response-relationship">www.britannica.com/science/dose-response-relationship</a>.</p>
 </div>
 </div>
 </section>
@@ -447,7 +460,19 @@ Multiple R-squared:  0.9524,    Adjusted R-squared:  0.9445
 F-statistic: 120.2 on 1 and 6 DF,  p-value: 3.422e-05</code></pre>
 </div>
 </div>
-<p>You should have met <span class="math inline">\(\b{R}\)</span> output like this in previous statistics modules, but if you need some revision then see “Appendix-C: Background to Analysis of Variance”.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should have met <span class="math inline">\(\b{R}\)</span> output like this in previous statistics modules, but if you need some revision then see <em>Appendix-C: Background to Analysis of Variance</em> on Minerva under <em>Basic Pre-requisite Material</em>.</p>
+</div>
+</div>
 </section>
 <section id="types-of-variables" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="types-of-variables"><span class="header-section-number">1.4</span> Types of variables</h2>
