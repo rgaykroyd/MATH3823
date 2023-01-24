@@ -2,35 +2,42 @@
   {
     "objectID": "0_preface.html",
     "href": "0_preface.html",
-    "title": "Preface",
+    "title": "Overview",
     "section": "",
     "text": "Official Module Description"
   },
   {
+    "objectID": "0_preface.html#preface",
+    "href": "0_preface.html#preface",
+    "title": "Overview",
+    "section": "Preface",
+    "text": "Preface\nThese lecture notes are produced for the University of Leeds module MATH3823 - Generalized Linear Models for the academic year 2022-23. Please note that this material also forms part of the module MATH5824 - Generalized Linear and Additive Models. They are based on those used previously for this module and I am grateful to previous module lecturers for their considerable effort: Lanpeng Ji, Amanda Minter, John Kent, Wally Gilks, and Stuart Barber. This is the first year, however, that they have been produced in accessible format and hence some errors might occur during this conversion process. For information, I am using Quarto (a successor to RMarkdown) from RStudio to produce both the html and PDF, and then GitHub to create the website which can be accessed at rgaykroyd.github.io/MATH3823/. Please note that the PDF versions will only be made available on the University of Leeds Minerva system. Although I am a long-term user of RStudio, I have not previously used Quarto/RMarkdown nor Github and hence please be patient if there are hitches along the way.\nRG Aykroyd, Leeds, November 22, 2022\n\n\n\n\n\n\n\n\nWarning\n\n\n\nStatistical ethics and sensitive data\nPlease note that from time to time we will be using data sets from situations which some might perceive as sensitive. All such data sets will, however, be derived from real-world studies which appear in textbooks or in scientific journals. The daily work of many statisticians involves applying their professional skills in a wide variety of situations and as such it is important to include a range of commonly encountered examples in this module. Whenever possible, sensitive topics will be signposted in advance. If you feel that any examples may be personally upsetting then, if possible, please contact the module lecturer in advance. If you are significantly effected by any of these situations, then you can seek support from the Student Counselling and Wellbeing service."
+  },
+  {
     "objectID": "0_preface.html#module-summary",
     "href": "0_preface.html#module-summary",
-    "title": "Preface",
+    "title": "Overview",
     "section": "Module summary",
     "text": "Module summary\nLinear regression is a tremendously useful statistical technique but is very limited. Generalised linear models extend linear regression in many ways - allowing us to analyse more complex data sets. In this module we will see how to combine continuous and categorical predictors, analyse binomial response data and model count data."
   },
   {
     "objectID": "0_preface.html#objectives",
     "href": "0_preface.html#objectives",
-    "title": "Preface",
+    "title": "Overview",
     "section": "Objectives",
     "text": "Objectives\nOn completion of this module, students should be able to:\n\ncarry out regression analysis with generalised linear models including the use of link functions;\nunderstand the use of deviance in model selection;\nappreciate the problems caused by overdispersion;\nfit and interpret the special cases of log linear models and logistic regression;\nuse a statistical package with real data to fit these models to data and to write a report giving and interpreting the results."
   },
   {
     "objectID": "0_preface.html#syllabus",
     "href": "0_preface.html#syllabus",
-    "title": "Preface",
+    "title": "Overview",
     "section": "Syllabus",
     "text": "Syllabus\nGeneralised linear model; probit model; logistic regression; log linear models."
   },
   {
     "objectID": "0_preface.html#university-module-catalogue",
     "href": "0_preface.html#university-module-catalogue",
-    "title": "Preface",
+    "title": "Overview",
     "section": "University Module Catalogue",
     "text": "University Module Catalogue\nFor any further details, please see MATH3823 Module Catalogue page"
   },
@@ -68,13 +75,6 @@
     "title": "1  Introduction",
     "section": "1.5 Exercises",
     "text": "1.5 Exercises\n\n\n\n\n\n\nImportant\n\n\n\nUnless otherwise stated, data files will be available online at: rgaykroyd.github.io/MATH3823/Datasets/filename.ext, where filename.ext is the stated filename with extension.\n\n\n\n1.1 Consider again the beetle data in Table 1.1. Perform the calculations by hand and then check the answers using \\(\\b{R}\\) – a copy of the data is available in the file beetle.txt. Finally plot the fitted regression line on a scatter plot of the data. [Hint: See the code chunk used to produce Figure 1.1.]\n1.2 Consider the following synthetic data:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(i=1\\)\n\\(i=2\\)\n\\(i=3\\)\n\\(i=4\\)\n\\(i=5\\)\n\\(i=6\\)\n\\(i=7\\)\n\\(i=8\\)\n\n\n\n\n\\(x_i\\)\n-1\n0\n1\n2\n2.5\n3\n4\n6\n\n\n\\(y_i\\)\n-2.8\n-1.1\n7.2\n8.0\n8.9\n9.2\n14.8\n24.7\n\n\n\nPlot the data to check that a linear model is suitable and then fit a linear regression model. Do you think that the fitted model can be reliably used to predict the values of \\(y\\) when \\(x=5\\) and \\(x=10\\)? Justify your answers.\n1.3 Starting from Equation 1.1, derive the estimation equations given in Equation 1.2. Further, show that \\(\\hat\\alpha\\) and \\(\\hat\\beta\\) are unbiased estimators of \\(\\alpha\\) and \\(\\beta\\). [Hint: Check your MATH1712 lecture notes.]\nWhat can be said about \\(\\hat\\sigma^2\\) as an estimator of \\(\\sigma^2\\)? [Hint: There is a careful theoretical proof, but here only an intuitive explanation is expected.]\n1.4 The Brownlee’s Stack Loss Plant Data2 is already available in \\(\\mathbf{R}\\), with background details on the help page, \\(\\texttt{?stackloss}\\). [Hint: You already met this example in MATH1712.]\nAfter plotting all pairs of variables, which of \\(\\texttt{Air.Flow}\\), \\(\\texttt{Water.Temp}\\) and \\(\\texttt{Acid.Conc}\\) do you think could be used to model \\(\\texttt{stack.loss}\\) using a linear regression? Justify your answer.\nPerform a simple linear regression with using \\(\\texttt{stack.loss}\\) as the response variable and your chosen variable as the explanatory variable. Add the fitted regression line to a scatter plot of the data and comment.\n1.5 In an experiment conducted by de Silva et al. in 20203 data was obtained to investigate falling objects and gravity, as first consider by Galileo and Newton. A copy of the data is available in the file physics_from_data.csv.\nRead the data file into \\(\\b{R}\\) and perform a simple linear regression of the maximum Reynolds number as the response variable and, in turn, each of the other variables as the explanatory variable.\nPlot the data and add the corresponding fitted linear models. Which variable do you think helps explain Reynolds number the best? Why do you think this?\n\n\nHere are an infinite number of further numerical examples from maths e.g. (thanks to https://www.mathcentre.ac.uk/):\nFinding the intersercept\nFinding the slope - Part 1\nFinding the slope - Part 2"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MATH3823 Generalized Linear Models",
-    "section": "",
-    "text": "\\[\n\\def\\b#1{\\mathbf{#1}}\n\\]\n\n\nWeekly schedule\n\n\n\n\n\n\nImportant\n\n\n\nOur regular class times are:\n           Tuesday 11-12, Roger Stevens, LT25\n           Thursday 2-3, Roger Stevens, LT23\n\n\n\n\n\n\n\n\nWeek 1 (30 January - 3 February)\n\n\n\n\nBefore next Lecture: Please read the Preface.\nLecture on Tuesday: We will briefly cover all material in Chapter 1: Introduction.\nBefore next Lecture: Please re-read Chapter 1 carefully.\nLecture on Thursday: Start Chapter 2: Essentials of Normal Linear Models with Section 2.1: Overview.\nWeekly feedback: Self-study the Exercises in Section 1.5 – solutions to be posted during Week 1.\n\n\n\n\n\n\n\n\n\nWeek 2 (6 - 10 February)\n\n\n\n\nDetails will be added during Week 1.\n\n\n\n\n\n\n\n\n\nCoursework Practical Sessions (20 - 24 March)\n\n\n\n\nDetails to follow in early March."
   },
   {
     "objectID": "2_linearmodels.html#overview",
@@ -117,5 +117,12 @@
     "title": "2  Essentials of Normal Linear Models",
     "section": "2.6 Exercises",
     "text": "2.6 Exercises\n2.1. An extra model which could have been considered for the Birthweight data example would be one that says that Weight is different for girls and boys, but does not depend on gestational age.\nWrite down the equation corresponding to this model. Then, load the birthweight data into RStudio and fit the model. How are the fitted model parameters related to the overall birthweight mean and the mean birthweights of the girls and boys? Is this a good fit to the data? Is Sex statistically significant?\n2.2. In an experiment to investigate Ohm’s Law, \\(V=IR\\) where \\(V\\) is Voltage, I is current and \\(R\\) is resistance of the material, the following data3 were recorded:\n\n\nTable 2.4: Experimental verification of Ohm’s Law\n\n\nVoltage (Volts)\n4\n8\n10\n12\n14\n18\n20\n24\n\n\nCurrent (mAmps)\n11\n24\n30\n36\n40\n53\n58.5\n70\n\n\n\n\nDoes this data support Ohm’s Law? What is the resistance of the material used?\n\n\n\n\n\n\nWarning\n\n\n\nWarning of potentially sensitive material.\n\n\n2.3. Data4 were recording on the number of deaths due to breast cancer in 301 counties in the US states of North Carolina, South Carolina and Georgia between 1950 and 1960. Also recorded was the adult white female population for each county. A copy of the data is available in the file Breast_Cancer.txt."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MATH3823 Generalized Linear Models",
+    "section": "",
+    "text": "\\[\n\\def\\b#1{\\mathbf{#1}}\n\\]\n\n\nWeekly schedule\n\n\n\n\n\n\nImportant\n\n\n\nOur regular class times are:\n           Tuesday 11-12, Roger Stevens, LT25\n           Thursday 2-3, Roger Stevens, LT23\n\n\n\n\n\n\n\n\nWeek 1 (30 January - 3 February)\n\n\n\n\nBefore next Lecture: Please read the Overview.\nLecture on Tuesday: We will briefly cover all material in Chapter 1: Introduction.\nBefore next Lecture: Please re-read Chapter 1 carefully.\nLecture on Thursday: Start Chapter 2: Essentials of Normal Linear Models with Section 2.1: Overview.\nWeekly feedback: Self-study the Exercises in Section 1.5 – solutions to be posted during Week 1.\n\n\n\n\n\n\n\n\n\nWeek 2 (6 - 10 February)\n\n\n\n\nDetails will be added during Week 1.\n\n\n\n\n\n\n\n\n\nCoursework Practical Sessions (20 - 24 March)\n\n\n\n\nDetails to follow in early March."
   }
 ]
