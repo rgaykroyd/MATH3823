@@ -476,39 +476,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> birthweight<span class="sc">$</span>age</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">=</span> birthweight<span class="sc">$</span>sex</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(weight))</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(weight))</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>,  </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>M1.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M1.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M1.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">16</span>,  </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>M1.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M1.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M1.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">15</span><span class="sc">+</span>sex, <span class="at">col=</span><span class="dv">2</span><span class="sc">-</span>sex, </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="at">pch=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">16</span>))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>M2.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M2.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M2.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M2.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M2.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M2.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">1</span>)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">15</span><span class="sc">+</span>sex, <span class="at">col=</span><span class="dv">2</span><span class="sc">-</span>sex, </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="at">pch=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">16</span>))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>M2.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M2.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M2.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M2.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M2.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M2.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">1</span>)</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">15</span><span class="sc">+</span>sex, <span class="at">col=</span><span class="dv">2</span><span class="sc">-</span>sex, </span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">pch=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">16</span>))</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>M3.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex<span class="sc">+</span>age<span class="sc">*</span>sex)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M3.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M3.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M3.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M3.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M3.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">+</span>M3.fit<span class="sc">$</span>coefficients[<span class="dv">4</span>], <span class="at">col=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age, weight, <span class="at">pch=</span><span class="dv">15</span><span class="sc">+</span>sex, <span class="at">col=</span><span class="dv">2</span><span class="sc">-</span>sex, </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Gestational age (weeks)"</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Birth weight (grams)"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">pch=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">16</span>))</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>M3.fit <span class="ot">=</span> <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex<span class="sc">+</span>age<span class="sc">*</span>sex)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M3.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>],M3.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(M3.fit<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">+</span>M3.fit<span class="sc">$</span>coefficients[<span class="dv">3</span>],M3.fit<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">+</span>M3.fit<span class="sc">$</span>coefficients[<span class="dv">4</span>], <span class="at">col=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-birthweight-fitted" class="cell quarto-layout-panel">
 <figure class="figure">
@@ -879,25 +880,25 @@ X=\begin{bmatrix}
 <p>Then the <span class="math inline">\(i\)</span>th row of <span class="math inline">\(X\)</span> becomes <span class="math inline">\(\beta_1 + \beta_2 = \alpha + \delta_1\)</span> if <span class="math inline">\(g_i = 1\)</span> and <span class="math inline">\(\beta_1 + \beta_3 = \alpha + \delta_2\)</span> if <span class="math inline">\(g_i\)</span> = 2. That is, the <span class="math inline">\(i\)</span>th row of <span class="math inline">\(X\)</span> is</p>
 <p><span class="math display">\[
 \alpha+\sum_{j=1}^2 \delta_j I(g_i=j)
-\]</span> so this model can be written <span class="math inline">\(Y=X\beta+\epsilon\)</span>. Here, <span class="math inline">\(X\)</span> is singular: its last two columns added together equal its first column. Statistically, the problem is that we are trying to estimate two means (the mean response for Boys and the mean response for girls) with three parameters (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta_2\)</span> and <span class="math inline">\(\delta_2\)</span>).</p>
+\]</span> so this model can be written <span class="math inline">\(Y=X\beta+\epsilon\)</span>. Here, <span class="math inline">\(X\)</span> is singular: its last two columns added together equal its first column. Statistically, the problem is that we are trying to estimate two means (the mean response for Boys and the mean response for Girls) with three parameters (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\delta_2\)</span> and <span class="math inline">\(\delta_2\)</span>).</p>
 <p>In practice, we often resolve this aliasing or identification problem by setting one of the parameters to be zero, that is <span class="math inline">\(\delta_1 = 0\)</span>, which corresponds to deleting the second column of <span class="math inline">\(X\)</span>).</p>
 </section>
 </section>
 <section id="model-shorthand-notation" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="model-shorthand-notation"><span class="header-section-number">2.5</span> Model shorthand notation</h2>
-<p>In R, a qualitative (categorical) variable is called a <em>factor</em>, and its categories are called <em>levels</em>. For example, variable <span class="math inline">\(\texttt{Sex}\)</span> in the birthweight data (above) has levels coded “M” for ‘Boy’ and “F” for ‘Girl’. It may not be obvious to R whether a variable is quantitative or qualitative. For example, a qualitative variable called <span class="math inline">\(\texttt{Grade}\)</span> might have categories 1, 2 and 3. If was included in a model, R would treat it as quantitative unless we declare it to be a factor, which we can do with the command:</p>
+<p>In R, a qualitative (categorical) variable is called a <em>factor</em>, and its categories are called <em>levels</em>. For example, variable <span class="math inline">\(\texttt{Sex}\)</span> in the birth weight data (above) has levels coded “M” for ‘Boy’ and “F” for ‘Girl’. It may not be obvious to R whether a variable is quantitative or qualitative. For example, a qualitative variable called <span class="math inline">\(\texttt{Grade}\)</span> might have categories 1, 2 and 3. If was included in a model, R would treat it as quantitative unless we declare it to be a factor, which we can do with the command:</p>
 <p><span class="math inline">\(\texttt{grade = as.factor(grade)}\)</span></p>
 <p>A convenient model-specification notation has been developed from which the design matrix <span class="math inline">\(X\)</span> can be constructed. Below, <span class="math inline">\(E, F, \ldots\)</span> denote generic quantitative (continuous) or qualitative (categorical) variables. Terms in this notation may take the following forms:</p>
 <ol type="a">
 <li><p><span class="math inline">\(1\)</span> : a column of 1’s to accommodate an intercept term (the <span class="math inline">\(\alpha\)</span>’s of <a href="#tbl-linear_models">Table&nbsp;<span>2.2</span></a> ). This is included in the model by default.</p></li>
-<li><p><span class="math inline">\(E\)</span> : variable <span class="math inline">\(E\)</span> is included in the model. The design matrix includes <span class="math inline">\(k_E\)</span> columns for <span class="math inline">\(E\)</span>. If <span class="math inline">\(E\)</span> is quantitative,<span class="math inline">\(k_E = 1\)</span>. If E is qualitative, <span class="math inline">\(k_E\)</span> is the number of levels of <span class="math inline">\(E\)</span> minus 1.</p></li>
+<li><p><span class="math inline">\(E\)</span> : variable <span class="math inline">\(E\)</span> is included in the model. The design matrix includes <span class="math inline">\(k_E\)</span> columns for <span class="math inline">\(E\)</span>. If <span class="math inline">\(E\)</span> is quantitative, <span class="math inline">\(k_E = 1\)</span>. If E is qualitative, <span class="math inline">\(k_E\)</span> is the number of levels of <span class="math inline">\(E\)</span> minus 1.</p></li>
 <li><p><span class="math inline">\(E +F\)</span> : both <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span> are included the model. The design matrix includes <span class="math inline">\(k_E +k_F\)</span> columns accordingly.</p></li>
 <li><p><span class="math inline">\(E : F\)</span> (sometimes <span class="math inline">\(E \cdot F\)</span>) : the model includes an interaction between <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span>; each column that would be included for <span class="math inline">\(E\)</span> is multiplied by each column for <span class="math inline">\(F\)</span> in turn. The design matrix includes <span class="math inline">\(k_E \times k_F\)</span> columns accordingly.</p></li>
 <li><p><span class="math inline">\(E * F\)</span> : shorthand for <span class="math inline">\(1 + E + F + E : F\)</span>: useful for crossed models where <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span> are different factors. For example, <span class="math inline">\(E\)</span> labels age groups; <span class="math inline">\(F\)</span> labels medical conditions.</p></li>
 <li><p><span class="math inline">\(E/F\)</span> : shorthand for <span class="math inline">\(1 + E + E : F\)</span>: useful for nested models where <span class="math inline">\(F\)</span> is a factor whose levels have meaning only within levels of factor <span class="math inline">\(E\)</span>. For example, <span class="math inline">\(E\)</span> labels different hospitals; <span class="math inline">\(F\)</span> labels wards within hospitals.</p></li>
 <li><p><span class="math inline">\(\text{poly}(E; \ell)\)</span> : shorthand for an orthogonal polynomial, wherein <span class="math inline">\(x\)</span> contains a set of mutually orthogonal columns containing polynomials in <span class="math inline">\(E\)</span> of increasing order, from order <span class="math inline">\(1\)</span> through order <span class="math inline">\(\ell\)</span>.</p></li>
 <li><p><span class="math inline">\(-E\)</span> : shorthand for removing a term from the model; for example <span class="math inline">\(E * F -E\)</span> is short for <span class="math inline">\(1 + F + E : F\)</span>.</p></li>
-<li><p><span class="math inline">\(I()\)</span> : shorthand for an arithmetical expression (not to be confused with the indicator function of equation (1.10)). For example, <span class="math inline">\(I(E + F)\)</span> denotes a new quantitative variable constructed by adding together quantitative variables <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span>. This would cause an error if either <span class="math inline">\(E\)</span> or <span class="math inline">\(F\)</span> has been declared as a factor. What would happen in this example if we omitted the <span class="math inline">\(I(\dot)\)</span> notation?</p></li>
+<li><p><span class="math inline">\(I()\)</span> : shorthand for an arithmetical expression (not to be confused with the indicator function defined above). For example, <span class="math inline">\(I(E + F)\)</span> denotes a new quantitative variable constructed by adding together quantitative variables <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span>. This would cause an error if either <span class="math inline">\(E\)</span> or <span class="math inline">\(F\)</span> has been declared as a factor. What would happen in this example if we omitted the <span class="math inline">\(I(\dot)\)</span> notation?</p></li>
 </ol>
 <p>The notation uses “~” as shorthand for “is modelled by” or “is regressed on”. For example,</p>
 <ul>
@@ -917,7 +918,6 @@ X=\begin{bmatrix}
 \texttt{Profit}\sim \texttt{Investment}- 1
 \]</span> (no intercept term, that is a regression through the origin).</p></li>
 </ul>
-<p>See Handout 4 for material on intrinsic aliasing to deal with singularity problem.</p>
 </section>
 <section id="exercises" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.6</span> Exercises</h2>
@@ -968,6 +968,19 @@ Warning
 </div>
 </div>
 <p>2.3. Data<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> were recording on the number of deaths due to breast cancer in 301 counties in the US states of North Carolina, South Carolina and Georgia between 1950 and 1960. Also recorded was the adult white female population for each county. A copy of the data is available in the file Breast_Cancer.txt.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sorry, I forgot to add the question – I’ll do that as soon as possible.</p>
+</div>
+</div>
 
 
 </section>
