@@ -439,8 +439,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Of course, there are very many possible models, but here we will consider the following:</p>
 <table class="table">
 <colgroup>
-<col style="width: 35%">
-<col style="width: 64%">
+<col style="width: 36%">
+<col style="width: 63%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -682,9 +682,9 @@ F_{12} = \frac{157304/1}{658771/21} = 5.0145,
 <table class="table">
 <caption>Table&nbsp;2.2: Types of normal linear model and their explanatory variable types where indicator function <span class="math inline">\(I(x=j)=1\)</span> if <span class="math inline">\(x=j\)</span> and <span class="math inline">\(0\)</span> otherwise.</caption>
 <colgroup>
-<col style="width: 25%">
+<col style="width: 26%">
 <col style="width: 27%">
-<col style="width: 47%">
+<col style="width: 45%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -898,7 +898,7 @@ X=\begin{bmatrix}
 <li><p><span class="math inline">\(E/F\)</span> : shorthand for <span class="math inline">\(1 + E + E : F\)</span>: useful for nested models where <span class="math inline">\(F\)</span> is a factor whose levels have meaning only within levels of factor <span class="math inline">\(E\)</span>. For example, <span class="math inline">\(E\)</span> labels different hospitals; <span class="math inline">\(F\)</span> labels wards within hospitals.</p></li>
 <li><p><span class="math inline">\(\text{poly}(E; \ell)\)</span> : shorthand for an orthogonal polynomial, wherein <span class="math inline">\(x\)</span> contains a set of mutually orthogonal columns containing polynomials in <span class="math inline">\(E\)</span> of increasing order, from order <span class="math inline">\(1\)</span> through order <span class="math inline">\(\ell\)</span>.</p></li>
 <li><p><span class="math inline">\(-E\)</span> : shorthand for removing a term from the model; for example <span class="math inline">\(E * F -E\)</span> is short for <span class="math inline">\(1 + F + E : F\)</span>.</p></li>
-<li><p><span class="math inline">\(I()\)</span> : shorthand for an arithmetical expression (not to be confused with the indicator function defined above). For example, <span class="math inline">\(I(E + F)\)</span> denotes a new quantitative variable constructed by adding together quantitative variables <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span>. This would cause an error if either <span class="math inline">\(E\)</span> or <span class="math inline">\(F\)</span> has been declared as a factor. What would happen in this example if we omitted the <span class="math inline">\(I(\dot)\)</span> notation?</p></li>
+<li><p><span class="math inline">\(I()\)</span> : shorthand for an arithmetical expression (not to be confused with the indicator function defined above). For example, <span class="math inline">\(I(E + F)\)</span> denotes a new quantitative variable constructed by adding together quantitative variables <span class="math inline">\(E\)</span> and <span class="math inline">\(F\)</span>. This would cause an error if either <span class="math inline">\(E\)</span> or <span class="math inline">\(F\)</span> has been declared as a factor. What would happen in this example if we omitted the <span class="math inline">\(I(\cdot)\)</span> notation?</p></li>
 </ol>
 <p>The notation uses “~” as shorthand for “is modelled by” or “is regressed on”. For example,</p>
 <ul>
@@ -921,8 +921,21 @@ X=\begin{bmatrix}
 </section>
 <section id="exercises" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.6</span> Exercises</h2>
-<p>2.1. An extra model which could have been considered for the Birthweight data example would be one that says that Weight is different for girls and boys, but does not depend on gestational age.</p>
-<p>Write down the equation corresponding to this model. Then, load the birthweight data into RStudio and fit the model. How are the fitted model parameters related to the overall birthweight mean and the mean birthweights of the girls and boys? Is this a good fit to the data? Is Sex statistically significant?</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please note that these questions are currently unchecked. I aim to look at them very soon but a apologize is anything is incomplete or there are errors.</p>
+</div>
+</div>
+<p>2.1. An extra model which could have been considered for the Birth weight data example would be one that says that <span class="math inline">\(\texttt{Weight}\)</span> is different for girls and boys, but does not depend on gestational age.</p>
+<p>Write down the equation corresponding to this model. Then, load the birth weight data into RStudio and fit the model. How are the fitted model parameters related to the overall birth weight mean and the mean birth weights of the girls and boys? Is this a good fit to the data? Is Sex statistically significant?</p>
 <p>2.2. In an experiment to investigate Ohm’s Law, <span class="math inline">\(V=IR\)</span> where <span class="math inline">\(V\)</span> is Voltage, I is current and <span class="math inline">\(R\)</span> is resistance of the material, the following data<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> were recorded:</p>
 <div id="tbl-ohmslawdata" class="anchored">
 <table class="table">
@@ -954,33 +967,60 @@ X=\begin{bmatrix}
 </table>
 </div>
 <p>Does this data support Ohm’s Law? What is the resistance of the material used?</p>
-<div class="callout-warning callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>2.3 In an investigation<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> into the effect of eating on pulse rate, 6 men and 6 women were tested before and after a meal, with the following results:</p>
+<div id="tbl-pulserate" class="anchored">
+<table class="table">
+<caption>Table&nbsp;2.5: At rest pulse rate before and after a meal for men and women</caption>
+<tbody>
+<tr class="odd">
+<td>Men</td>
+<td>before</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">97</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>after</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">101</td>
+</tr>
+<tr class="odd">
+<td>Women</td>
+<td>before</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>after</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">81</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="callout-caption-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Warning of potentially sensitive material.</strong></p>
-</div>
-</div>
-<p>2.3. Data<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> were recording on the number of deaths due to breast cancer in 301 counties in the US states of North Carolina, South Carolina and Georgia between 1950 and 1960. Also recorded was the adult white female population for each county. A copy of the data is available in the file Breast_Cancer.txt.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Sorry, I forgot to add the question – I’ll do that as soon as possible.</p>
-</div>
-</div>
+<p>Suggest a suitable model for this situation and write down the corresponding design matrix. Calculate the parameter estimates using the matrix regression estimation equation.</p>
+<p>Perform an appropriate analysis in R to find out if there is evidence to suggest that the change in pulse rate due to a meal is the same for men and women.</p>
+<p>2.4 A laboratory experiment<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> was performed into the effect of seasonal floods on the growth of barley seedlings in a incubator, as measured by their height in mm. Three types of barley seed (Goldmarker, Midas, Igri) were used with two watering condition (Normal and Waterlogged). Further, each combination was repeated four times on different shelves in the laboratory incubator (Top, Second, Third and Bottom shelf). The data are available in the file barley.csv</p>
+<p>Suggest a suitable model for this situation. Identify the response and explanatory variables and list the levels for any qualitative variables. Write down the design matrix for each model you consider.</p>
+<p>Perform appropriate analyses to test if each of the following are important: (a) watering condition, (b) type of barley seed, and (c) shelf position.</p>
+<p>In the analysis, do not include any interactions involving shelf position. If you find a significant interaction between watering condition and type of barley seed, carefully interpret the parameter estimates.</p>
 
 
 </section>
@@ -990,7 +1030,8 @@ Important
 <li id="fn1"><p>Dobson and Barnett, 3rd edition, Table 2.3.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Notice that this is a special case of the one-way ANOVA when there are only two-groups.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Aykroyd, P.J. (1956). Unpublished.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Rice, J.A. (1995) Mathematical Statistics and Data Analysis (2nd Ed). Example 57, p235.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Source unknown.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Source unknown.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
