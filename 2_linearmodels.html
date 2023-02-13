@@ -93,6 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./3_GLM-Theory.html" rel="next">
 <link href="./1_intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -176,6 +177,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./2_linearmodels.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Essentials of Normal Linear Models</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_GLM-Theory.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -186,9 +192,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="toc-section-number">2.1</span>  Overview</a></li>
-  <li><a href="#types-of-normal-linear-model" id="toc-types-of-normal-linear-model" class="nav-link" data-scroll-target="#types-of-normal-linear-model"><span class="toc-section-number">2.2</span>  Types of normal linear model</a></li>
+  <li><a href="#sec-typesnormalvariable" id="toc-sec-typesnormalvariable" class="nav-link" data-scroll-target="#sec-typesnormalvariable"><span class="toc-section-number">2.2</span>  Types of normal linear model</a></li>
   <li><a href="#matrix-representation-of-linear-models" id="toc-matrix-representation-of-linear-models" class="nav-link" data-scroll-target="#matrix-representation-of-linear-models"><span class="toc-section-number">2.3</span>  Matrix representation of linear models</a></li>
-  <li><a href="#construction-of-the-design-matrix" id="toc-construction-of-the-design-matrix" class="nav-link" data-scroll-target="#construction-of-the-design-matrix"><span class="toc-section-number">2.4</span>  Construction of the design matrix</a>
+  <li><a href="#sec-designmatrix" id="toc-sec-designmatrix" class="nav-link" data-scroll-target="#sec-designmatrix"><span class="toc-section-number">2.4</span>  Construction of the design matrix</a>
   <ul class="collapse">
   <li><a href="#example-simple-linear-regression" id="toc-example-simple-linear-regression" class="nav-link" data-scroll-target="#example-simple-linear-regression"><span class="toc-section-number">2.4.1</span>  Example: Simple linear regression</a></li>
   <li><a href="#example-one-way-anova" id="toc-example-one-way-anova" class="nav-link" data-scroll-target="#example-one-way-anova"><span class="toc-section-number">2.4.2</span>  Example: One-way ANOVA</a></li>
@@ -675,8 +681,8 @@ F_{12} = \frac{157304/1}{658771/21} = 5.0145,
 <p>The final column of the ANOVA table tells us that the probability of observing <span class="math inline">\(F_{12} &gt; 5.01\)</span> is only <span class="math inline">\(0.03609\)</span> – this is called a p-value. The * beside this p-value highlights that its value lies between 0.01 and 0.05. This indicates that we should reject <span class="math inline">\(H_0\)</span> in favour of <span class="math inline">\(H_1\)</span> – there is evidence for the more complicated model. Thus we would conclude that the effect of the sex of the baby, after controlling for gestational age, is statistically significant in these data.</p>
 <p>To complete the analysis, we should now compare <span class="math inline">\(\texttt{Model }2\)</span> with <span class="math inline">\(\texttt{Model }3\)</span> – see Exercises.</p>
 </section>
-<section id="types-of-normal-linear-model" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="types-of-normal-linear-model"><span class="header-section-number">2.2</span> Types of normal linear model</h2>
+<section id="sec-typesnormalvariable" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-typesnormalvariable"><span class="header-section-number">2.2</span> Types of normal linear model</h2>
 <p>Here we consider how normal linear models can be set up for different types of explanatory variable. The dependent variable <span class="math inline">\(y\)</span> is modelled as a linear combination of <span class="math inline">\(p\)</span> explanatory variables <span class="math inline">\(\b{x} =(x_1, x_2,\ldots, x_p)\)</span> plus a random error <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span>, where ‘~’ means ‘is distributed as’. Several models are of this kind, depending on the number and type of explanatory variables. <a href="#tbl-linear_models">Table&nbsp;<span>2.2</span></a> lists some types of normal linear models with their explanatory variable types.</p>
 <div id="tbl-linear_models" class="anchored">
 <table class="table">
@@ -761,8 +767,8 @@ F_{12} = \frac{157304/1}{658771/21} = 5.0145,
 <li><span class="math inline">\(\boldsymbol{\epsilon}\)</span> is an <span class="math inline">\(n\times 1\)</span> vector of independent and identically distributed (IID) random variables, which here <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span> and is called the “error” term.</li>
 </ul>
 </section>
-<section id="construction-of-the-design-matrix" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="construction-of-the-design-matrix"><span class="header-section-number">2.4</span> Construction of the design matrix</h2>
+<section id="sec-designmatrix" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-designmatrix"><span class="header-section-number">2.4</span> Construction of the design matrix</h2>
 <p>Creating the design matrix is a key part of the modelling as it describes the important structure of investigation or experiment. The design matrix can be constructed by the following process.</p>
 <ol type="1">
 <li><p>Begin with an <span class="math inline">\(X\)</span> containing only one column: a vector of ones for the overall mean or intercept term (the <span class="math inline">\(\alpha\)</span> in <a href="#tbl-linear_models">Table&nbsp;<span>2.2</span></a>).</p></li>
@@ -1176,6 +1182,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./3_GLM-Theory.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
