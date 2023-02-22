@@ -93,6 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./4_GLM-Fitting.html" rel="next">
 <link href="./2_linearmodels.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -179,6 +180,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./3_GLM-Theory.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_GLM-Fitting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM Estimation</span></a>
   </div>
 </li>
     </ul>
@@ -354,7 +360,7 @@ f(y_i; \theta_i, \phi) = \exp \left\{ \frac{y_i \theta_i - b(\theta_i)}   {\phi}
 \eta = \sum_{j=1}^p \beta_j x_j.
 \tag{3.4}\]</span></span> Note that the symbol <span class="math inline">\(\eta\)</span> is pronounced <em>eta</em>.</p>
 <p><strong>Link function:</strong> This is a one-to-one function providing the link between the linear predictor <span class="math inline">\(\eta\)</span> and the mean <span class="math inline">\(\mu = \mbox{E}[Y]\)</span>:</p>
-<p><span id="eq-link-functions"><span class="math display">\[
+<p><span id="eq-linkfun"><span class="math display">\[
 \eta = g(\mu), \quad \mbox{and} \quad \mu  = g^{-1}(\eta) = h(\eta).
 \tag{3.5}\]</span></span></p>
 <p>Here, <span class="math inline">\(g(\mu)\)</span> is called the <em>link function</em>, and <span class="math inline">\(h(\eta)\)</span> is called the <em>inverse link function</em>.</p>
@@ -743,7 +749,7 @@ g(\mu) = \log(\mu).
 \mu = b'(\theta).
 \]</span> So, provided function <span class="math inline">\(b'(\cdot)\)</span> has an inverse <span class="math inline">\((b')^{-1}(\cdot)\)</span>, we may write <span id="eq-dbinv"><span class="math display">\[
 \theta = (b')^{-1}(\mu).
-\tag{3.19}\]</span></span> Now, from <a href="#eq-link-functions">Equation&nbsp;<span>3.5</span></a>, <span class="math inline">\(g(\mu) = \eta\)</span>, so using <a href="#eq-G3">Equation&nbsp;<span>3.18</span></a>: <span id="eq-canonicallinkfun"><span class="math display">\[
+\tag{3.19}\]</span></span> Now, from <a href="#eq-linkfun">Equation&nbsp;<span>3.5</span></a>, <span class="math inline">\(g(\mu) = \eta\)</span>, so using <a href="#eq-G3">Equation&nbsp;<span>3.18</span></a>: <span id="eq-canonicallinkfun"><span class="math display">\[
 g(\mu) = \theta = (b')^{-1}(\mu),
 \tag{3.20}\]</span></span> from <a href="#eq-dbinv">Equation&nbsp;<span>3.19</span></a>. This makes explicit the <span class="math inline">\(g(\mu)\)</span> that is implicitly asserted by <a href="#eq-G3">Equation&nbsp;<span>3.18</span></a>. The function produced form <a href="#eq-canonicallinkfun">Equation&nbsp;<span>3.20</span></a> is called the <em>canonical</em> link function.</p>
 <div id="prp-canonicallinkderiv" class="proposition theorem proposition">
@@ -1028,6 +1034,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./4_GLM-Fitting.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM Estimation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
