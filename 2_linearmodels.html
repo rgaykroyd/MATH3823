@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#example-simple-linear-regression" id="toc-example-simple-linear-regression" class="nav-link" data-scroll-target="#example-simple-linear-regression"><span class="toc-section-number">2.4.1</span>  Example: Simple linear regression</a></li>
   <li><a href="#example-one-way-anova" id="toc-example-one-way-anova" class="nav-link" data-scroll-target="#example-one-way-anova"><span class="toc-section-number">2.4.2</span>  Example: One-way ANOVA</a></li>
   </ul></li>
-  <li><a href="#model-shorthand-notation" id="toc-model-shorthand-notation" class="nav-link" data-scroll-target="#model-shorthand-notation"><span class="toc-section-number">2.5</span>  Model shorthand notation</a></li>
+  <li><a href="#sec-shorthand" id="toc-sec-shorthand" class="nav-link" data-scroll-target="#sec-shorthand"><span class="toc-section-number">2.5</span>  Model shorthand notation</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">2.6</span>  Exercises</a></li>
   </ul>
 </nav>
@@ -895,8 +895,8 @@ X=\begin{bmatrix}
 <p>In practice, we often resolve this aliasing or identification problem by setting one of the parameters to be zero, that is <span class="math inline">\(\delta_1 = 0\)</span>, which corresponds to deleting the second column of <span class="math inline">\(X\)</span>).</p>
 </section>
 </section>
-<section id="model-shorthand-notation" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="model-shorthand-notation"><span class="header-section-number">2.5</span> Model shorthand notation</h2>
+<section id="sec-shorthand" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sec-shorthand"><span class="header-section-number">2.5</span> Model shorthand notation</h2>
 <p>In R, a qualitative (categorical) variable is called a <em>factor</em>, and its categories are called <em>levels</em>. For example, variable <span class="math inline">\(\texttt{Sex}\)</span> in the birth weight data (above) has levels coded “M” for ‘Boy’ and “F” for ‘Girl’. It may not be obvious to R whether a variable is quantitative or qualitative. For example, a qualitative variable called <span class="math inline">\(\texttt{Grade}\)</span> might have categories 1, 2 and 3. If was included in a model, R would treat it as quantitative unless we declare it to be a factor, which we can do with the command:</p>
 <p><span class="math inline">\(\texttt{grade = as.factor(grade)}\)</span></p>
 <p>A convenient model-specification notation has been developed from which the design matrix <span class="math inline">\(X\)</span> can be constructed. Below, <span class="math inline">\(E, F, \ldots\)</span> denote generic quantitative (continuous) or qualitative (categorical) variables. Terms in this notation may take the following forms:</p>
