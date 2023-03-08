@@ -93,6 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./5_logisticmodel.html" rel="next">
 <link href="./3_GLM-Theory.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -184,6 +185,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4_GLM-Fitting.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM Estimation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling proportions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_supplmentarymaterial.html" class="sidebar-item-text sidebar-link">Supplementary material</a>
   </div>
 </li>
     </ul>
@@ -334,37 +345,37 @@ b'(\theta_0) = \mu_0.
 f(y_i; \theta_i,\phi) = \exp \left\{ \frac{y_i\theta_i  - b(\theta_i)}{\phi} + c(y_i, \phi) \right\},
 \]</span> for <span class="math inline">\(i=1,\dots,n.\)</span> In this case, the canonical parameter does depend on <span class="math inline">\(i\)</span> – but we assume that the scale parameter <span class="math inline">\(\phi\)</span> does not – and let <span class="math inline">\(\boldsymbol{\theta} = \{\theta_i,\ i=1,\dots,n\}\)</span>.</p>
 <p>In most applications, we are not interested in estimation of <span class="math inline">\(\boldsymbol{\theta}\)</span> but instead we are interested in the linear predictor parameters <span class="math inline">\(\boldsymbol{\beta} =\{\beta_1,\dots,\beta_p\}\)</span>. Note, however, that each <span class="math inline">\(\theta_i\)</span> will depend on all <span class="math inline">\(\beta_1,\dots,\beta_p\)</span>. This is most obvious for the canonical parameter case where a convenient choice of link function is obtained using <span class="math inline">\(\boldsymbol{\theta} = \eta = X\boldsymbol{\beta}\)</span>, hence <span class="math inline">\(\theta_i= \mathbf{x}_i^T \boldsymbol{\beta} =\sum_{j=1}^p x_{ij}\beta_{j}\)</span> and each <span class="math inline">\(\theta_i\)</span> clearly depends on all <span class="math inline">\(\beta_1,\dots,\beta_p\)</span>.</p>
-<p>The principle of maximum likelihood will be used to estimate the model parameters <span class="math inline">\(\boldsymbol{\beta}\)</span>. Using the independence of <span class="math inline">\(y_i, i=1,\dots,n\)</span>, given the parameters <span class="math inline">\(\boldsymbol{\beta}\)</span>, the likelihood function is: <span class="math display">\[
+<p>The principle of maximum likelihood will be used to estimate the model parameters <span class="math inline">\(\boldsymbol{\beta}\)</span>. Using the independence of <span class="math inline">\(y_i, i=1,\dots,n\)</span>, given the parameters <span class="math inline">\(\boldsymbol{\beta}\)</span>, the likelihood function is: <span id="eq-likelihoodgeneral"><span class="math display">\[
 L(\boldsymbol{\beta}; \mathbf{y}, \phi)
 = f(\mathbf{y}; X, \boldsymbol{\beta},\phi)
 = \prod_{i=1}^n f(y_i; \mathbf{x}_i, \boldsymbol{\beta}, \phi)
-\]</span> and the log-likelihood by <span class="math display">\[
+\tag{4.11}\]</span></span> and the log-likelihood by <span id="eq-loglikelihoodgeneral"><span class="math display">\[
 l (\boldsymbol{\beta}; \mathbf{y}, \phi)
 = \log L(\boldsymbol{\beta}; \mathbf{y}, \phi)
 = \sum_{i=1}^n \log f(y_i;
 \mathbf{x}_i,
 \boldsymbol{\beta}, \phi).
-\]</span> Then we wish to find the value of <span class="math inline">\(\boldsymbol{\beta}\)</span> which maximizes the log-likelihood function, <span class="math display">\[
+\tag{4.12}\]</span></span> Then we wish to find the value of <span class="math inline">\(\boldsymbol{\beta}\)</span> which maximizes the log-likelihood function, <span class="math display">\[
 \hat{\boldsymbol{\beta}} =
 \max_{\boldsymbol{\beta}}
 l (\boldsymbol{\beta}; \mathbf{y}, \phi).
 \]</span> For generalized linear models there is usually no closed-form expression for the MLE <span class="math inline">\(\hat{\boldsymbol{\beta}}.\)</span> Instead, an iterative approach based on the Newton–Raphson algorithm is usually adopted.</p>
 <p>For the normal linear regression model, however, that is where the exponential family is Gaussian and the link function <span class="math inline">\(g(\mu)\)</span> is the identity function, we have the familiar closed-form expression <span id="eq-linearregressionMLE"><span class="math display">\[
 \hat{\boldsymbol{\beta}} = \left(X^T X\right)^{-1} X^T \mathbf{y}.
-\tag{4.11}\]</span></span></p>
+\tag{4.13}\]</span></span></p>
 </section>
 <section id="sec-score" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="sec-score"><span class="header-section-number">4.2.2</span> The score function and Fisher information</h3>
 <p>We define the <em>score function</em>: <span id="eq-U"><span class="math display">\[
 U(\boldsymbol{\beta}) = \frac{\partial l(\boldsymbol{\beta}; \mathbf{y},\phi)} {\partial \boldsymbol{\beta}},
-\tag{4.12}\]</span></span> which is a <span class="math inline">\(p \times 1\)</span> vector. We define the <em>observed Fisher information</em>: <span id="eq-I"><span class="math display">\[
+\tag{4.14}\]</span></span> which is a <span class="math inline">\(p \times 1\)</span> vector. We define the <em>observed Fisher information</em>: <span id="eq-I"><span class="math display">\[
 {\cal I}(\boldsymbol{\beta}) = - \frac{\partial U(\boldsymbol{\beta})} {\partial \boldsymbol{\beta}^T}
           = -\frac{\partial^2 l(\boldsymbol{\beta}; \mathbf{y},\phi)} {\partial \boldsymbol{\beta} \, \partial \boldsymbol{\beta}^T},
-\tag{4.13}\]</span></span> which is a <span class="math inline">\(p \times p\)</span> matrix whose <span class="math inline">\((j,k)\)</span>th element is: <span class="math inline">\(-\frac{\partial^2 l(\boldsymbol{\beta}; \mathbf{y},\phi)} {\partial \beta_j\partial \beta_k}\)</span>. We also define the <em>expected Fisher information</em>: <span id="eq-J"><span class="math display">\[
+\tag{4.15}\]</span></span> which is a <span class="math inline">\(p \times p\)</span> matrix whose <span class="math inline">\((j,k)\)</span>th element is: <span class="math inline">\(-\frac{\partial^2 l(\boldsymbol{\beta}; \mathbf{y},\phi)} {\partial \beta_j\partial \beta_k}\)</span>. We also define the <em>expected Fisher information</em>: <span id="eq-J"><span class="math display">\[
 {\cal J}(\boldsymbol{\beta}) = \mbox{E}\left[ -\frac{\partial^2 l(\boldsymbol{\beta}; \mathbf{y},\phi)} {\partial \boldsymbol{\beta} \, \partial \boldsymbol{\beta}^T} \right],
-\tag{4.14}\]</span></span> which is also a <span class="math inline">\(p \times p\)</span> matrix.</p>
+\tag{4.16}\]</span></span> which is also a <span class="math inline">\(p \times p\)</span> matrix.</p>
 <div id="prp-UJ" class="proposition theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 4.1 </strong></span>With definitions <a href="#eq-U">Equation&nbsp;<span>4.12</span></a>, <a href="#eq-I">Equation&nbsp;<span>4.13</span></a>, <a href="#eq-J">Equation&nbsp;<span>4.14</span></a> above,</p>
+<p><span class="theorem-title"><strong>Proposition 4.1 </strong></span>With definitions <a href="#eq-U">Equation&nbsp;<span>4.14</span></a>, <a href="#eq-I">Equation&nbsp;<span>4.15</span></a>, <a href="#eq-J">Equation&nbsp;<span>4.16</span></a> above,</p>
 <ul>
 <li><span class="math inline">\(\mbox{E}\left[U(\boldsymbol{\beta})\right] = 0\)</span>,</li>
 <li><span class="math inline">\({\cal J}(\boldsymbol{\beta}) = \mbox{E}\left[U(\boldsymbol{\beta}) U^T(\boldsymbol{\beta})\right]\)</span>.</li>
@@ -400,10 +411,10 @@ f(\mathbf{y}; X, \boldsymbol{\beta},\phi) = L(\boldsymbol{\beta}; \mathbf{y}, \p
 </ul>
 <p>Combining these three statements we have that asymptotically <span id="eq-betahatdistribution"><span class="math display">\[
 \hat{\boldsymbol{\beta}} \sim N_p (\boldsymbol{\beta}, {\cal J}^{-1}(\boldsymbol{\beta})).
-\tag{4.15}\]</span></span></p>
+\tag{4.17}\]</span></span></p>
 </div>
 <p><strong>Proof:</strong> Omitted. Similar to the proof using Taylor’s theorem in <a href="#sec-mleiid"><span>Section&nbsp;4.1</span></a>.</p>
-<p>From <a href="#eq-betahatdistribution">Equation&nbsp;<span>4.15</span></a>, variances <span class="math inline">\(\text{Var}(\hat{\beta}_{k})\)</span>, standard errors <span class="math inline">\(\text{se}(\hat{\beta}_{k})\)</span> and correlations between parameter estimates <span class="math inline">\(\text{Corr}(\hat{\beta}_{k},\hat{\beta}_{h})\)</span> can be estimated.</p>
+<p>From <a href="#eq-betahatdistribution">Equation&nbsp;<span>4.17</span></a>, variances <span class="math inline">\(\text{Var}(\hat{\beta}_{k})\)</span>, standard errors <span class="math inline">\(\text{se}(\hat{\beta}_{k})\)</span> and correlations between parameter estimates <span class="math inline">\(\text{Corr}(\hat{\beta}_{k},\hat{\beta}_{h})\)</span> can be estimated.</p>
 </section>
 <section id="sec-mlesaturated" class="level3" data-number="4.2.3">
 <h3 data-number="4.2.3" class="anchored" data-anchor-id="sec-mlesaturated"><span class="header-section-number">4.2.3</span> The saturated case</h3>
@@ -445,11 +456,11 @@ D
 <p>The quality of the approximations involved depends on there being a large amount of <em>information</em>, for example, large counts for Binomial and Poisson data, or a large sample size for Normal data.</p>
 <p><strong>Scale parameter <span class="math inline">\(\phi\)</span> unknown.</strong> For some data-types (e.g.&nbsp;Normal, Gamma), <span class="math inline">\(\phi\)</span> is not known (typically <span class="math inline">\(\phi = \sigma^2\)</span>). We must find a model <span class="math inline">\(M_3\)</span> <em>big</em> enough to be believed, then estimate <span class="math inline">\(\phi\)</span> by the residual mean square: <span id="eq-phihat"><span class="math display">\[
     \hat{\phi} = \frac{D_3}{n - r_3}.
-     \tag{4.16}\]</span></span> Then test <span class="math inline">\(M_1\)</span> against <span class="math inline">\(M_2\)</span> using <span id="eq-deviance-ratio"><span class="math display">\[
+     \tag{4.18}\]</span></span> Then test <span class="math inline">\(M_1\)</span> against <span class="math inline">\(M_2\)</span> using <span id="eq-deviance-ratio"><span class="math display">\[
     \mbox{F}=\frac{(D_1 - D_2) / (r_2 - r_1)}{\hat{\phi}} = \frac{(D_1 - D_2) / (r_2 - r_1)}{D_3/(n-r_3)}
-     \tag{4.17}\]</span></span> with <span id="eq-Ftest"><span class="math display">\[
+     \tag{4.19}\]</span></span> with <span id="eq-Ftest"><span class="math display">\[
     \mbox{F} \sim F_{r_2 - r_1, n - r_3}.
-     \tag{4.18}\]</span></span> So if the observed value of the statistic <a href="#eq-deviance-ratio">Equation&nbsp;<span>4.17</span></a> was within the upper (say 5%) tail of the <span class="math inline">\(F\)</span>-distribution <a href="#eq-Ftest">Equation&nbsp;<span>4.18</span></a>, we would infer that Model <span class="math inline">\(M_2\)</span> is better than Model <span class="math inline">\(M_1\)</span>.</p>
+     \tag{4.20}\]</span></span> So if the observed value of the statistic <a href="#eq-deviance-ratio">Equation&nbsp;<span>4.19</span></a> was within the upper (say 5%) tail of the <span class="math inline">\(F\)</span>-distribution <a href="#eq-Ftest">Equation&nbsp;<span>4.20</span></a>, we would infer that Model <span class="math inline">\(M_2\)</span> is better than Model <span class="math inline">\(M_1\)</span>.</p>
 </section>
 <section id="model-residuals" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="model-residuals"><span class="header-section-number">4.4</span> Model residuals</h2>
@@ -617,7 +628,7 @@ b     2  12.2947         6     13.150</code></pre>
 </ol>
 <p>Are these estimators unbiased for <span class="math inline">\(\theta\)</span>? What is the variance of the estimator in each case?</p>
 <p>4.2 For a sample of size <span class="math inline">\(n\)</span> from the normal distribution, <span class="math inline">\(Y\sim N(\mu, \sigma^2)\)</span>, how do the results produced using <a href="#eq-Ehattheta">Equation&nbsp;<span>4.9</span></a> and <a href="#eq-Varhattheta">Equation&nbsp;<span>4.10</span></a> compare with the familiar results <span class="math inline">\(\hat\mu =\bar y\)</span>, <span class="math inline">\(\text{E}[\hat\mu]=\mu\)</span>, and <span class="math inline">\(\text{Var}[\hat\mu] =\sigma^2/n\)</span>?</p>
-<p>4.3 For the normal linear regression model, <span class="math inline">\(\mathbf{Y}=X\boldsymbol{\beta}+\boldsymbol{\epsilon}\)</span> where <span class="math inline">\(\boldsymbol{\epsilon}\sim N_n(0,\sigma^2 I_n)\)</span> use the principle of maximum likelihood to show that the MLE has the closed form given in <a href="#eq-linearregressionMLE">Equation&nbsp;<span>4.11</span></a>.</p>
+<p>4.3 For the normal linear regression model, <span class="math inline">\(\mathbf{Y}=X\boldsymbol{\beta}+\boldsymbol{\epsilon}\)</span> where <span class="math inline">\(\boldsymbol{\epsilon}\sim N_n(0,\sigma^2 I_n)\)</span> use the principle of maximum likelihood to show that the MLE has the closed form given in <a href="#eq-linearregressionMLE">Equation&nbsp;<span>4.13</span></a>.</p>
 <p><strong>Further questions to be added later</strong></p>
 
 
@@ -770,6 +781,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./5_logisticmodel.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling proportions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
