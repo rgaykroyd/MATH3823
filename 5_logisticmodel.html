@@ -629,9 +629,10 @@ dose  1   272.97         6     11.232</code></pre>
 </div>
 </div>
 <p>Clearly, many of the results are repeated in the various <strong>R</strong> output.</p>
+<p>When considering testing model goodness of fit, it is important to distinguish between deviance values which compare a given model with the saturated model and deviance values which compare two competing models. For example, in the Analysis of Deviance Table, the right hand values compare the Null model with the saturated and the model including dose with the saturated. Whereas the left hand value is relevant to the comparison of Null model with the mode including dose.</p>
 <p><strong>Summary of results:</strong><br>
 From the output, we can first test if the Null model, which contains only a constant term, is a good fit to the data using the hypotheses: <span class="math display">\[
-H_0: \mbox{Null mode is true} \mbox{ against } H_1: \mbox{Null mode is false}.
+H_0: \mbox{Null model is true} \mbox{ against } H_1: \mbox{Null model is false}.
 \]</span> From the output, note that the Null deviance is <span class="math inline">\(D_0=284.202\)</span> and that this model has <span class="math inline">\(r_0=1\)</span> parameters. Therefore, <span class="math inline">\(D_0\)</span> follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n-r_0=8-1=7\)</span> degrees of freedom and hence the p-value is:</p>
 <div class="cell">
 <details open="">
