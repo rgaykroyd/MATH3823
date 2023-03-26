@@ -337,12 +337,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>In row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span> of <a href="#tbl-twoway">Table&nbsp;<span>6.1</span></a>} we assume <span class="math display">\[
-y_{ij} \sim \text{Po}(\lambda_{ij})
+Y_{ij} \sim \text{Po}(\lambda_{ij})
 \]</span> where <span id="eq-2waymodel"><span class="math display">\[
 \log \lambda_{ij} = \mu + \alpha_i + \beta_j + (\alpha \beta)_{ij}.
 \tag{6.1}\]</span></span> Here <span class="math inline">\(\mu\)</span> is called the <em>main effect</em>; <span class="math inline">\(\alpha_i\)</span> is a <em>row effect</em>; <span class="math inline">\(\beta_j\)</span> is a <em>column effect</em>; and <span class="math inline">\((\alpha \beta)_{ij}\)</span> denotes an <em>interaction effect</em> parameter. Some or all of these effects must be present in the model, with constraints to ensure that the model is identifiable – this is sometimes refered ot as the <em>identifiability</em> or <em>aliasing problem</em>. Generally, <strong>R</strong> function automatically sets the first level of each effect to zero to achieve model identification. Thus, for the two-way model, <span class="math display">\[
 \alpha_1 = 0, \quad \beta_1 = 0, \quad
-(\alpha \beta)_{11}=(\alpha \beta)_{1j}=(\alpha \beta)_{k1}=0.
+(\alpha \beta)_{11}=(\alpha \beta)_{1j}=(\alpha \beta)_{k_1}=0.
 \]</span></p>
 </section>
 <section id="motivating-examples" class="level2" data-number="6.2">
@@ -515,8 +515,7 @@ y_{ij} \sim \text{Po}(\lambda_{ij})
 </section>
 <section id="flu-vaccine" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="flu-vaccine"><span class="header-section-number">6.2.2</span> Flu vaccine</h3>
-<p>The data in <a href="#tbl-flucount">Table&nbsp;<span>6.5</span></a> are from a randomized controlled trial in which 73 patients were randomized into two groups (see Dobson and Barnett, 2008, p.173). The treatment group was given a flu vaccine, while the control group was given a placebo.<br>
-Levels of an antibody (HIA) were measured after 6 weeks and classified into three groups: Low, Moderate, and High.</p>
+<p>The data in <a href="#tbl-flucount">Table&nbsp;<span>6.5</span></a> are from a randomized controlled trial in which 73 patients were randomized into two groups (see Dobson and Barnett, 2008, p.173). The treatment group was given a flu vaccine, while the control group was given a placebo. Levels of an antibody (HIA) were measured after 6 weeks and classified into three groups: Low, Moderate, and High.</p>
 <div id="tbl-flucount" class="anchored">
 <table class="table">
 <caption>Table&nbsp;6.5: Antibody responses to flu vaccine from a randomized controlled trial.</caption>
@@ -670,7 +669,7 @@ y_{+j} = e^{\widehat{\mu}}  e^{\widehat{\beta}_j} \left(\sum_i e^{\widehat{\alph
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>melanoma <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"data/melanoma.txt"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>melanoma <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"https://rgaykroyd.github.io/MATH3823/Datasets/melanoma.txt"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(melanoma)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>type.F <span class="ot">=</span> <span class="fu">as.factor</span>(type)</span>
