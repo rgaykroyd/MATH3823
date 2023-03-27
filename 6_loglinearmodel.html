@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MATH3823 Generalized Linear Models - 6&nbsp; Loglinear models</title>
+<title>MATH3823 Generalized Linear Models - 6&nbsp; Loglinear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,6 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./7_extendedloglinearmodel.html" rel="next">
 <link href="./5_logisticmodel.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -133,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear models</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -188,12 +189,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling proportions</span></a>
+  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling Proportions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6_loglinearmodel.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear models</span></a>
+  <a href="./6_loglinearmodel.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_extendedloglinearmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Extensions to Loglinear models</span></a>
   </div>
 </li>
     </ul>
@@ -209,11 +215,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#motivating-examples" id="toc-motivating-examples" class="nav-link" data-scroll-target="#motivating-examples"><span class="toc-section-number">6.2</span>  Motivating examples</a>
   <ul class="collapse">
   <li><a href="#sec-melanoma" id="toc-sec-melanoma" class="nav-link" data-scroll-target="#sec-melanoma"><span class="toc-section-number">6.2.1</span>  Malignant melanoma</a></li>
-  <li><a href="#flu-vaccine" id="toc-flu-vaccine" class="nav-link" data-scroll-target="#flu-vaccine"><span class="toc-section-number">6.2.2</span>  Flu vaccine</a></li>
+  <li><a href="#sec-flucount" id="toc-sec-flucount" class="nav-link" data-scroll-target="#sec-flucount"><span class="toc-section-number">6.2.2</span>  Flu vaccine</a></li>
   </ul></li>
   <li><a href="#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#maximum-likelihood-estimation"><span class="toc-section-number">6.3</span>  Maximum likelihood estimation</a></li>
   <li><a href="#model-fitting-in-r" id="toc-model-fitting-in-r" class="nav-link" data-scroll-target="#model-fitting-in-r"><span class="toc-section-number">6.4</span>  Model fitting in <strong>R</strong></a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">6.5</span>  Exercises</a></li>
+  <li><a href="#multi-way-contingency-tables" id="toc-multi-way-contingency-tables" class="nav-link" data-scroll-target="#multi-way-contingency-tables"><span class="toc-section-number">6.5</span>  Multi-way contingency tables</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">6.6</span>  Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear models</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></h1>
 </div>
 
 
@@ -513,8 +520,8 @@ Y_{ij} \sim \text{Po}(\lambda_{ij})
 <p>Although we have two factors, and , that we may use as predictors, standard ANOVA regression methods are inappropriate here as the dependent variable is not continuous but is instead a count. We will use <em>log-linear regression</em>, a type of generalized linear model, to analyse these data.</p>
 <p><a href="#tbl-melanomapercent1">Table&nbsp;<span>6.3</span></a> shows row and <a href="#tbl-melanomapercent2">Table&nbsp;<span>6.4</span></a> column percentages for these data. For example, 15.2% of nodular melanomas occurred in the head and neck, 26.4% in the trunk, and 58.4% in the extremities. Compare this to the equivalent figures for Hutchinson’s melanotic freckles: 64.7%, 5.9%, and 29.4% - strikingly different. So different types of melanomas are more likely to occur in different locations.</p>
 </section>
-<section id="flu-vaccine" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="flu-vaccine"><span class="header-section-number">6.2.2</span> Flu vaccine</h3>
+<section id="sec-flucount" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="sec-flucount"><span class="header-section-number">6.2.2</span> Flu vaccine</h3>
 <p>The data in <a href="#tbl-flucount">Table&nbsp;<span>6.5</span></a> are from a randomized controlled trial in which 73 patients were randomized into two groups (see Dobson and Barnett, 2008, p.173). The treatment group was given a flu vaccine, while the control group was given a placebo. Levels of an antibody (HIA) were measured after 6 weeks and classified into three groups: Low, Moderate, and High.</p>
 <div id="tbl-flucount" class="anchored">
 <table class="table">
@@ -722,8 +729,23 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <p>For the saturated model, <span class="math inline">\(\widehat{\lambda}_{ij} = y_{ij}\)</span>. In this example, <span class="math inline">\(\sum_{ij} \widehat{\lambda}_{ij} = \sum_{ij} y_{ij} = 400\)</span>, so the probability of a tumour being in category <span class="math inline">\((i,j)\)</span> is <span class="math inline">\(y_{ij}/400\)</span> — just the observed proportions.</p>
 <p>Note that in <a href="#tbl-melanomacount1">Table&nbsp;<span>6.2</span></a> we have a total of <span class="math inline">\(y_{++} = 400\)</span> observations. If the data were truly Poisson, this would be a suspiciously round number. In reality, this total was fixed by design, so we should take into account the fact that <span class="math inline">\(y_{++} = 400\)</span> and fit a more suitable model, such as the <em>multinomial</em> model which we will meet in the next chapter.</p>
 </section>
-<section id="exercises" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.5</span> Exercises</h2>
+<section id="multi-way-contingency-tables" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="multi-way-contingency-tables"><span class="header-section-number">6.5</span> Multi-way contingency tables</h2>
+<p>We can generalize the model notation introduced in <a href="#eq-2waymodel">Equation&nbsp;<span>6.1</span></a> to accommodate multi-way contingency tables; that is tables of counts indexed by multiple factors. For example, for a 3-way table of cell counts <span class="math inline">\(y_{ijk}\)</span>, the saturated model would be written: <span class="math display">\[
+Y_{ijk} \sim \text{Po}(\lambda_{ijk})
+\]</span> where <span class="math display">\[
+\log \lambda_{ijk} =
+\mu + \alpha_i + \beta_j +\gamma_k
++ (\alpha \beta)_{ij}
++ (\alpha\gamma)_{ik}
++ (\beta \gamma)_{jk}
++ (\alpha \beta \gamma)_{ijk}.
+\]</span> Here, <span class="math inline">\(\alpha_i\)</span>, <span class="math inline">\(\beta_j\)</span> and <span class="math inline">\(\gamma_j\)</span> are <em>main effects</em>; <span class="math inline">\((\alpha \beta)_{ij}\)</span>, <span class="math inline">\((\alpha\gamma)_{ik}\)</span>, and <span class="math inline">\((\beta \gamma)_{jk}\)</span> are two-way <em>interaction effects</em>; and <span class="math inline">\((\alpha \beta \gamma)_{ijk}\)</span> is a <em>three-way interaction</em>.</p>
+<p>This approach is easily extended to tables of any number of factors. Note, however, that not all terms need be present in a model, thought 3-way or higher-order interactions might sometimes be required.</p>
+<p>A <em>hierarchical</em> model is one in which each term in the model is accompanied by all lower-order terms. For example, including the term <span class="math inline">\((\alpha\beta\gamma)_{ijk}\)</span> would require inclusion of each of the terms <span class="math inline">\(\alpha_i, \beta_j, \gamma_k, (\alpha\beta)_{ij}, (\alpha\gamma)_{ik}, (\beta\gamma)_{jk}\)</span>. We will be concerned only with <em>hierarchical</em> contingency table models. Non-hierarchical models are sometimes appropriate, depending on the nature of the factors involved, but hierarchical models are more generally applicable and easier to interpret.</p>
+</section>
+<section id="exercises" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.6</span> Exercises</h2>
 <p><strong>Exercises to be added later.</strong></p>
 
 
@@ -866,10 +888,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./5_logisticmodel.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling proportions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling Proportions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./7_extendedloglinearmodel.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Extensions to Loglinear models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

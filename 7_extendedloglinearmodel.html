@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -124,12 +125,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling proportions</span></a>
+  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling Proportions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6_loglinearmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear models</span></a>
+  <a href="./6_loglinearmodel.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -147,9 +148,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="toc-section-number">7.1</span>  Overview</a></li>
-  <li><a href="#multi-way-contingency-tables" id="toc-multi-way-contingency-tables" class="nav-link" data-scroll-target="#multi-way-contingency-tables"><span class="toc-section-number">7.2</span>  Multi-way contingency tables</a></li>
+  <li><a href="#contingency-tables-with-fixed-marginals" id="toc-contingency-tables-with-fixed-marginals" class="nav-link" data-scroll-target="#contingency-tables-with-fixed-marginals"><span class="toc-section-number">7.2</span>  Contingency tables with fixed marginals</a></li>
   <li><a href="#product-multinomial-models" id="toc-product-multinomial-models" class="nav-link" data-scroll-target="#product-multinomial-models"><span class="toc-section-number">7.3</span>  Product-multinomial models</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">7.4</span>  Exercises</a></li>
+  <li><a href="#model-fitting-in-r" id="toc-model-fitting-in-r" class="nav-link" data-scroll-target="#model-fitting-in-r"><span class="toc-section-number">7.4</span>  Model fitting in <strong>R</strong></a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">7.5</span>  Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -175,15 +177,189 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">7.1</span> Overview</h2>
+<p>In the melanoma example, see <a href="6_loglinearmodel.html#tbl-melanomacount1">Table&nbsp;<span>6.2</span></a>, the overall total number of observations was exactly <span class="math inline">\(400\)</span>. If the data were truly Poisson, this would be a suspiciously round number. In reality, this total was fixed by design, so we should take into account the fact that <span class="math inline">\(y_{++} = 400\)</span> and fit a more appropriate model. Also, recall the flu vaccine example of <a href="6_loglinearmodel.html#tbl-flucount">Table&nbsp;<span>6.5</span></a>. Suppose that some of the marginal totals are fixed by design. For example, that the number of patients in each arm of the trial (38 in the Placebo group, 35 in the Vaccine group) was fixed before data collection started. In this case, we should also take into account the fact that <span class="math inline">\(y_{1+}=38\)</span> and <span class="math inline">\(y_{2+}=35\)</span> and fit a more suitable model.</p>
+<p>Before we can re-consider these data sets, we first need to establish some theoretical results to deal with such <em>conditional distribution</em> cases.</p>
 </section>
-<section id="multi-way-contingency-tables" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="multi-way-contingency-tables"><span class="header-section-number">7.2</span> Multi-way contingency tables</h2>
+<section id="contingency-tables-with-fixed-marginals" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="contingency-tables-with-fixed-marginals"><span class="header-section-number">7.2</span> Contingency tables with fixed marginals</h2>
+<p>Consider, again, a general two-way contingency table such as that in <a href="#tbl-twoway2">Table&nbsp;<span>7.1</span></a>. The fixed marginals are the column sums: <span class="math inline">\(y_{+j},\)</span> the row sums: <span class="math inline">\(y_{i+},\)</span> and the overall sum: <span class="math inline">\(y_{++}.\)</span></p>
+<div id="tbl-twoway2" class="anchored">
+<table class="table">
+<caption>Table&nbsp;7.1: A two-way contingency table with <span class="math inline">\(k_1\)</span> rows and <span class="math inline">\(k_2\)</span> columns, where each entry <span class="math inline">\(y_{ij}\)</span> is a count.</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;"><span class="math inline">\(\dots\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(j\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\dots\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(k_2\)</span></th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(y_{11}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{12}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{1j}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{1k_2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{1+}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{i1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{12}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{1j}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{ik_2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{i+}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(k_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{k_11}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{k_12}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{k_1j}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{k_1k_2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{k_1+}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"><span class="math inline">\(y_{+1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{+2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{+j}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{+k_2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(y_{++}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Suppose that we have fixed row totals <span class="math inline">\(y_{i+},\)</span> or a fixed overall total <span class="math inline">\(y_{++}\)</span>, how would such constraints affect the distribution of the random variables <span class="math inline">\(Y_{ij}\)</span>?<br>
+To answer this question, we will need the following results.</p>
+<div id="prp-poissonsums1" class="proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 7.1 </strong></span>Let <span class="math inline">\(Y_{ij}\)</span>, for <span class="math inline">\(i=1,\dots,k_1\)</span> and <span class="math inline">\(j=1,\dots, k_2\)</span>, be the responses in a two-way contingency table, with <span class="math inline">\(k_1\)</span> rows and <span class="math inline">\(k_2\)</span> columns. Further, assume that the counts follow independent Poisson distributions with corresponding means <span class="math inline">\(\lambda_{ij}\)</span>, that is <span class="math inline">\(Y_{ij}\sim \mbox{Po}(\lambda_{ij})\)</span>. Then, the distributions of the row sums are, <span class="math display">\[
+Y_{i+} \sim \mbox{Po}(\lambda_{i+}),
+\]</span> where <span class="math inline">\(\displaystyle Y_{i+} = \sum_{j=1}^{k_2} Y_{ij}\)</span> and <span class="math inline">\(\displaystyle \lambda_{i+}=\sum_{j=1}^{k_2} \lambda_{ij}\)</span>.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>Here we are not yet assuming that the marginal totals are fixed.</li>
+<li>Similar results hold when considering column sums and the overall sum.</li>
+</ul>
+</div>
+<p><strong>Proof:</strong> See MATH2715, Chapter 7 on <em>MGF Properties of Linear Functions</em>.</p>
+<div id="prp-poissonsums2" class="proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 7.2 </strong></span>Let <span class="math inline">\(Y_{ij}\sim \mbox{Po}(\lambda_{ij})\)</span> for <span class="math inline">\(i=1,\dots,k_1\)</span> and <span class="math inline">\(j=1,\dots, k_2\)</span> then the conditional distribution of each count in a row given that the row sum is fixed is given by <span class="math display">\[
+\left( Y_{ij} \, |\,   Y_{i+} = m \right)
+\sim
+\mbox{Bin}\left(m,
+\frac{\lambda_{ij}}{\lambda_{i+}}
+\right).
+\]</span> That is, conditioning on the sum of independent Poisson random variables induces a Binomial distribution.</p>
+</div>
+<p><strong>Proof:</strong> First define <span class="math inline">\(Y_{i-j}= Y_{i+}-Y_{ij}\)</span> with correspondingly <span class="math inline">\(y_{i-j}= m-y_{ij}\)</span> and also <span class="math inline">\(\lambda_{i-j}= \lambda_{i+}-\lambda_{ij}\)</span>.</p>
+<p>Consider the conditional probability mass function <span class="math display">\[\begin{align*}
+p(Y_{ij} = y_{ij} | Y_{i+} = m)  
+&amp; = \frac{p(Y_{ij} = y_{ij}, Y_{i+} = m)} {p(Y_{i+} = m)}
+\quad \text{by conditional probability definition}\\
+&amp; = \frac{p(Y_{ij} = y_{ij}, Y_{i-j} = m-y_{ij})} {p(Y_{i+} = m)} \quad \text{rearranging} \\
+&amp; = \frac{p(Y_{ij} = y_{ij})p(Y_{i-j} = m-y_{ij})} {p(Y_{i+} = m)} \quad \text{by independence}.
+\end{align*}\]</span> Then, each of these follows a Poisson distribution: <span class="math inline">\(Y_{ij} \sim \text{Po}(\lambda_{ij})\)</span>, <span class="math inline">\(Y_{i-j}\sim \text{Po}(\lambda_{i-j})\)</span>, and <span class="math inline">\(Y_{i+} \sim \text{Po}(\lambda_{i+})\)</span>. Therefore, <span class="math display">\[\begin{align*}
+p(Y_{ij} = y_{ij} | Y_{i+} = m)  
+&amp; =
+\frac{\lambda_{ij}^{y_{ij}}e^{-\lambda_{ij}}}{y_{ij}!}
+\frac{\lambda_{i-j}^{m-y_{ij}}e^{-\lambda_{i-j}}}{m-y_{ij}!}
+\Bigg/
+\frac{\lambda_{i+}^{m} e^{-\lambda_{i+}}}{m!} \\
+&amp; =
+{m \choose y_{ij}}
+\left(\frac{\lambda_{ij}}{\lambda_{i+}} \right) ^{y_{ij}}
+\left(\frac{\lambda_{i-j}}{\lambda_{i+}} \right) ^{m-y_{ij}}\\
+&amp; =
+{m \choose y_{ij}}
+\pi ^{y_{ij}}
+\left(1-\pi\right) ^{m-y_{ij}}
+\end{align*}\]</span></p>
+<p>which is the probability mass function of a <span class="math inline">\(\text{Bin}(m, \pi)\)</span> random variable, where <span class="math inline">\(\pi = \lambda_{ij} / \lambda_{i+}\)</span>.</p>
+<div id="prp-poissonsums3" class="proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 7.3 </strong></span>Let <span class="math inline">\(Y_{ij}\sim \mbox{Po}(\lambda_{ij})\)</span> for <span class="math inline">\(i=1,\dots,k_1\)</span> and <span class="math inline">\(j=1,\dots, k_2\)</span> then the <strong>joint</strong> conditional distribution of the counts in a row given that the row sum is fixed is given by <span class="math display">\[
+p(Y_{i1},\dots, Y_{i k_2} \, | \, Y_{i+}=m)
+=
+\frac{m!}{y_{i1}!\cdots y_{i k_2}!}
+\pi_{i1}^{y_{i1}} \cdots\pi_{ik_2}^{y_{ik_2}}
+\]</span> with <span class="math display">\[
+\pi_{ij}=\lambda_{ij}/\lambda_{i+}
+\quad \mbox{ and } \quad
+\sum_{j=1}^{k_2} \pi_{ij} =1.
+\]</span> This distribution is called the <em>Multinomial</em> distribution, with index <span class="math inline">\(m\)</span> and parameters <span class="math inline">\(\pi_{ij}, j=1,\dots k_2\)</span>, which can be denoted <span class="math display">\[
+(Y_{i1},\dots, Y_{i k_2} \, | \, Y_{i+}=m)
+\sim
+\text{Mult}(m, \pi_{i1}, \dots \pi_{ik_2}
+).
+\]</span></p>
+</div>
+<p><strong>Proof:</strong> Omitted.</p>
+<div id="prp-poissonsums4" class="proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 7.4 </strong></span>Let <span class="math inline">\(Y_{ij}\sim \mbox{Po}(\lambda_{ij})\)</span> for <span class="math inline">\(i=1,\dots,k_1\)</span> and <span class="math inline">\(j=1,\dots, k_2\)</span> then the conditional distribution of the counts given that the overall sum is fixed is <span class="math display">\[
+(Y_{11},\dots, Y_{k_1k_2} \, | \, Y_{++}=m)
+\sim
+\text{Mult}(m, \pi_{11},\dots, \pi_{k_1k_2}).
+\]</span> with probability mass function given by <span class="math display">\[
+p(Y_{11},\dots, Y_{k_1k_2} \, | \, Y_{++}=m)
+=
+\frac{m!}{y_{11}!\cdots y_{k_1k_2}!}
+\pi_1^{y_1} \cdots\pi_{k_1k_2}^{y_{k_1k_2}}
+\]</span> where <span class="math inline">\(\pi_{ij} = \lambda_{ij}/\lambda_{++}\)</span>.</p>
+</div>
+<p><strong>Proof:</strong> Omitted.</p>
 </section>
 <section id="product-multinomial-models" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="product-multinomial-models"><span class="header-section-number">7.3</span> Product-multinomial models</h2>
+<p>To be added soon.</p>
 </section>
-<section id="exercises" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.4</span> Exercises</h2>
+<section id="model-fitting-in-r" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="model-fitting-in-r"><span class="header-section-number">7.4</span> Model fitting in <strong>R</strong></h2>
+</section>
+<section id="exercises" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.5</span> Exercises</h2>
+<p>To be added later.</p>
 
 
 </section>
@@ -325,7 +501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./6_loglinearmodel.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear models</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
