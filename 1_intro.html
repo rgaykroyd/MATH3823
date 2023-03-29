@@ -285,7 +285,7 @@ Important
 </section>
 <section id="motivating-example" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="motivating-example"><span class="header-section-number">1.2</span> Motivating example</h2>
-<p><a href="#tbl-beetle-data">Table&nbsp;<span class="quarto-unresolved-ref">tbl-beetle-data</span></a> shows data<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> on the number of beetles killed by five hours of exposure to 8 different concentrations of gaseous carbon disulphide.</p>
+<p><a href="#tbl-beetle-data">Table&nbsp;<span>1.1</span></a> shows data<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> on the number of beetles killed by five hours of exposure to 8 different concentrations of gaseous carbon disulphide.</p>
 <div id="tbl-beetle-data" class="anchored">
 <table class="table">
 <caption>Table&nbsp;1.1: Numbers of beetles killed by five hours of exposure to 8 different concentrations of gaseous carbon disulphide</caption>
@@ -348,7 +348,7 @@ Important
 </tbody>
 </table>
 </div>
-<p><a href="#fig-beetle-fitted-1">Figure&nbsp;<span class="quarto-unresolved-ref">fig-beetle-fitted-1</span></a> shows the same data with a linear regression line superimposed. Although this line goes close to the plotted points, we can see some fluctuations around it. More seriously, this is a stupid model: it would predict a mortality rate of greater than 100% at a dose of 1.9 units, and a negative mortality rate at 1.65 units!</p>
+<p><a href="#fig-beetle-fitted-1">Figure&nbsp;<span>1.1 (a)</span></a> shows the same data with a linear regression line superimposed. Although this line goes close to the plotted points, we can see some fluctuations around it. More seriously, this is a stupid model: it would predict a mortality rate of greater than 100% at a dose of 1.9 units, and a negative mortality rate at 1.65 units!</p>
 <div>
 <details>
 <summary>Code</summary>
@@ -401,7 +401,7 @@ Important
 </figure>
 </div>
 </div>
-<p>A more sensible dose–response relationship for the beetle mortality data might be based on the <em>logistic</em> function (to be defined later), as plotted in <a href="#fig-beetle-fitted-2">Figure&nbsp;<span class="quarto-unresolved-ref">fig-beetle-fitted-2</span></a>. The resulting curve is a closer, more-sensible, fit. Later in this module we will see how this curve was fitted using maximum likelihood estimation for an appropriate generalized linear model.</p>
+<p>A more sensible dose–response relationship for the beetle mortality data might be based on the <em>logistic</em> function (to be defined later), as plotted in <a href="#fig-beetle-fitted-2">Figure&nbsp;<span>1.1 (b)</span></a>. The resulting curve is a closer, more-sensible, fit. Later in this module we will see how this curve was fitted using maximum likelihood estimation for an appropriate generalized linear model.</p>
 <p>This is an example of a dose-response experiment which are widely used in medical and pharmaceutical situations.</p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -428,7 +428,7 @@ y_i = \alpha+\beta x_i +\epsilon_i
 RSS(\alpha, \beta) = \sum_{i=1}^n \left(y_i-(\alpha+\beta x_i)\right)^2.
 \tag{1.1}\]</span></span></p>
 <p>This measures how close the data points are around the regression line and hence the resulting estimates, <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span>, will give us a fitted regression line which is <em>closest</em> to the data.</p>
-<p>It can be shown that <a href="#eq-RSS">Equation&nbsp;<span class="quarto-unresolved-ref">eq-RSS</span></a> takes its minimum when the parameters are given by</p>
+<p>It can be shown that <a href="#eq-RSS">Equation&nbsp;<span>1.1</span></a> takes its minimum when the parameters are given by</p>
 <p><span id="eq-simple_estimation"><span class="math display">\[
 \hat\alpha = \bar y -\hat\beta\bar x, \quad \mbox{and} \quad
 \hat\beta = \frac{s_{xy}}{s^2_x}
@@ -441,7 +441,7 @@ s_{xy}=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar x)(y_i-\bar y)
 <p><span class="math display">\[
 s^2_x = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar x)^2
 \]</span></p>
-<p>is the sample variance of the <span class="math inline">\(x\)</span> values. It can be shown that these estimators are unbiased, that is <span class="math inline">\(\mbox{E}[\hat\alpha]=\alpha\)</span> and <span class="math inline">\(\mbox{E}[\hat\beta]=\beta\)</span> – see <a href="#sec-exercises1"><span class="quarto-unresolved-ref">sec-exercises1</span></a>.</p>
+<p>is the sample variance of the <span class="math inline">\(x\)</span> values. It can be shown that these estimators are unbiased, that is <span class="math inline">\(\mbox{E}[\hat\alpha]=\alpha\)</span> and <span class="math inline">\(\mbox{E}[\hat\beta]=\beta\)</span> – see <a href="#sec-exercises1"><span>Section&nbsp;1.5</span></a>.</p>
 <p>The fitted regression lines is then given by <span class="math inline">\(\hat y = \hat \alpha +\hat \beta x\)</span>, the fitted values by <span class="math inline">\(\hat y_i = \hat \alpha +\hat \beta x_i\)</span>, and the model residuals by <span class="math inline">\(r_i= \hat \epsilon_i= y_i-\hat y_i\)</span> for all <span class="math inline">\(i\in \{1,\dots,n\}\)</span>.</p>
 <p>To complete the model fitting, we also estimate the error variance, <span class="math inline">\(\sigma^2\)</span>, using <span id="eq-simple-variance"><span class="math display">\[
 \hat \sigma^2 = \frac{1}{n-2} \sum _{i=1}^n r_i^2.
@@ -542,7 +542,7 @@ Important
 </div>
 </div>
 <div class="exercises">
-<p>1.1 Consider again the beetle data in <a href="#tbl-beetle-data">Table&nbsp;<span class="quarto-unresolved-ref">tbl-beetle-data</span></a>. Perform the calculations by hand and then check the answers using <span class="math inline">\(\b{R}\)</span> – a copy of the data is available in the file beetle.txt. Finally plot the fitted regression line on a scatter plot of the data. <em>[Hint: See the code chunk used to produce <a href="#fig-beetle-fitted">Figure&nbsp;<span class="quarto-unresolved-ref">fig-beetle-fitted</span></a>.]</em></p>
+<p>1.1 Consider again the beetle data in <a href="#tbl-beetle-data">Table&nbsp;<span>1.1</span></a>. Perform the calculations by hand and then check the answers using <span class="math inline">\(\b{R}\)</span> – a copy of the data is available in the file beetle.txt. Finally plot the fitted regression line on a scatter plot of the data. <em>[Hint: See the code chunk used to produce <a href="#fig-beetle-fitted">Figure&nbsp;<span>1.1</span></a>.]</em></p>
 <p>1.2 Consider the following synthetic data:</p>
 <table class="table">
 <colgroup>
@@ -595,7 +595,7 @@ Important
 </tbody>
 </table>
 <p>Plot the data to check that a linear model is suitable and then fit a linear regression model. Do you think that the fitted model can be reliably used to predict the values of <span class="math inline">\(y\)</span> when <span class="math inline">\(x=5\)</span> and <span class="math inline">\(x=10\)</span>? Justify your answers.</p>
-<p>1.3 Starting from <a href="#eq-RSS">Equation&nbsp;<span class="quarto-unresolved-ref">eq-RSS</span></a>, derive the estimation equations given in <a href="#eq-simple_estimation">Equation&nbsp;<span class="quarto-unresolved-ref">eq-simple_estimation</span></a>. Further, show that <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span> are unbiased estimators of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. <em>[Hint: Check your MATH1712 lecture notes.]</em></p>
+<p>1.3 Starting from <a href="#eq-RSS">Equation&nbsp;<span>1.1</span></a>, derive the estimation equations given in <a href="#eq-simple_estimation">Equation&nbsp;<span>1.2</span></a>. Further, show that <span class="math inline">\(\hat\alpha\)</span> and <span class="math inline">\(\hat\beta\)</span> are unbiased estimators of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. <em>[Hint: Check your MATH1712 lecture notes.]</em></p>
 <p>What can be said about <span class="math inline">\(\hat\sigma^2\)</span> as an estimator of <span class="math inline">\(\sigma^2\)</span>? <em>[Hint: There is a careful theoretical proof, but here only an intuitive explanation is expected.]</em></p>
 <p>1.4 The <em>Brownlee’s Stack Loss Plant Data</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is already available in <span class="math inline">\(\mathbf{R}\)</span>, with background details on the help page, <span class="math inline">\(\texttt{?stackloss}\)</span>. <em>[Hint: You already met this example in MATH1712.]</em></p>
 <p>After plotting all pairs of variables, which of <span class="math inline">\(\texttt{Air.Flow}\)</span>, <span class="math inline">\(\texttt{Water.Temp}\)</span> and <span class="math inline">\(\texttt{Acid.Conc}\)</span> do you think could be used to model <span class="math inline">\(\texttt{stack.loss}\)</span> using a linear regression? Justify your answer.</p>
