@@ -255,13 +255,13 @@ f(y) = {m \choose y} p^y(1-p)^{m-y}.
 <p>Of course, the special case with <span class="math inline">\(m=1\)</span> reduces to the Bernoulli distribution. Further, if <span class="math inline">\(Y_1 \sim \text{B}(m_1,p)\)</span> and independently <span class="math inline">\(Y_2 \sim \text{B}(m_2,p)\)</span>, then <span class="math inline">\(Y_1+Y_2\)</span> also follows a binomial distribution, <span class="math inline">\(\text{B}(m_1+m_2,p)\)</span> – note that is only valid when <span class="math inline">\(p\)</span> is common.</p>
 <p>Recall that the binomial can be re-written in the exponential family form of <a href="3_GLM-Theory.html#eq-exponential-family">Equation&nbsp;<span>3.3</span></a> with <span class="math display">\[
 f(y)  = \exp \left\{ y\ \mbox{logit } p  + m \log (1-p) + \log {m \choose y}\right\},
-\]</span> with natural or canonical parameter <span class="math inline">\(\theta=\text{logit} \ p = \log \left( p(1-p)\right),\)</span>, scale parameter <span class="math inline">\(\phi=1\)</span>, <span class="math inline">\(b(\theta)=m\log(1+e^\theta)\)</span> and <span class="math inline">\(c(y,\phi)=\log{m\choose y}\)</span> as in <a href="3_GLM-Theory.html#tbl-GLM-binomial">Table&nbsp;<span>3.3</span></a>.</p>
+\]</span> with natural or canonical parameter <span class="math inline">\(\theta=\text{logit} \ p = \log \left( p(1-p)\right),\)</span>, scale parameter <span class="math inline">\(\phi=1\)</span>, <span class="math inline">\(b(\theta)=m\log(1+e^\theta)\)</span> and <span class="math inline">\(c(y,\phi)=\log{m\choose y}\)</span> as in <span class="quarto-unresolved-ref">?tbl-GLM-binomial</span>.</p>
 </section>
 <section id="sec-linearlogistic" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sec-linearlogistic"><span class="header-section-number">5.2</span> The linear logistic model</h2>
 <p>Throughout this module we have assumed that a response variable, <span class="math inline">\(Y\)</span>, depends on a set of explanatory variables, <span class="math inline">\(\mathbf{x} = \{x_1,\dots, x_p\}\)</span>. In particular, for binomial counts from <span class="math inline">\(\text{B}(m,p)\)</span>, <span class="math inline">\(0&lt;p&lt;1\)</span> with mean <span class="math inline">\(\mu=mp\)</span> we set the link function, <span class="math inline">\(g(\mu)\)</span>, equal to the linear predictor <span class="math inline">\(\eta = \sum \beta_j x_j\)</span> and hence have <span class="math display">\[
 g(\mu) = \sum_{j=1}^p \beta_j x_j = \mathbf{x}^T \boldsymbol{\beta}
-\]</span> where <span class="math inline">\(\boldsymbol{\beta} = \{\beta_1,\dots,\beta_p\}\)</span> are the linear predictor parameters. Recall that the canonical logit link <a href="3_GLM-Theory.html#eq-G2">Equation&nbsp;<span>3.14</span></a> for the binomial leads to the systematic part of the model <span id="eq-binlogit"><span class="math display">\[
+\]</span> where <span class="math inline">\(\boldsymbol{\beta} = \{\beta_1,\dots,\beta_p\}\)</span> are the linear predictor parameters. Recall that the canonical logit link <span class="quarto-unresolved-ref">?eq-G2</span> for the binomial leads to the systematic part of the model <span id="eq-binlogit"><span class="math display">\[
 \text{logit}(p) = \log \left( \frac{p}{1-p}\right) = \mathbf{x}^T \boldsymbol{\beta}
 \tag{5.3}\]</span></span> but that other links function are possible, such as the probit, <a href="3_GLM-Theory.html#eq-probitlink">Equation&nbsp;<span>3.15</span></a>, the complementary log-log, <a href="3_GLM-Theory.html#eq-clogloglink">Equation&nbsp;<span>3.16</span></a>, and the cauchit <a href="3_GLM-Theory.html#eq-cauchitlink">Equation&nbsp;<span>3.17</span></a>.</p>
 <p>This model can alternatively be written <span id="eq-binomialmodel"><span class="math display">\[
@@ -403,11 +403,11 @@ X^2 = \sum_{j=1}^2 \sum_{i=1}^n \frac{(O_{ji} - E_{ji})^2}{E_{ji}}.
 <table class="table">
 <caption>Table&nbsp;5.2: Numbers of beetles killed by five hours of exposure to 8 different concentrations of gaseous carbon disulphide</caption>
 <colgroup>
-<col style="width: 15%">
-<col style="width: 20%">
-<col style="width: 16%">
-<col style="width: 22%">
-<col style="width: 20%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -420,81 +420,65 @@ X^2 = \sum_{j=1}^2 \sum_{i=1}^n \frac{(O_{ji} - E_{ji})^2}{E_{ji}}.
 <th style="text-align: center;"><p>No.&nbsp;not killed</p>
 <p><span class="math inline">\(m_i-y_i\)</span></p></th>
 <th style="text-align: center;"><p>Proportion</p>
-<p><span class="math inline">\(p_i=y_i/m_i\)</span></p></th>
+<p><span class="math inline">\(p_ i=y_i/m_i\)</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td rowspan="2" style="text-align: center;">1.6907</td>
-<td rowspan="2" style="text-align: center;">59</td>
-<td rowspan="2" style="text-align: center;">6</td>
-<td rowspan="2" style="text-align: center;">53</td>
-<td rowspan="2" style="text-align: center;">0.10</td>
+<td style="text-align: center;">1.6907</td>
+<td style="text-align: center;">59</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">0.10</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">1.7242</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">0.22</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" style="text-align: center;">1.7242</td>
-<td rowspan="2" style="text-align: center;">60</td>
-<td rowspan="2" style="text-align: center;">13</td>
-<td rowspan="2" style="text-align: center;">47</td>
-<td rowspan="2" style="text-align: center;">0.22</td>
+<td style="text-align: center;">1.7552</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">0.29</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">1.7842</td>
+<td style="text-align: center;">56</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">0.50</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" style="text-align: center;">1.7552</td>
-<td rowspan="2" style="text-align: center;">62</td>
-<td rowspan="2" style="text-align: center;">18</td>
-<td rowspan="2" style="text-align: center;">44</td>
-<td rowspan="2" style="text-align: center;">0.29</td>
+<td style="text-align: center;">1.8113</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">0.83</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">1.8369</td>
+<td style="text-align: center;">59</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0.90</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" style="text-align: center;">1.7842</td>
-<td rowspan="2" style="text-align: center;">56</td>
-<td rowspan="2" style="text-align: center;">28</td>
-<td rowspan="2" style="text-align: center;">28</td>
-<td rowspan="2" style="text-align: center;">0.50</td>
+<td style="text-align: center;">1.8610</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">61</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.98</td>
 </tr>
 <tr class="even">
-</tr>
-<tr class="odd">
-<td rowspan="2" style="text-align: center;">1.8113</td>
-<td rowspan="2" style="text-align: center;">63</td>
-<td rowspan="2" style="text-align: center;">52</td>
-<td rowspan="2" style="text-align: center;">11</td>
-<td rowspan="2" style="text-align: center;">0.83</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-<td rowspan="2" style="text-align: center;">1.8369</td>
-<td rowspan="2" style="text-align: center;">59</td>
-<td rowspan="2" style="text-align: center;">53</td>
-<td rowspan="2" style="text-align: center;">6</td>
-<td rowspan="2" style="text-align: center;">0.90</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-<td rowspan="2" style="text-align: center;">1.8610</td>
-<td rowspan="2" style="text-align: center;">62</td>
-<td rowspan="2" style="text-align: center;">61</td>
-<td rowspan="2" style="text-align: center;">1</td>
-<td rowspan="2" style="text-align: center;">0.98</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-<td rowspan="2" style="text-align: center;">1.8839</td>
-<td rowspan="2" style="text-align: center;">60</td>
-<td rowspan="2" style="text-align: center;">60</td>
-<td rowspan="2" style="text-align: center;">0</td>
-<td rowspan="2" style="text-align: center;">1.00</td>
-</tr>
-<tr class="even">
+<td style="text-align: center;">1.8839</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1.00</td>
 </tr>
 </tbody>
 </table>
@@ -708,7 +692,71 @@ x_p= \frac{1}{\beta} \left\{ \log\left(\frac{p}{1-p}\right)-\alpha \right\}
 </section>
 <section id="exercises" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.5</span> Exercises</h2>
-<p><strong>To be added later.</strong></p>
+<div class="exercises">
+<p>5.1 (Based on Dobson &amp; Barnett, pp 144–145). Suppose there are 2 groups of people: the first group is exposed to some pollutant and the second group is not. In a prospective study, each group is followed for several years and categorized according to the presence or absence of some disease. Let <span class="math inline">\(\pi_i\)</span> denote the probability that a person in group <span class="math inline">\(i\)</span> contracts the disease, <span class="math inline">\(i=1,2\)</span>. The following <span class="math inline">\(2 \times 2\)</span> table summarizes the different possibilities.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Diseased</th>
+<th>Not diseased</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exposed</td>
+<td><span class="math inline">\(\pi_1\)</span></td>
+<td><span class="math inline">\(1-\pi_1\)</span></td>
+</tr>
+<tr class="even">
+<td>Not exposed</td>
+<td><span class="math inline">\(\pi_2\)</span></td>
+<td><span class="math inline">\(1-\pi_2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Note that the sum of each row is 1. For each <span class="math inline">\(i=1,2\)</span>, the <em>odds</em> of contracting the disease is defined by <span class="math display">\[
+O_i = \pi_i/(1-\pi_i),
+\]</span> and a comparison between these two probabilities is given by the <em>odds ratio</em> <span class="math display">\[
+\phi = \frac{O_1}{O_2} = \frac{\pi_1(1-\pi_2)}{\pi_2(1-\pi_1)}.
+\]</span></p>
+<ol type="a">
+<li><p>Show that <span class="math inline">\(\phi=1\)</span> if and only if there is no difference between the control and exposed groups. What does it mean if <span class="math inline">\(\phi &gt; 1\)</span>?</p></li>
+<li><p>Consider now <span class="math inline">\(m\)</span> tables where each is of this form, with probabilities <span class="math inline">\(\pi_{ij}\)</span> represented by a logistic model <span class="math display">\[
+\text{logit}(\pi_{ij}) = \alpha_i + \beta_i x_j, \ i=1,2,\
+j=1,\ldots,m,
+\]</span> where <span class="math inline">\(x_j\)</span> is some specified quantitative explanatory variable. Interpret the parameters <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_j\)</span>, and give their effect on the log odds ratio <span class="math inline">\(\log \phi_j\)</span>, say, for each table. Show that <span class="math inline">\(\log \phi_j\)</span> is constant across the <span class="math inline">\(m\)</span> tables if <span class="math inline">\(\beta_1 = \beta_2\)</span>.</p></li>
+<li><p>Give a practical example where such a model might be appropriate.</p></li>
+<li><p>How would you express this model in the R computer language?</p></li>
+</ol>
+<p>5.2 Consider again the beetle example, but suppose that rather than the actual dose concentration had been measured, instead only whether a <em>Low dose</em> or <em>High dose</em> was used recorded. This would lead to the following table:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Died</th>
+<th style="text-align: center;">Not died</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low dose</td>
+<td style="text-align: center;">65</td>
+<td style="text-align: center;">172</td>
+<td style="text-align: center;">237</td>
+</tr>
+<tr class="even">
+<td>High dose</td>
+<td style="text-align: center;">226</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">244</td>
+</tr>
+</tbody>
+</table>
+<p>What are the respective probability of death values in the two dose groups? The <em>relative risk</em> is defined as the ratio of these two values. Calculate the risk of death due to High dose exposure relative to Low dose for this example. How could this value be used to measure the association between dose and death?</p>
+<p>What are the respective odds of death in each of the two groups? Calculate the <em>odds ratio</em>, defined as the ratio of these two values. How could this value be used to interpret the data?</p>
+</div>
 
 
 </section>
