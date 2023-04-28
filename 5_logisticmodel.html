@@ -255,13 +255,13 @@ f(y) = {m \choose y} p^y(1-p)^{m-y}.
 <p>Of course, the special case with <span class="math inline">\(m=1\)</span> reduces to the Bernoulli distribution. Further, if <span class="math inline">\(Y_1 \sim \text{B}(m_1,p)\)</span> and independently <span class="math inline">\(Y_2 \sim \text{B}(m_2,p)\)</span>, then <span class="math inline">\(Y_1+Y_2\)</span> also follows a binomial distribution, <span class="math inline">\(\text{B}(m_1+m_2,p)\)</span> – note that is only valid when <span class="math inline">\(p\)</span> is common.</p>
 <p>Recall that the binomial can be re-written in the exponential family form of <a href="3_GLM-Theory.html#eq-exponential-family">Equation&nbsp;<span>3.3</span></a> with <span class="math display">\[
 f(y)  = \exp \left\{ y\ \mbox{logit } p  + m \log (1-p) + \log {m \choose y}\right\},
-\]</span> with natural or canonical parameter <span class="math inline">\(\theta=\text{logit} \ p = \log \left( p(1-p)\right),\)</span>, scale parameter <span class="math inline">\(\phi=1\)</span>, <span class="math inline">\(b(\theta)=m\log(1+e^\theta)\)</span> and <span class="math inline">\(c(y,\phi)=\log{m\choose y}\)</span> as in <span class="quarto-unresolved-ref">?tbl-GLM-binomial</span>.</p>
+\]</span> with natural or canonical parameter <span class="math inline">\(\theta=\text{logit} \ p = \log \left( p(1-p)\right),\)</span>, scale parameter <span class="math inline">\(\phi=1\)</span>, <span class="math inline">\(b(\theta)=m\log(1+e^\theta)\)</span> and <span class="math inline">\(c(y,\phi)=\log{m\choose y}\)</span> as in <a href="3_GLM-Theory.html#tbl-glm-binomial">Table&nbsp;<span>3.3</span></a>.</p>
 </section>
 <section id="sec-linearlogistic" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sec-linearlogistic"><span class="header-section-number">5.2</span> The linear logistic model</h2>
 <p>Throughout this module we have assumed that a response variable, <span class="math inline">\(Y\)</span>, depends on a set of explanatory variables, <span class="math inline">\(\mathbf{x} = \{x_1,\dots, x_p\}\)</span>. In particular, for binomial counts from <span class="math inline">\(\text{B}(m,p)\)</span>, <span class="math inline">\(0&lt;p&lt;1\)</span> with mean <span class="math inline">\(\mu=mp\)</span> we set the link function, <span class="math inline">\(g(\mu)\)</span>, equal to the linear predictor <span class="math inline">\(\eta = \sum \beta_j x_j\)</span> and hence have <span class="math display">\[
 g(\mu) = \sum_{j=1}^p \beta_j x_j = \mathbf{x}^T \boldsymbol{\beta}
-\]</span> where <span class="math inline">\(\boldsymbol{\beta} = \{\beta_1,\dots,\beta_p\}\)</span> are the linear predictor parameters. Recall that the canonical logit link <span class="quarto-unresolved-ref">?eq-G2</span> for the binomial leads to the systematic part of the model <span id="eq-binlogit"><span class="math display">\[
+\]</span> where <span class="math inline">\(\boldsymbol{\beta} = \{\beta_1,\dots,\beta_p\}\)</span> are the linear predictor parameters. Recall that the canonical logit link <a href="3_GLM-Theory.html#eq-g2">Equation&nbsp;<span>3.14</span></a> for the binomial leads to the systematic part of the model <span id="eq-binlogit"><span class="math display">\[
 \text{logit}(p) = \log \left( \frac{p}{1-p}\right) = \mathbf{x}^T \boldsymbol{\beta}
 \tag{5.3}\]</span></span> but that other links function are possible, such as the probit, <a href="3_GLM-Theory.html#eq-probitlink">Equation&nbsp;<span>3.15</span></a>, the complementary log-log, <a href="3_GLM-Theory.html#eq-clogloglink">Equation&nbsp;<span>3.16</span></a>, and the cauchit <a href="3_GLM-Theory.html#eq-cauchitlink">Equation&nbsp;<span>3.17</span></a>.</p>
 <p>This model can alternatively be written <span id="eq-binomialmodel"><span class="math display">\[
@@ -559,9 +559,9 @@ p_i=\frac{\exp\{\alpha+\beta x_i\}}{(1+\exp\{\alpha+\beta x_i\})}.
 <div class="cell">
 
 </div>
-<p><span class="math display">\[
+<p><span id="eq-fittedlogisitc"><span class="math display">\[
 \hat p_i = \frac{\exp\{-60.7 + 34.3 x_i\}}{(1+\exp\{ -60.7 + 34.3x_i\})}.
-\]</span></p>
+\tag{5.7}\]</span></span></p>
 <p>Further, the deviance if given by</p>
 <div class="cell">
 <details open="">
@@ -693,7 +693,10 @@ x_p= \frac{1}{\beta} \left\{ \log\left(\frac{p}{1-p}\right)-\alpha \right\}
 <section id="exercises" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.5</span> Exercises</h2>
 <div class="exercises">
-<p>5.1 (Based on Dobson &amp; Barnett, pp 144–145). Suppose there are 2 groups of people: the first group is exposed to some pollutant and the second group is not. In a prospective study, each group is followed for several years and categorized according to the presence or absence of some disease. Let <span class="math inline">\(\pi_i\)</span> denote the probability that a person in group <span class="math inline">\(i\)</span> contracts the disease, <span class="math inline">\(i=1,2\)</span>. The following <span class="math inline">\(2 \times 2\)</span> table summarizes the different possibilities.</p>
+<p>5.1 In the beetle example, use the fitted logistic regression model, <a href="#eq-fittedlogisitc">Equation&nbsp;<span>5.7</span></a>, to predict what dose of gaseous carbon disulphide would kill 90% of beetles.</p>
+<p>Then, fit alternative link functions to the data and plot the results. Do you think that the choice of link function makes a difference to your conclusions? Justify your answer.</p>
+<p>[See Solution for Question 8 from <em>Exercises from Last Year</em>.]</p>
+<p>5.2 (Based on Dobson &amp; Barnett, pp 144–145). Suppose there are 2 groups of people: the first group is exposed to some pollutant and the second group is not. In a prospective study, each group is followed for several years and categorized according to the presence or absence of some disease. Let <span class="math inline">\(\pi_i\)</span> denote the probability that a person in group <span class="math inline">\(i\)</span> contracts the disease, <span class="math inline">\(i=1,2\)</span>. The following <span class="math inline">\(2 \times 2\)</span> table summarizes the different possibilities.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -729,7 +732,8 @@ j=1,\ldots,m,
 <li><p>Give a practical example where such a model might be appropriate.</p></li>
 <li><p>How would you express this model in the R computer language?</p></li>
 </ol>
-<p>5.2 Consider again the beetle example, but suppose that rather than the actual dose concentration had been measured, instead only whether a <em>Low dose</em> or <em>High dose</em> was used recorded. This would lead to the following table:</p>
+<p>[See Solution for Question 11 from <em>Exercises from Last Year</em>.]</p>
+<p>5.3 Consider again the beetle example, but suppose that rather than the actual dose concentration had been measured, instead only whether a <em>Low dose</em> or <em>High dose</em> was used recorded. This would lead to the following table:</p>
 <table class="table">
 <thead>
 <tr class="header">

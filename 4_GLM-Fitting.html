@@ -449,8 +449,8 @@ D
    + (m_i - y_i) \log \left( \frac{m_i - y_i}{m_i - \hat\mu_i} \right) \right\}
    &amp;  \mbox{ Binomial} \\[3mm]
    2 \sum_{i=1}^n \left\{ y_i \log \left( \frac{y_i}{\hat\mu_i} \right)
-   - y_i + \hat\mu_i \right\} &amp;  \mbox{ Poisson} \\ \end{array} \right.\notag
-\end{eqnarray}\]</span> Note that Dobson, and others, call <span class="math inline">\(D^*= D/\phi=2 \{ l(\tilde{\theta};y,\phi) - l(\hat{\theta}; y,\phi)\}\)</span> the <em>scaled</em> deviance.</p>
+   - y_i + \hat\mu_i \right\} &amp;  \mbox{ Poisson} \\ \end{array} \right. \notag
+\end{eqnarray}\]</span> {#eq-deviance22} Note that Dobson, and others, call <span class="math inline">\(D^*= D/\phi=2 \{ l(\tilde{\theta};y,\phi) - l(\hat{\theta}; y,\phi)\}\)</span> the <em>scaled</em> deviance.</p>
 <p>We now consider two situations:</p>
 <p><strong>Scale parameter <span class="math inline">\(\phi\)</span> known.</strong> For some data-types (e.g.&nbsp;Poisson, Binomial), we know <span class="math inline">\(\phi=1\)</span>. Consider two nested models <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> with <span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_2\)</span> parameters respectively where the parameters in <span class="math inline">\(M_1\)</span> are a subset of those in <span class="math inline">\(M_2\)</span> and hence <span class="math inline">\(r_1 &lt; r_2\)</span>. Further, let <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> be the deviances of model <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> respectively.</p>
 <p>Then, asymptotically,</p>
@@ -633,9 +633,12 @@ b     2  12.2947         6     13.150</code></pre>
 <li>the exponential, <span class="math inline">\(Y\sim\mbox{Exp}(\lambda)\)</span>.</li>
 </ol>
 <p>Are these estimators unbiased for <span class="math inline">\(\theta\)</span>? What is the variance of the estimator in each case?</p>
-<p>4.2 For a sample of size <span class="math inline">\(n\)</span> from the normal distribution, <span class="math inline">\(Y\sim N(\mu, \sigma^2)\)</span>, how do the results produced using <a href="#eq-ehattheta">Equation&nbsp;<span>4.9</span></a> and <a href="#eq-varhattheta">Equation&nbsp;<span>4.10</span></a> compare with the familiar results <span class="math inline">\(\hat\mu =\bar y\)</span>, <span class="math inline">\(\text{E}[\hat\mu]=\mu\)</span>, and <span class="math inline">\(\text{Var}[\hat\mu] =\sigma^2/n\)</span>?</p>
+<p>4.2 For a sample of size <span class="math inline">\(n\)</span> from the normal distribution, <span class="math inline">\(Y\sim N(\mu, \sigma^2)\)</span>, how do the results produced using <a href="#eq-ehattheta">Equation&nbsp;<span>4.9</span></a> and <a href="#eq-varhattheta">Equation&nbsp;<span>4.10</span></a> compare with the familiar results <span class="math inline">\(\hat\mu =\bar y\)</span>, <span class="math inline">\(\text{E}[\hat\mu]=\mu\)</span>, and <span class="math inline">\(\text{Var}[\hat\mu] =\sigma^2/n?\)</span></p>
 <p>4.3 For the normal linear regression model, <span class="math inline">\(\mathbf{Y}=X\boldsymbol{\beta}+\boldsymbol{\epsilon}\)</span> where <span class="math inline">\(\boldsymbol{\epsilon}\sim N_n(0,\sigma^2 I_n)\)</span> use the principle of maximum likelihood to show that the MLE has the closed form given in <a href="#eq-linearregressionmle">Equation&nbsp;<span>4.13</span></a>.</p>
-<p>4.4 How do the deviance tests defined in <a href="#sec-deviance"><span>Section&nbsp;4.3</span></a> related to the tests used to find the best fit model for the birthweight example in <a href="2_linearmodels.html#sec-essentialsoverview"><span>Section&nbsp;2.1</span></a>?</p>
+<p>4.4 Check that you can derive the formulas given for deviance of normal, binomial, and Poisson models at the start of <a href="#sec-deviance"><span>Section&nbsp;4.3</span></a>.</p>
+<p>[See Solution for Question 5 from <em>Exercises from Last Year</em>.]</p>
+<p>4.5 How do the deviance tests defined in <a href="#sec-deviance"><span>Section&nbsp;4.3</span></a> related to the tests used to find the best fit model for the birthweight example in <a href="2_linearmodels.html#sec-essentialsoverview"><span>Section&nbsp;2.1</span></a>?</p>
+<p>[See Solution for Question 6 from <em>Exercises from Last Year</em>.]</p>
 </div>
 
 
