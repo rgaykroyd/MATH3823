@@ -213,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">5.1</span>  Introduction</a></li>
   <li><a href="#sec-linearlogistic" id="toc-sec-linearlogistic" class="nav-link" data-scroll-target="#sec-linearlogistic"><span class="toc-section-number">5.2</span>  The linear logistic model</a></li>
-  <li><a href="#overdispersion" id="toc-overdispersion" class="nav-link" data-scroll-target="#overdispersion"><span class="toc-section-number">5.3</span>  Overdispersion</a></li>
+  <li><a href="#sec-overdispersion" id="toc-sec-overdispersion" class="nav-link" data-scroll-target="#sec-overdispersion"><span class="toc-section-number">5.3</span>  Overdispersion</a></li>
   <li><a href="#application-to-doseresponse-experiments" id="toc-application-to-doseresponse-experiments" class="nav-link" data-scroll-target="#application-to-doseresponse-experiments"><span class="toc-section-number">5.4</span>  Application to dose–response experiments</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">5.5</span>  Exercises</a></li>
   </ul>
@@ -388,8 +388,8 @@ D = 2 \sum_{j=1}^2 \sum_{i=1}^n O_{ji} \log
 X^2 = \sum_{j=1}^2 \sum_{i=1}^n \frac{(O_{ji} - E_{ji})^2}{E_{ji}}.
 \]</span> This is asymptotically equivalent to the deviance <a href="#eq-bindev">Equation&nbsp;<span>5.6</span></a> (proof is by Taylor series expansion; omitted). Thus, asymptotically, <span class="math inline">\(X^2\)</span> is also approximately <span class="math inline">\(\chi^2_{n-r}\)</span> distributed. Both approximations can be poor if the expected frequencies are small, but <span class="math inline">\(X^2\)</span> copes slightly better with this problem. See Dobson, p.136 for more details.</p>
 </section>
-<section id="overdispersion" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="overdispersion"><span class="header-section-number">5.3</span> Overdispersion</h2>
+<section id="sec-overdispersion" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-overdispersion"><span class="header-section-number">5.3</span> Overdispersion</h2>
 <p>Examination of residuals and deviances may indicate that a model is not an adequate fit to the data. One possible reason is <em>overdispersion</em>. This can occur for any error distribution where the variance is linked to the mean — e.g.&nbsp;Binomial, Poisson. In the binomial case, overdispersion is called <em>extra-Binomial</em> variation.</p>
 <p>Recall that if <span class="math inline">\(Y_i \sim \text{Bin}(m_i, p_i)\)</span>, <span class="math inline">\(\text{Var}(Y_i) = m_i p_i (1 - p_i)\)</span>. Overdispersion occurs if observations which have been modelled by a <span class="math inline">\(\text{Bin}(m_i, \hat{p}_i)\)</span> distribution have substantially greater variation than <span class="math inline">\(m_i \hat{p}_i (1 - \hat{p}_i)\)</span>. This will lead to a value of <span class="math inline">\(D\)</span> substantially greater than the expected value of <span class="math inline">\(n - r\)</span>. This can occur if the model is missing appropriate explanatory variables or has the wrong link function, or if the <span class="math inline">\(Y_i\)</span> are not independent.</p>
 <p>One solution is to include an extra parameter <span class="math inline">\(\tau\)</span> in the model so that <span class="math inline">\(\text{Var}(Y_i) = \tau \times m_i p_i (1 - p_i)\)</span>. For more details, see Section 7.7 of Dobson or Chapter 6 of Collett (1991) <em>Modelling Binary data</em>, Chapman &amp; Hall.</p>

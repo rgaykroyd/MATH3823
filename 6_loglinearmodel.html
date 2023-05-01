@@ -728,6 +728,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <p>We can look at residuals from the model see where the departures from independence occur. The largest residual is for Hutchinson’s freckle on the head and neck, which occurs more often than would be expected under independence.</p>
 <p>For the saturated model, <span class="math inline">\(\widehat{\lambda}_{ij} = y_{ij}\)</span>. In this example, <span class="math inline">\(\sum_{ij} \widehat{\lambda}_{ij} = \sum_{ij} y_{ij} = 400\)</span>, so the probability of a tumour being in category <span class="math inline">\((i,j)\)</span> is <span class="math inline">\(y_{ij}/400\)</span> — just the observed proportions.</p>
 <p>Note that in <a href="#tbl-melanomacount1">Table&nbsp;<span>6.2</span></a> we have a total of <span class="math inline">\(y_{++} = 400\)</span> observations. If the data were truly Poisson, this would be a suspiciously round number. In reality, this total was fixed by design, so we should take into account the fact that <span class="math inline">\(y_{++} = 400\)</span> and fit a more suitable model, such as the <em>multinomial</em> model which we will meet in the next chapter.</p>
+<p>Overdispersion can occur for the Poisson model, just as in the binomial case – see <a href="5_logisticmodel.html#sec-overdispersion"><span>Section&nbsp;5.3</span></a>. This is called <em>extra-Poisson</em> variation. The <span class="math inline">\(\texttt{glm}\)</span> function in <strong>R</strong> can take this into account by including an extra parameter <span class="math inline">\(\tau\)</span> in the model using <span class="math inline">\(\texttt{family=quasipoisson()}\)</span>.</p>
 </section>
 <section id="multi-way-contingency-tables" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="multi-way-contingency-tables"><span class="header-section-number">6.5</span> Multi-way contingency tables</h2>
@@ -759,11 +760,11 @@ Y|X=1 \sim P(\lambda_1), \quad Y|X=2 \sim P(\lambda_2), \quad \quad \quad (*)
 \text{(i)} ~~ y \sim 1, \quad \quad \text{(ii)} ~~ y \sim x.
 \end{equation*}\]</span></p>
 <p>Since model (ii) is the correct model, it should yield a good fit to the data. But if the experimenter does not know about the variable <span class="math inline">\(x\)</span>, it will only be feasible to fit model (i). Let <span class="math inline">\(\overline{Y}\)</span> and <span class="math inline">\(S^2\)</span> denote the sample mean and variance of the <span class="math inline">\(Y_i, \ i=1,\ldots,60\)</span>. Show that <span class="math display">\[\begin{equation*}
-\mbox{E}[(\overline{Y}] = \lambda, \quad
+\mbox{E}[\overline{Y}] = \lambda, \quad
 \mbox{E}[S^2] = \lambda +
 \frac{60}{59}(\lambda_1 - \lambda_2)^2/4.
 \end{equation*}\]</span></p>
-<p>Hence show that the <span class="math inline">\(\chi^2\)</span> goodness of fit statistic for model (i) will indicate a poorly fitting model if <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are far apart.</p></li>
+<p>Hence show that the Pearson <span class="math inline">\(\chi^2\)</span> goodness of fit statistic for model (i) will indicate a poorly fitting model if <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are far apart.</p></li>
 <li><p>This example is very simple, but overdispersion can occur much more widely. Why is overdisperson not a problem for generalized linear models in which the response distribution includes a scale parameter?</p></li>
 </ol>
 <p>[See Solution for Question 10 from <em>Exercises from Last Year</em>.]</p>
