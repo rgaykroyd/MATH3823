@@ -1,0 +1,7 @@
+------------------------------------------------------------------------
+
+For information, this data set was collected by my father, Peter John Aykroyd, in 1956 while he was doing *military national service* as an electronics technician in the Royal Air Force.
+Here is a photo of his original note book.
+![Workshop & Labatory Records, PJ Aykroyd, 1956.](Lab_Book.jpg){width=50% fig-align="center"}
+
+------------------------------------------------------------------------

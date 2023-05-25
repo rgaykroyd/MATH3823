@@ -1,0 +1,197 @@
+---
+title: "MATH3823 - Solution to Chapter 3 Exercises (Draft: 23/05/2023)"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+------------------------------------------------------------------------
+
+::: callout-important
+#### Using R Markdown files
+
+If you are reading this online, on the module website, then this is output from an [R Markdown](http://rmarkdown.rstudio.com) Notebook. At the top-righthand corner of the page under $\texttt{Code}$, select $\texttt{Download Rmd}$ to download the original R Markdown notebook -- this is recommended so that you can edit and re-run code within the notebook. When you run code within the notebook, the results appear beneath the code. If you do download the notebook, then try executing a chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
+:::
+
+------------------------------------------------------------------------
+
+#### Exercise 3.1
+
+The estimate of $p$ is simply $\hat p = \bar y /m$, were $m=62$, that is $\hat p = 0.5866935$. Hence, here our model is $Y\sim \mbox{Bin}(62, 0.59)$ with fitted probabilities shown in blue below.
+
+```{r}
+y = c(6,13,18,28,52,53,61,60)
+m = 62
+
+hist(y, main="", ylim=c(0,6))
+
+p.hat = mean(y)/m
+fitted = m*dbinom(0:m, m, p.hat)
+lines(0:m, fitted, type='h', lwd=3, col="blue")
+
+```
+
+Recall the original situation, with mortality against dose:
+```{r}
+beetle = read.table("https://rgaykroyd.github.io/MATH3823/Datasets/beetle.txt", header=T)
+
+dose = beetle$dose
+mortality = beetle$died/beetle$total
+
+plot(dose, mortality, pch=16,
+     xlim=c(1.65, 1.90), xlab ="Dose",
+     ylim=c(-0.1, 1.1),  ylab="Mortality")
+abline(h=c(0,1), lty=2)
+```
+
+We see that although the *average* mortality might be around $0.5$, it is very clear that the actually mortality is strongly dependent on dose. Here, the model misfit is caused by an imortant variable not being recorded.
+
+\
+
+#### Exercise 3.2
+
+[See Solution for Questions 1 and 3 from *Exercises from Last Year*.]
+
+Solving the first equation for \(x\) yields 
+\begin{align*}
+      & & q & = \frac{1}{1+e^{-x}} \\
+      & \Leftrightarrow & q (1 + e^{-x}) & = 1 \\
+      & \Leftrightarrow & e^{-x} &= \frac{1 - q}{q} \\
+      & \Leftrightarrow & x & = \log \left( \frac{q}{1-q} \right),
+\end{align*} as required.
+  
+\
+
+#### Exercise 3.3
+
+This can be interpreted as a one-parameter exponential family with    scale parameter \(1/\alpha\). Write the log pdf (probability densityfunction) as 
+    \begin{align*}
+        \log f(y) &= \frac{-(\lambda/\alpha) y + \log \lambda}{1/\alpha} + 
+        (\alpha - 1) \log y - \log \Gamma(\alpha)\\
+        & = \frac{-(\lambda/\alpha) y + \log \lambda/\alpha}{1/\alpha} + 
+        (\alpha - 1) \log y - \log \Gamma(\alpha) + \alpha \log \alpha\\
+        & = \frac{\theta y - b(\theta)}{\phi} + c(y,\phi),
+    \end{align*} 
+for \(y>0\), where 
+$$
+        \theta  = - \lambda/\alpha ~( < 0),\quad  
+        b(\theta) = - \log (-\theta), \quad
+        \phi  =  1/\alpha ~( > 0),
+$$
+and
+\begin{align*}
+c(y,\phi)  &= (\alpha - 1) \log y - \log \Gamma(\alpha) + \alpha \log \alpha \\
+        & = \left(\frac{1-\phi}{\phi} \right) \log y - \log \Gamma (\phi^{-1}) - \phi^{-1} \log \phi.
+\end{align*} 
+(Note the extra term \(\alpha \log \alpha\) which
+appears in \(c(y,\phi)\).) 
+Then 
+\[
+E(Y)  =   b'(\theta) = \alpha / \lambda \quad 
+\mbox{var}(Y) = \phi b''(\theta) = 
+    \alpha / \lambda^2.
+\] 
+(Take care differentiating \(b(\theta)\)). These moments for
+\(Y\) are well-known for the gamma distribution.
+
+\
+
+#### Exercise 3.4
+
+To express this in exponential form we rearrange the probability mass function:
+\begin{align*}
+f(y) 
+&= \exp\{(y-1)\log (1-p) + \log p \} \\
+&= \exp\{y \log (1-p) +\log \left\{ p/(1-p)\right\}
+\end{align*}
+Hence, we have that $\theta = \log(1-p)$ and hence $p=1-e^\theta$ and $1-p=e^\theta$.
+Further, $b(\theta)= \log \left\{ p/(1-p)\right\} = \log \left\{ e^{-\theta}-1\right\}$, $c(y, \theta)=0$ and $\phi=1$.
+
+\
+
+
+#### Exercise 3.5
+
+For a discrete random variable, starting with the property that all probability mass functions sum to 1, 
+we have 
+$$
+1 = \sum_{y\in \Omega_Y} \exp \left\{ \frac{y \theta - b(\theta)}{\phi} + c(y,\phi)\right\} 
+$$ and then differentiating both sides with respect to $\theta$ gives 
+$$
+0 = \sum \left[\frac{ y - b'(\theta)}{\phi} \right]\exp \left\{ \frac{y \theta - b(\theta)}{\phi} + c(y,\phi)\right\}.
+$$
+Next, using the definition of the exponential family to
+simplify the equation gives 
+$$
+0 = \sum \left[\frac{ y - b'(\theta)}{\phi} \right] f(y; \theta)\ 
+$$ and expanding the brackets leads to 
+$$
+0 = \frac{1}{\phi} \left(\sum y f(y; \theta)  - b'(\theta) \sum f(y;\theta) \right).
+$$ The first sum is simply the expectation of $Y$ and the second is
+the integral of the probability mass function of $Y$, and hence 
+$$
+0 = \frac{1}{\phi} \left(\mbox{E}[Y] - b'(\theta)\right) 
+$$ which implies that 
+$$
+\mbox{E}[Y] = b'(\theta),
+$$ 
+which proves the first part of the proposition.
+
+Differentiating a second time, by parts and then using the definition of the exponential family to simplify again, yields 
+$$
+0 = \sum \left\{ -\frac{b''(\theta)}{\phi} + \left[\frac{ y - b'(\theta)}{\phi} \right]^2 \right\} f(y; \theta) 
+$$ and using the just prooved result about expectation gives, 
+$$
+0  =  -\frac{b''(\theta)}{\phi} +\sum \left[\frac{ y - \mbox{E}[Y]}{\phi} \right]^2  f(y; \theta)
+$$ 
+and
+$$
+0 = -\frac{b''(\theta)}{\phi} + \frac{\mbox{Var}[Y]}{\phi^2} 
+$$ which implies that $$
+\mbox{Var}[Y] = \phi \ b''(\theta).
+$$ which proves the second part of the proposition for discrete random variables.
+
+
+For the Poisson, since 
+$b(\theta)=e^\theta$ then 
+$b'(\theta)=e^\theta$ and $b''(\theta)=e^\theta$.
+With $\theta=\log \lambda$ we get the usual,
+$\mbox{E}[Y]=\lambda$ and
+$\mbox{Var}[Y]=\lambda$.
+
+For the binomial, $Y\sim \mbox{Bin}(n,p)$, 
+$b(\theta)=n\log(1+e^\theta)$ and hence
+$$
+b'(\theta) = n \frac{e^\theta}{(1+e^\theta)}
+$$ 
+and 
+$$
+b''(\theta)= n\left( \frac{e^\theta}{(1+e^\theta)} - \frac{(e^\theta)^2}{(1+e^\theta)^2}\right)= n\left( \frac{e^\theta}{(1+e^\theta)^2}\right).
+$$
+
+From $\theta = \mbox{logit}(p)$ we get
+$e^\theta = p/(1-p)$ and $1+e^\theta = 1/(1-p)$.
+These give,
+$$
+\mbox{E}[Y]= n \frac{p/(1-p)}{1/(1-p)}=np
+$$
+and
+$$
+\mbox{Var}[Y]=n \frac{p/(1-p)}{1/(1-p)^2}= np(1-p)$$
+-- as expected.
+
+
+\
+
+#### Exercise 3.6
+
+[See Solution for Question 3 from *Exercises from Last Year*.]
+
+\
+
+#### Exercise 3.7
+
+[See Solution for Question 4 from *Exercises from Last Year*.]
+
+

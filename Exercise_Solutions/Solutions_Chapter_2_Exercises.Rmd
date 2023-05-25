@@ -1,0 +1,304 @@
+---
+title: "MATH3823 - Solution to Chapter 2 Exercises (Draft: 23/05/2023)"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+------------------------------------------------------------------------
+
+::: callout-important
+#### Using R Markdown files
+
+If you are reading this online, on the module website, then this is output from an [R Markdown](http://rmarkdown.rstudio.com) Notebook. At the top-righthand corner of the page under $\texttt{Code}$, select $\texttt{Download Rmd}$ to download the original R Markdown notebook -- this is recommended so that you can edit and re-run code within the notebook. When you run code within the notebook, the results appear beneath the code. If you do download the notebook, then try executing a chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
+:::
+
+------------------------------------------------------------------------
+
+**Please note** that the below calculations use the $\texttt{lm}$ command in **R**, with a combination of $\texttt{summary}$, $\texttt{anova}$  and $\texttt{coefficients}$ to see the required numerical output. If it, however, the case that difference commands could have been used and, in particular, the more general
+$\texttt{glm}$ command could have been used instead. The actual steps required would be a little different but the results would be the same.
+
+\
+
+
+#### Exercise 2.1
+
+We did not attempt to fit the model 
+$\texttt{birthweight} \sim \texttt{sex}$, that is  $\texttt{birthweight} = \alpha + \beta \ \texttt{sex}$ where $\texttt{sex}$ is coded $0$ for girls and $1$ for boys. 
+This would be represented as two horizontal lines on the data plot, which does not look like a sensible explanation for the data and so we should not expect a good fit.
+
+Let us fit the model and plot the resulting equations and the data:
+
+```{r}
+birthweight = read.table("https://rgaykroyd.github.io/MATH3823/Datasets/birthwt-numeric.txt", header=T)
+
+weight = birthweight$weight
+age = birthweight$age
+sex = birthweight$sex
+
+M1.fit = lm(weight~sex)
+
+plot(age, weight, col=2-sex, pch=15+sex,
+     xlab = "Gestational age (weeks)", 
+     ylab = "Birth weight (grams)")
+legend(41,2800, c("Girl","Boy"), col = c(2,1), pch=c(15,16))
+
+abline(h=M1.fit$coefficients[1] + c(0,1)*M1.fit$coefficients[2], col=c(2,1), lwd=1.5)
+```
+
+The model fitting summary output is:
+```{r}
+summary(M1.fit)
+```
+and we have fitted equations
+$\texttt{birthweight} = 2911.3$ when $\texttt{sex}=0$ and
+$\texttt{birthweight} = 2911.3+112.7=3024$ when $\texttt{sex}=1$. 
+
+Further, the overall birth weight mean and the mean birth weights of the girls and boys can be found as:
+```{r}
+mean(weight)
+
+weighted.mean(weight,sex==0)
+
+weighted.mean(weight,sex==1)
+```
+We see that the mean of the girls is given by the intercept parameter and the mean of the boys by the sum of the two 
+parameters. The overall mean birthweight is given by the simple average of these two group means (since there are equal numbers of girls and boys).
+
+We did not expect a good fit and this is clear from the graph.
+To test the null hypothesis that including $\texttt{sex}$ is important, or not, we consider the F-statistic, $0.9554$, which follows an $F_{1,22}$ distribution. The p=value is $0.339$, not significant, and hence we conclude that $\texttt{sex}$ is not important in this case.
+
+\
+
+#### Exercise 2.2
+
+Notice that **V**=**IR** is a linear equation with intercept fixed at zero, $y=\beta\, x$ say.
+To start the investigation, first plot the data:
+```{r}
+Volts = c(4,8,10,12,14,18,20,24)
+mAmps = c(11,24,30,36,40,53,58.5,70)
+
+plot(mAmps, Volts,pch=16, ylim=c(0,24), xlim=c(0,70),
+     ylab = "Voltage (Volts)", 
+     xlab = "Current (mAmps)")
+```
+
+From the graph, a linear model through the origin should fit well, but first let's fit a regular linear model:
+```{r}
+M1.fit = lm(Volts ~ mAmps)
+
+summary(M1.fit)
+```
+Note that this command fits a model which includes the intercept but we see that the result of the t-test on the intercept parameter has a p-value of $0.849$ saying that it is not significantly different from zero.
+
+Let's finish by fitting the suggested model
+```{r}
+M2.fit = lm(Volts ~ mAmps-1)
+
+summary(M2.fit)
+```
+Here, we see that the fitted model is 
+$\texttt{Volts}=0.34126\, \texttt{mAmps}$
+with $\texttt{F-statistic}=3.367e+04$, which follows an $F_{1,7}$ distribution, with a very small p-value 
+and hence the slope parameter is highly significant.
+Seeing the fitted line along with the data reinforces that this is an almost perfect fit.
+
+This does support Ohm's Law, with a resistance of $0.34 \Omega$ -- given by the slope parameter estimate.
+
+```{r, echo=FALSE}
+Volts = c(4,8,10,12,14,18,20,24)
+mAmps = c(11,24,30,36,40,53,58.5,70)
+
+plot(mAmps, Volts, pch=16, ylim=c(0,24), xlim=c(0,70),
+     ylab = "Voltage (Volts)", 
+     xlab = "Current (mAmps)")
+
+M2.fit = glm(Volts ~ mAmps-1)
+
+abline(M2.fit, col="red")
+```
+
+For information, this data set was collected by my father, 
+Peter John Aykroyd, in 1956, while he was training as an electrical engineer.
+
+\
+
+#### Exercise 2.3
+
+Let $\texttt{pulse}$ denote the rest pulse rate,
+$\texttt{sex}$ is recorded as $0$ for Men and $1$ for Women,
+and $\texttt{time}$ as $0$ for Before and $1$ for After.
+Then, we suggest a model,
+$\texttt{pulse} = \alpha + \beta\, \texttt{sex} + \gamma\, \texttt{time} + \delta\, (\texttt{sex:time})$
+to take into account that Men and Women might have different rest pulse rates, that there might be a change after a meal, and that 
+Men and Women might be effected by a meal differently.
+
+Suppose that we enter data row-by-row starting from the top-left.
+Then,
+$\texttt{pulse}=(105, 79, 79, 103, 87, 97, 109, 87,\dots, 93,81)$
+and our design matrix, without selected columns removed to avoid aliasing (that is to remove identifiability issues), is given by
+$$
+X=
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+\end{bmatrix}
+$$
+where the first column represents the model intercept, the second indicates that the first 12 recorded values correspond to Men and the second 12 to Women; further the third column has blocks of 6 for the before and after for Men, then before and after for Women; finally the fourth column has the product of the second and third columns for the interaction term.
+
+Defining the data vector and the design matrix in **R**,
+```{r}
+pulse = c(105,79,79,103,87,97,109,87,86,109,100,101,74,73,82,78,86,77,81,80,90,90,93,81)
+
+X=matrix(c(
+1, 0, 0, 0,
+1, 0, 0, 0,
+1, 0, 0, 0,
+1, 0, 0, 0,
+1, 0, 0, 0,
+1, 0, 0, 0,
+1, 0, 1, 0,
+1, 0, 1, 0,
+1, 0, 1, 0,
+1, 0, 1, 0,
+1, 0, 1, 0,
+1, 0, 1, 0,
+1, 1, 0, 0,
+1, 1, 0, 0,
+1, 1, 0, 0,
+1, 1, 0, 0,
+1, 1, 0, 0,
+1, 1, 0, 0,
+1, 1, 1, 1,
+1, 1, 1, 1,
+1, 1, 1, 1,
+1, 1, 1, 1,
+1, 1, 1, 1,
+1, 1, 1, 1 
+), ncol=4, byrow=T)
+```
+and then the matrix regression equation
+
+```{r}
+beta = solve(t(X) %*% X) %*% t(X) %*% pulse
+
+beta
+
+```
+
+Using the $\texttt{lm}$ command in **R** gives:
+```{r}
+sex  = X[,2]   # this is easier than re-typing the 0 and 1's
+time = X[,3]
+
+my.fit.1 = lm(pulse ~ sex*time)
+
+coefficients(my.fit.1)
+```
+Notice that the coefficients, as expected, are identical to those obtained using the matrix regression equation above.
+
+To check if the change in pulse rate due to a meal is the same for men and women we test the interaction term.
+From the anova table, we see that the $\texttt{sex:time}$ interaction is not significant, with a p-value of $0.9440$.
+Hence, there is no significant interaction and there is no evidence that the change is different.
+```{r}
+anova(my.fit.1)
+```
+
+Finally, we fit the reduced model without the interaction term:
+```{r}
+
+my.fit.2 = lm(pulse ~ sex+time)
+
+summary(my.fit.2)
+```
+This gives final parameter estimates, all are significant, and shows that the model fits the data well, with an chi-squared statistic of $8.404$ which follows a $\chi^2_{21}$ distribution and has a p-value of:
+```{r}
+pchisq(8.404, 21, lower.tail = F)
+```
+
+In conclusion, the best fitted model is:
+$\texttt{pulse}=91.5-13.1\, (\texttt{sex})
++7.25\, (\texttt{time})$ and hence
+the average pulse rate is about $91$ beats/minute, the rate is $13$ beats/minute lower for women than men, and 
+there is a $7$ beats/minute increase after a meal and this change in pulse rate is the same for men and women.
+
+
+\
+
+#### Exercise 2.4
+
+A suitable model might say that seedling height depends on seed type, watering conditions and a possible interaction -- that is some types of barley are more, or less, sensitive to water conditions.
+From the description, it seems that the incubator shelf level is not of interest.
+
+```{r}
+barley = read.csv("https://rgaykroyd.github.io/MATH3823/Datasets/barley.csv")
+
+attach(barley)
+
+```
+
+The response variable in the data set is
+$\texttt{Height}$ with 
+explanatory variables
+$\texttt{Variety}$ with levels *G*, *M* and *Ig*,
+$\texttt{Watering}$ with levels *N* and *W*, and
+$\texttt{Position}$ with levels *Top*, *Second*, *Third* and *Bottom*.
+
+Following the guidance in the question, the most complicated model that we might consider is
+$$
+(\texttt{Height})_{ijk}
+= \texttt{mean}
++ (\texttt{Variety})_i
++ (\texttt{Watering})_j
++ (\texttt{Position})_k
++ (\texttt{Variety}\texttt{Watering})_{ij}
+$$
+where 
+$i=1,2,3$ for *G*, *M* and *Ig*,
+$j=1,2$ for *N* and *W*, and
+$k=1,2,3,4$ for *Top*, *Second*, *Third* and *Bottom*.
+
+```{r}
+Variety  = as.factor(Variety)
+Watering = as.factor(Watering)
+Position = as.factor(Position)
+
+M1.fit = lm(Height ~ Variety + Watering + Position + Variety:Watering)
+
+anova(M1.fit)
+```
+
+The $\texttt{Variety:Watering}$ interaction terms has an F-statistics of $1.0055$ which follows an $F_{2,15}$ distribution and has a p-value of $0.3892$ -- which is non-significant.
+Hence there is no evidence that difference varieties respond differently to water levels.
+
+```{r}
+
+M2.fit = lm(Height ~ Variety + Watering  )
+
+anova(M2.fit)
+```
+From this anova table it appears that none of the variables are significant. This might suggest that the natural variability is large and that a bigger sample would be needed to identify any pattern.
+

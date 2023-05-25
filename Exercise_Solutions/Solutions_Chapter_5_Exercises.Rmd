@@ -1,0 +1,147 @@
+---
+title: "MATH3823 - Solution to Chapter 5 Exercises (Draft: 25/05/2023)"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+------------------------------------------------------------------------
+
+::: callout-important
+#### Using R Markdown files
+
+If you are reading this online, on the module website, then this is output from an [R Markdown](http://rmarkdown.rstudio.com) Notebook. At the top-righthand corner of the page under $\texttt{Code}$, select $\texttt{Download Rmd}$ to download the original R Markdown notebook -- this is recommended so that you can edit and re-run code within the notebook. When you run code within the notebook, the results appear beneath the code. If you do download the notebook, then try executing a chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
+:::
+
+------------------------------------------------------------------------
+
+#### Exercise 5.1
+
+Use the fitted logistic regression model to predict what dose of
+  gaseous carbon disulphide would kill 90\% of beetles.}
+
+The model connects probability of death \(p\) to dose \(x\) via
+  \begin{equation*}
+     \mbox{logit}(p) = \log \left( \frac{p}{1-p} \right)
+     = \eta(x) = \beta_0 + \beta_1 x.
+   \end{equation*} 
+Hence the required dose for any \(p_0\) is
+  \(x(p) = (\mbox{logit}(p) - \beta_0) / \beta_1\). 
+  Substituting
+  the given \(p=0.9\) and fitted \(\hat{\beta}_0 = -60.717\) and
+  \(\hat{\beta}_1 = 34.270\), we obtain 
+\begin{equation*}
+    x(0.9) = (\log(0.9/(1-0.9)) + 60.717)/ 34.270 = 1.83584.
+\end{equation*}
+
+```{r}
+beetle = read.table("https://rgaykroyd.github.io/MATH3823/Datasets/beetle.txt", header=T)
+
+dose = beetle$dose
+mortality = beetle$died/beetle$total
+
+plot(dose, mortality, pch=16,
+     xlim=c(1.65, 1.90), xlab ="Dose",
+     ylim=c(-0.1, 1.1),  ylab="Mortality")
+abline(h=c(0,1), lty=2)
+
+y = cbind(beetle$died, beetle$total-beetle$died)
+output.dose = seq(1.6,1.95,0.001)
+
+# logistic link
+glm.fit = glm(y ~ dose, family=binomial(link='logit'))
+fitted = predict(glm.fit, data.frame(dose=output.dose), type="response")
+lines(output.dose, fitted)
+
+# probit link
+glm.fit = glm(y ~ dose, family=binomial(link='probit'))
+fitted = predict(glm.fit, data.frame(dose=output.dose), type="response")
+lines(output.dose, fitted, col=2)
+
+# Complementary log-log link
+glm.fit = glm(y ~ dose, family=binomial(link='cloglog'))
+fitted = predict(glm.fit, data.frame(dose=output.dose), type="response")
+lines(output.dose, fitted, col=3)
+
+legend(1.85, 0.5, legend=c("logistic","probit","cloglog"), col=c(1,2,3), lty=c(1,1,1), lwd=1.5)
+```
+
+The choice of link function appears to make very little difference in this example as all three fitted curves are very close together.
+
+\
+
+
+## Exercise 5.2
+
+- We will have \(\phi = 1\) if and only if
+    \(\{\pi_1 / (1 - \pi_1) \} / \{ \pi_2 / (1 - \pi_2) \} = 1\) iff
+    \(\pi_1 / (1 - \pi_1) = \pi_2 / (1 - \pi_2)\). Since the ``odds''
+    map \(\pi \rightarrow \pi / (1 - \pi)\) is monotone from \((0,1)\)
+    to \((0,\infty)\) (check its derivative is everywhere positive),
+    this last inequality holds iff \(\pi_1 > \pi_2\).
+
+-  The log odds ratio log \(\phi_j\) can be written as
+    \begin{equation*}
+      \begin{array}{lcl}
+      \log ~ \phi_j 
+          &  =  &  \operatorname{logit} \pi_{1j} - \operatorname{logit} \pi_{2j}\\
+          &  =  &  \alpha_1 - \alpha_2 + (\beta_1 - \beta_2) x_j,~~~ j = 1,...,m,
+       \end{array}
+    \end{equation*} which is constant in \(j\) iff
+    \(\beta_1 - \beta_2 = 0\).
+
+    The parameters \(\alpha_i\) and \(\beta_i\) describe the intercept
+    and slope of a logistic regression of \(\pi_{ij}\) on \(x_j\). Thus
+    the log odds ratio also varies linearly with \(x_j\), with slope
+    \(\alpha_1 - \alpha_2\) and intercept \(\beta_1 - \beta_2\).
+
+- Here is an example where this model might be plausible. Suppose a
+    group of workers has been exposed to a dangerous pollutant, and this
+    group has been matched to an unexposed control group. Further,
+    suppose the smoking habits of each worker are recorded and given a
+    score \(x = 0,1,2\) (for none, medium, high). The workers are
+    followed up for 40 years and the numbers dying of lung cancer are
+    recorded. Let \(\pi_{ij}\) denote the probability of dying from lung
+    cancer for workers in group \(i\) with smoking level
+    \(j,~~ i = 1,2, ~ j = 0,1,2\). Then, with risk measured in terms of
+    logit \(\pi_{ij}\),
+
+    \begin{itemize}
+    \item
+      \(\alpha_1\) and \(\alpha_2\) represent the risk to nonsmokers in
+      the exposed and unexposed groups. We might expect
+      \(\alpha_1 > \alpha_2\).
+    \item
+      \(\beta_1\) and \(\beta_2\) represent the increased risk as \(x\)
+      increases by 1 for each group. We expect \(\beta_1, \beta_2 > 0\).
+    \end{itemize}
+
+    If the risks of smoking act ``independently'' from those of
+    exposure, we expect \(\beta_1 = \beta_2\). But if there is a
+    biological interaction between pollution and smoking, we might
+    expect \(\beta_1 > \beta_2\).
+
+- Let \texttt{count} be a \(2m \times 2\) matrix containing the
+    numbers of diseased and non-diseased people for each combination of
+    \(i\) and \(j\). Let \texttt{status} be a 2-level factor giving the
+    group information \(i\) and let \texttt{x} be a quantitative
+    variable storing the \(x_j\) information. This model can be fitted
+    by the command
+    \texttt{glm(count\ \textasciitilde{}\ status*x,\ binomial)}.
+  \end{enumerate}
+
+\
+
+## Exercise 5.3
+
+For the *Low dose* group the probability of death is $65/237=0.2742616$ and $226/244=0.9262295$ for the *High dose* group -- a very big difference.
+Then, the risk of death due to High dose exposure relative to Low dose is $0.9262295/0.2742616=3.377175$.
+This value means that the risk of death is more than 3 times more likely in the *High dose* group than in the *Low dose* group.
+Clearly, if there is no difference, then relative risk would be around $1$ -- random variation would prevent a value of exactly $1$ -- and hence a value substantially different to $1$ indicates an association and an extreme value would indicate a strong association.
+
+The odds of death in the *Low dose* group is $65/172=0.377907$ -- less likely to die than not die -- and $226/18=12.55556$ for the *High dose* group. The second odds is much greater than the first, that is the odds are much greater in the *High dose* group than the *Low dose* group.
+
+These various *scales*, probability, relative risk and odds, all measure the same basic properties and each is used in some situations and hence it is important that we can move between them as the application changes.
+
+\
