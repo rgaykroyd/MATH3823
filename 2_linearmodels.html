@@ -433,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </div>
-<p>Before considering possible models, <a href="#fig-birthweightb">Figure&nbsp;<span>2.2</span></a> again shows the relationship between weight and age but this time with the points coloured according to the baby’s sex. This, perhaps, shows the boys to have generally higher weights across the age range than girls.</p>
+<p>Before considering possible models, <a href="#fig-birthweightB">Figure&nbsp;<span>2.2</span></a> again shows the relationship between weight and age but this time with the points coloured according to the baby’s sex. This, perhaps, shows the boys to have generally higher weights across the age range than girls.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -449,9 +449,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">41</span>,<span class="dv">2800</span>, <span class="fu">c</span>(<span class="st">"Girl"</span>,<span class="st">"Boy"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">pch=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-birthweightb" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-birthweightB" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="2_linearmodels_files/figure-html/fig-birthweightb-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="2_linearmodels_files/figure-html/fig-birthweightB-1.png" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2.2: Birthweight and gestational age for 12 girls (red squares) and 12 boys (black dots).</figcaption><p></p>
 </figure>
 </div>
@@ -576,7 +576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We know from previous modules that statistical tests can be used to check the importance of regression coefficients and model parameters, but it is also important to use the graphical results, as in <a href="#fig-birthweight-fitted">Figure&nbsp;<span>2.3</span></a>, to guide us.</p>
 <p><span class="math inline">\(\texttt{Model 0}\)</span> says that there is no change in birth weight with gestational age which means that we would use the average birth weight as the prediction whatever the gestational age – this makes no sense. As we can easily see from the scatter plot of the data, the fitted line in this case is clearly inappropriate.</p>
-<p><span class="math inline">\(\texttt{Model 1}\)</span> does not take into account whether the baby is a girl or a boy, but does model the relationship between birth weight and gestational age. This does seem to provide a good fit and might be adequate for many purposes. Recall from <a href="#fig-birthweightA-2">Figure&nbsp;<span>2.1 (b)</span></a> and <a href="#fig-birthweightb">Figure&nbsp;<span>2.2</span></a>, however, that for a given gestational age the boys seem to have a higher birth weight than the girls.</p>
+<p><span class="math inline">\(\texttt{Model 1}\)</span> does not take into account whether the baby is a girl or a boy, but does model the relationship between birth weight and gestational age. This does seem to provide a good fit and might be adequate for many purposes. Recall from <a href="#fig-birthweightA-2">Figure&nbsp;<span>2.1 (b)</span></a> and <a href="#fig-birthweightB">Figure&nbsp;<span>2.2</span></a>, however, that for a given gestational age the boys seem to have a higher birth weight than the girls.</p>
 <p><span class="math inline">\(\texttt{Model 2}\)</span> does take the sex of the baby into account by allowing separate intercepts in the fitted lines – this means that the lines are parallel. By eye, there is a clear difference between these two lines but it might not be important.</p>
 <p><span class="math inline">\(\texttt{Model 3}\)</span> allows for separate slopes as well as intercepts. There is a slight difference in the slopes, with the birth weight of the girls gradually catching-up as the gestational age increases. It is difficult to see, however, if this will be a general pattern or if it is only true for this data set – especially given the relatively small sample size.</p>
 <p>Here, it is not clear by eye which of the fitted models will be the best and hence we should use a statistical test to help. In particular, we can choose between the models using F-tests.</p>
