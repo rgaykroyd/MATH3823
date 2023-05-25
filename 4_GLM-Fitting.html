@@ -253,19 +253,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="callout-warning callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please note that to make these lecture notes available on time, there has not been sufficient time to check the following sections. This, in particular, may mean that some of the cross-referencing is not accurate, as well as small typos. Further, the final few sections are not yet complete.</p>
-</div>
-</div>
 <p>Throughout this module we use the principle of maximum likelihood estimation (MLE) to estimate model parameters and will consider two cases.</p>
 <section id="sec-mleiid" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-mleiid"><span class="header-section-number">4.1</span> The identically distributed case</h2>
@@ -628,12 +615,12 @@ b     2  12.2947         6     13.150</code></pre>
 <div class="exercises">
 <p>4.1 Use <a href="#eq-exponentialfamilybary2">Equation&nbsp;<span>4.4</span></a> to obtain estimation equations for the natural parameter <span class="math inline">\(\theta\)</span>, based on a sample <span class="math inline">\(\mathbf{y}=\{y_1,\dots, y_n\}\)</span>, for each of the following situations:</p>
 <ol type="a">
-<li>the binomial, <span class="math inline">\(Y\sim\mbox{Bin}(n,p)\)</span>,</li>
+<li>the binomial, <span class="math inline">\(Y\sim\mbox{Bin}(m,p)\)</span>,</li>
 <li>the geometric, <span class="math inline">\(Y\sim\mbox{Ge}(p)\)</span>,</li>
 <li>the exponential, <span class="math inline">\(Y\sim\mbox{Exp}(\lambda)\)</span>.</li>
 </ol>
-<p>What is the variance of the estimator in each case?</p>
-<p>4.2 For a sample of size <span class="math inline">\(n\)</span> from the normal distribution, <span class="math inline">\(Y\sim N(\mu, \sigma^2),\)</span> how do the results produced using <a href="#eq-ehattheta">Equation&nbsp;<span>4.9</span></a> and <a href="#eq-varhattheta">Equation&nbsp;<span>4.10</span></a> compare with the familiar results <span class="math inline">\(\hat\mu =\bar y\)</span>, <span class="math inline">\(\text{E}[\hat\mu]=\mu\)</span>, and <span class="math inline">\(\text{Var}[\hat\mu] =\sigma^2/n?\)</span></p>
+<p>Assuming that <span class="math inline">\(n\)</span> is very large, use <a href="#eq-ehattheta">Equation&nbsp;<span>4.9</span></a> to comment on possible bias of the estimator for large samples. What is the corresponding variance of the estimator?</p>
+<p>4.2 For a sample of size <span class="math inline">\(n\)</span> from the normal distribution, <span class="math inline">\(Y\sim N(\mu, \sigma^2),\)</span> how do the results produced using <a href="#eq-ehattheta">Equation&nbsp;<span>4.9</span></a> and <a href="#eq-varhattheta">Equation&nbsp;<span>4.10</span></a> compare with the familiar results <span class="math inline">\(\hat\mu =\bar Y\)</span>, <span class="math inline">\(\text{E}[\hat\mu]=\mu\)</span>, and <span class="math inline">\(\text{Var}[\hat\mu] =\sigma^2/n?\)</span></p>
 <p>4.3 For the normal linear regression model, <span class="math inline">\(\mathbf{Y}=X\boldsymbol{\beta}+\boldsymbol{\epsilon}\)</span> where <span class="math inline">\(\boldsymbol{\epsilon}\sim N_n(0,\sigma^2 I_n)\)</span> use the principle of maximum likelihood to show that the MLE has the closed form given in <a href="#eq-linearregressionmle">Equation&nbsp;<span>4.13</span></a>.</p>
 <p>4.4 Check that you can derive the formulas given for deviance of normal, binomial, and Poisson models at the start of <a href="#sec-deviance"><span>Section&nbsp;4.3</span></a>.</p>
 <p>[See Solution for Question 5 from <em>Exercises from Last Year</em>.]</p>
