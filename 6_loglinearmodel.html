@@ -677,18 +677,21 @@ y_{+j} = e^{\widehat{\mu}}  e^{\widehat{\beta}_j} \left(\sum_i e^{\widehat{\alph
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>melanoma <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"https://rgaykroyd.github.io/MATH3823/Datasets/melanoma.txt"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(melanoma)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>type.F <span class="ot">=</span> <span class="fu">as.factor</span>(type)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>site.F <span class="ot">=</span> <span class="fu">as.factor</span>(site)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mcount <span class="ot">=</span> melanoma<span class="sc">$</span>count</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>type<span class="ot">=</span> melanoma<span class="sc">$</span>type</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>site <span class="ot">=</span> melanoma<span class="sc">$</span>site</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>glm1 <span class="ot">=</span> <span class="fu">glm</span>(count <span class="sc">~</span> type.F <span class="sc">+</span> site.F, <span class="at">family=</span><span class="st">'poisson'</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>type.F <span class="ot">=</span> <span class="fu">as.factor</span>(type)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>site.F <span class="ot">=</span> <span class="fu">as.factor</span>(site)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>glm1 <span class="ot">=</span> <span class="fu">glm</span>(mcount <span class="sc">~</span> type.F <span class="sc">+</span> site.F, <span class="at">family=</span><span class="st">'poisson'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-glm(formula = count ~ type.F + site.F, family = "poisson")
+glm(formula = mcount ~ type.F + site.F, family = "poisson")
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
