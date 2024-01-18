@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./2_linearmodels.html" rel="next">
 <link href="./0_preface.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -152,6 +153,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_linearmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Essentials of Normal Linear Models</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -164,11 +171,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1.1</span> Overview</a></li>
   <li><a href="#motivating-example" id="toc-motivating-example" class="nav-link" data-scroll-target="#motivating-example"><span class="header-section-number">1.2</span> Motivating example</a></li>
-  <li><a href="#spot-the-correlation-quiz" id="toc-spot-the-correlation-quiz" class="nav-link" data-scroll-target="#spot-the-correlation-quiz"><span class="header-section-number">1.3</span> Spot the correlation quiz</a></li>
-  <li><a href="#revision-of-least-squares-estimation" id="toc-revision-of-least-squares-estimation" class="nav-link" data-scroll-target="#revision-of-least-squares-estimation"><span class="header-section-number">1.4</span> Revision of least-squares estimation</a></li>
-  <li><a href="#sec-typevariables" id="toc-sec-typevariables" class="nav-link" data-scroll-target="#sec-typevariables"><span class="header-section-number">1.5</span> Types of variables</a></li>
-  <li><a href="#spot-the-data-type-quiz" id="toc-spot-the-data-type-quiz" class="nav-link" data-scroll-target="#spot-the-data-type-quiz"><span class="header-section-number">1.6</span> Spot the data type quiz</a></li>
-  <li><a href="#sec-exercises1" id="toc-sec-exercises1" class="nav-link" data-scroll-target="#sec-exercises1"><span class="header-section-number">1.7</span> Exercises</a></li>
+  <li><a href="#focus-on-correlation-quiz" id="toc-focus-on-correlation-quiz" class="nav-link" data-scroll-target="#focus-on-correlation-quiz">Focus on correlation quiz</a></li>
+  <li><a href="#revision-of-least-squares-estimation" id="toc-revision-of-least-squares-estimation" class="nav-link" data-scroll-target="#revision-of-least-squares-estimation"><span class="header-section-number">1.3</span> Revision of least-squares estimation</a></li>
+  <li><a href="#sec-typevariables" id="toc-sec-typevariables" class="nav-link" data-scroll-target="#sec-typevariables"><span class="header-section-number">1.4</span> Types of variables</a></li>
+  <li><a href="#focus-on-data-type-quiz" id="toc-focus-on-data-type-quiz" class="nav-link" data-scroll-target="#focus-on-data-type-quiz">Focus on data type quiz</a></li>
+  <li><a href="#sec-exercises1" id="toc-sec-exercises1" class="nav-link" data-scroll-target="#sec-exercises1"><span class="header-section-number">1.5</span> Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -177,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></h1>
 </div>
 
 
@@ -197,6 +204,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \def\b#1{\mathbf{#1}}
 \]</span></p>
 </div>
+<p>Here is a short video [3 mins] to introduce the chapter</p>
+<iframe title="MATH3823 Chapter 1 video" width="450" height="253" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/ccde220db1d34700ae7f20121ee5140f1d" allowfullscreen="" msallowfullscreen="" allow="fullscreen">
+</iframe>
 <section id="overview" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1.1</span> Overview</h2>
 <p>In previous modules you have studied linear models with a normally distributed error term, such as simple linear regression, multiple linear regression and ANOVA for normally distributed observations. In this module we will study <strong>generalized</strong> linear models.</p>
@@ -374,8 +384,8 @@ Warning
 </div>
 </div>
 </section>
-<section id="spot-the-correlation-quiz" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="spot-the-correlation-quiz"><span class="header-section-number">1.3</span> Spot the correlation quiz</h2>
+<section id="focus-on-correlation-quiz" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="focus-on-correlation-quiz">Focus on correlation quiz</h2>
 <p>Test your knowledge recall and comprehension to reinforce idea of linear relationships and correlation.</p>
 <div class="webex-box">
 <div class="webex-check">
@@ -421,13 +431,13 @@ Click here to see explanations
 </div>
 </div>
 </section>
-<section id="revision-of-least-squares-estimation" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="revision-of-least-squares-estimation"><span class="header-section-number">1.4</span> Revision of least-squares estimation</h2>
+<section id="revision-of-least-squares-estimation" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="revision-of-least-squares-estimation"><span class="header-section-number">1.3</span> Revision of least-squares estimation</h2>
 <p>Suppose that we have <span class="math inline">\(n\)</span> paired data values <span class="math inline">\((x_1, y_1),\dots, (x_n, y_n)\)</span> and that we believe these are related by a linear model</p>
 <p><span class="math display">\[
 y_i = \alpha+\beta x_i +\epsilon_i
 \]</span></p>
-<p>for all <span class="math inline">\(i\in \{1, 2,\dots,n\}\)</span>, where <span class="math inline">\(\epsilon_1,\dots,\epsilon_n\)</span> are independent and identically distributed (iid) with <span class="math inline">\(\mbox{E}(\epsilon_i)=0\)</span> and <span class="math inline">\(\mbox{Var}(\epsilon_i)=\sigma^2\)</span>. The aim will be to find values of the model parameters, <span class="math inline">\(\alpha, \beta \text{ and } \sigma^2\)</span> using the data. Specifically, we will estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> using the values which minimize the residual sum of squares (RSS)</p>
+<p>for all <span class="math inline">\(i\in \{1, 2,\dots,n\}\)</span>, where <span class="math inline">\(\epsilon_1,\dots,\epsilon_n\)</span> are independent and identically distributed (iid) with <span class="math inline">\(\mbox{E}[\epsilon_i]=0\)</span> and <span class="math inline">\(\mbox{Var}[\epsilon_i]=\sigma^2\)</span>. The aim will be to find values of the model parameters, <span class="math inline">\(\alpha, \beta \text{ and } \sigma^2\)</span> using the data. Specifically, we will estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> using the values which minimize the residual sum of squares (RSS)</p>
 <p><span id="eq-RSS"><span class="math display">\[
 RSS(\alpha, \beta) = \sum_{i=1}^n \left(y_i-(\alpha+\beta x_i)\right)^2.
 \tag{1.1}\]</span></span></p>
@@ -456,7 +466,7 @@ s_{xy}=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar x)(y_i-\bar y)
 <p><span class="math display">\[
 s^2_x = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar x)^2
 \]</span></p>
-<p>is the sample variance of the <span class="math inline">\(x\)</span> values. It can be shown that these estimators are unbiased, that is <span class="math inline">\(\mbox{E}[\hat\alpha]=\alpha\)</span> and <span class="math inline">\(\mbox{E}[\hat\beta]=\beta\)</span> – see <a href="#sec-exercises1"><span>Section&nbsp;1.7</span></a>.</p>
+<p>is the sample variance of the <span class="math inline">\(x\)</span> values. It can be shown that these estimators are unbiased, that is <span class="math inline">\(\mbox{E}[\hat\alpha]=\alpha\)</span> and <span class="math inline">\(\mbox{E}[\hat\beta]=\beta\)</span> – see <a href="#sec-exercises1"><span>Section&nbsp;1.5</span></a>.</p>
 <p>The fitted regression lines is then given by <span class="math inline">\(\hat y = \hat \alpha +\hat \beta x\)</span>, the fitted values by <span class="math inline">\(\hat y_i = \hat \alpha +\hat \beta x_i\)</span>, and the model residuals by <span class="math inline">\(r_i= \hat \epsilon_i= y_i-\hat y_i\)</span> for all <span class="math inline">\(i\in \{1,\dots,n\}.\)</span></p>
 <p>To complete the model fitting, we also estimate the error variance, <span class="math inline">\(\sigma^2\)</span>, using <span id="eq-simple-variance"><span class="math display">\[
 \hat \sigma^2 = \frac{1}{n-2} \sum _{i=1}^n r_i^2.
@@ -520,8 +530,8 @@ Important
 </div>
 </div>
 </section>
-<section id="sec-typevariables" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="sec-typevariables"><span class="header-section-number">1.5</span> Types of variables</h2>
+<section id="sec-typevariables" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sec-typevariables"><span class="header-section-number">1.4</span> Types of variables</h2>
 <p>The way a variable enters a model will depends on its type. The most common five types of variable are:</p>
 <ol type="1">
 <li>Quantitative
@@ -541,8 +551,8 @@ Important
 </ol>
 <p>Note that although dichotomous is clearly a special case of polytomous, making the distinction is usually worthwhile as it often leads to a simplified modelling and testing approach.</p>
 </section>
-<section id="spot-the-data-type-quiz" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="spot-the-data-type-quiz"><span class="header-section-number">1.6</span> Spot the data type quiz</h2>
+<section id="focus-on-data-type-quiz" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="focus-on-data-type-quiz">Focus on data type quiz</h2>
 <div class="webex-box">
 <div class="webex-check">
 <p>Test your knowledge recall and comprehension to reinforce ideas ready for later in the module</p>
@@ -579,8 +589,8 @@ Click here to see explanations
 </div>
 </div>
 </section>
-<section id="sec-exercises1" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="sec-exercises1"><span class="header-section-number">1.7</span> Exercises</h2>
+<section id="sec-exercises1" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="sec-exercises1"><span class="header-section-number">1.5</span> Exercises</h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1116,6 +1126,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./2_linearmodels.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Essentials of Normal Linear Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
