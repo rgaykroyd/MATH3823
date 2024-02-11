@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -64,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./4_GLM-Fitting.html" rel="next">
 <link href="./2_linearmodels.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -91,7 +90,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3_GLM-Theory.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -165,30 +165,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./4_GLM-Fitting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM Estimation</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling Proportions</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./6_loglinearmodel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./7_extendedloglinearmodel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Extensions to Loglinear models</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -200,11 +176,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#motivating-examples" id="toc-motivating-examples" class="nav-link active" data-scroll-target="#motivating-examples"><span class="header-section-number">3.1</span> Motivating examples</a></li>
+  <li><a href="#focus-on-distributions-quiz" id="toc-focus-on-distributions-quiz" class="nav-link" data-scroll-target="#focus-on-distributions-quiz">Focus on distributions quiz</a></li>
   <li><a href="#sec-glmstructure" id="toc-sec-glmstructure" class="nav-link" data-scroll-target="#sec-glmstructure"><span class="header-section-number">3.2</span> The GLM structure</a></li>
+  <li><a href="#focus-on-glm-structure-quiz" id="toc-focus-on-glm-structure-quiz" class="nav-link" data-scroll-target="#focus-on-glm-structure-quiz">Focus on GLM structure quiz</a></li>
   <li><a href="#the-random-part-of-a-glm" id="toc-the-random-part-of-a-glm" class="nav-link" data-scroll-target="#the-random-part-of-a-glm"><span class="header-section-number">3.3</span> The random part of a GLM</a></li>
   <li><a href="#sec-exponential-family" id="toc-sec-exponential-family" class="nav-link" data-scroll-target="#sec-exponential-family"><span class="header-section-number">3.4</span> Moments of exponential-family distributions</a></li>
   <li><a href="#sec-systematic" id="toc-sec-systematic" class="nav-link" data-scroll-target="#sec-systematic"><span class="header-section-number">3.5</span> The systematic part of the model</a></li>
   <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function"><span class="header-section-number">3.6</span> The link function</a></li>
+  <li><a href="#focus-on-link-functions-quiz" id="toc-focus-on-link-functions-quiz" class="nav-link" data-scroll-target="#focus-on-link-functions-quiz">Focus on link functions quiz</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.7</span> Exercises</a></li>
   </ul>
 </nav>
@@ -236,6 +215,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \def\V{\mbox{Var}}
 \]</span></p>
 </div>
+<p>Here is a short video [3 mins] to introduce the chapter</p>
+<iframe title="MATH3823 Chapter 3 video" width="450" height="253" frameborder="0" scrolling="auto" marginheight="0" marginwidth="0" src="https://mymedia.leeds.ac.uk/Mediasite/Play/c73276262fc6406da626469e292869f61d" allowfullscreen="" msallowfullscreen="" allow="fullscreen">
+</iframe>
 <section id="motivating-examples" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="motivating-examples"><span class="header-section-number">3.1</span> Motivating examples</h2>
 <p>We cannot always assume that the dependent variable <span class="math inline">\(Y\)</span> is normally distributed. For example, for the beetle mortality data in <a href="1_intro.html#tbl-beetle-data">Table&nbsp;<span>1.1</span></a>, suppose each beetle subjected to a dose <span class="math inline">\(x_i\)</span> has a probability <span class="math inline">\(p_i\)</span> of being killed. Then, the number of beetles killed <span class="math inline">\(Y_i\)</span> out of a total number <span class="math inline">\(m_i\)</span> at dose-level <span class="math inline">\(x_i\)</span> will have a <span class="math inline">\(\text{Bin}(m_i,p_i)\)</span> distribution with probability mass function</p>
@@ -300,26 +282,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<p>In these two examples, we have non-normal data and would like to know whether and how the dependent variable <span class="math inline">\(Y_i\)</span> depends on the covariate <span class="math inline">\(x_i\)</span> or <span class="math inline">\(i.\)</span></p>
+<p>In these two examples, we have non-normal data and would like to know whether and how the dependent variable <span class="math inline">\(Y_i\)</span> depends on the covariate dose or season.</p>
 <div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beetle <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"https://rgaykroyd.github.io/MATH3823/Datasets/beetle.txt"</span>, <span class="at">header=</span>T)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">=</span> beetle<span class="sc">$</span>dose</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mortality <span class="ot">=</span> beetle<span class="sc">$</span>died<span class="sc">/</span>beetle<span class="sc">$</span>total</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dose, mortality, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.90</span>), <span class="at">xlab =</span><span class="st">"Dose"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>),  <span class="at">ylab=</span><span class="st">"Mortality"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>season <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">13</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>cyclones <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(season, cyclones, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>),</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Season"</span>, <span class="at">ylab=</span><span class="st">"No. of cyclones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>beetle <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"https://rgaykroyd.github.io/MATH3823/Datasets/beetle.txt"</span>, <span class="at">header=</span>T)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">=</span> beetle<span class="sc">$</span>dose</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>mortality <span class="ot">=</span> beetle<span class="sc">$</span>died<span class="sc">/</span>beetle<span class="sc">$</span>total</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dose, mortality, <span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.90</span>), <span class="at">xlab =</span><span class="st">"Dose"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>),  <span class="at">ylab=</span><span class="st">"Mortality"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>season <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">13</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>cyclones <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(season, cyclones, <span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Season"</span>, <span class="at">ylab=</span><span class="st">"No. of cyclones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-nonnormal" class="cell quarto-layout-panel">
 <figure class="figure">
@@ -347,6 +331,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Generalized linear models provide a modelling framework for data analysis in the non-normal setting. We will revisit the beetle mortality and cyclone data sets after describing the structure of a generalized linear model.</p>
 </section>
+<section id="focus-on-distributions-quiz" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="focus-on-distributions-quiz">Focus on distributions quiz</h2>
+<p>Test your knowledge recall and application to reinforce basic ideas and prepare for similar concepts later in the Chapter.</p>
+<div class="webex-box">
+<div class="webex-check">
+<ol type="1">
+<li><p>Which of the following best describes the sample space of a binomial random variable? <select class="webex-select"><option value="blank"></option><option value="answer">An integar values between 0 and m</option><option value="">All real numbers</option><option value="">Any real number between 0 and m</option><option value="">Positive real numbers</option><option value="">Non-negative integers</option><option value="">None of the above</option></select></p></li>
+<li><p>Which of the following best describes the sample space of a Poisson random variable? <select class="webex-select"><option value="blank"></option><option value="">Any real number between 0 and m</option><option value="">Positive real numbers</option><option value="answer">Non-negative integers</option><option value="">An integar values between 0 and m</option><option value="">All real numbers</option><option value="">None of the above</option></select></p></li>
+<li><p>Which of the following best describes the sample space of a normal random variable? <select class="webex-select"><option value="blank"></option><option value="">Non-negative integers</option><option value="">Positive real numbers</option><option value="">Any real number between 0 and m</option><option value="">An integar values between 0 and m</option><option value="answer">All real numbers</option><option value="">None of the above</option></select></p></li>
+<li><p>For the binomial distribution, which of the following best describes the range of values possible for log(p/(1-p))? <select class="webex-select"><option value="blank"></option><option value="">An integar values between 0 and 1</option><option value="">Non-negative integers</option><option value="">Positive real numbers</option><option value="answer">All real numbers</option><option value="">Any real number between 0 and 1</option><option value="">None of the above</option></select></p></li>
+<li><p>For the Poisson distribution, which of the following best describes the range of values possible for log(λ)? <select class="webex-select"><option value="blank"></option><option value="">Any real number between 0 and 1</option><option value="">Non-negative integers</option><option value="answer">All real numbers</option><option value="">Positive real numbers</option><option value="">An integar values between 0 and 1</option><option value="">None of the above</option></select></p></li>
+<li><p>For the normal distribution, which of the following best describes the range of values possible for µ? <select class="webex-select"><option value="blank"></option><option value="">Any real number between 0 and 1</option><option value="">Positive real numbers</option><option value="">An integar values between 0 and 1</option><option value="answer">All real numbers</option><option value="">Non-negative integers</option><option value="">None of the above</option></select></p></li>
+</ol>
+</div>
+</div>
+</section>
 <section id="sec-glmstructure" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-glmstructure"><span class="header-section-number">3.2</span> The GLM structure</h2>
 <p>A <em>generalized linear model</em> relates a continuous or discrete response variable <span class="math inline">\(Y\)</span> to a set of explanatory variables <span class="math inline">\(\mathbf{x}=(x_1, \ldots, x_p)\)</span>. The model contains three parts:</p>
@@ -355,8 +355,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 f(y; \theta, \phi) = \exp \left\{ \frac{y \theta - b(\theta)}
                   {\phi} + c(y, \phi) \right\},
 \tag{3.3}\]</span></span> where <span class="math inline">\(\phi&gt;0\)</span>. Here, <span class="math inline">\(\theta\)</span> is called the <em>canonical</em> or <em>natural</em> parameter of the distribution and <span class="math inline">\(\phi\)</span> is called the <em>scale</em> parameter. We show below that the mean <span class="math inline">\(\mbox{E}[Y]\)</span> depends only on <span class="math inline">\(\theta\)</span>, and <span class="math inline">\(\mbox{Var}[Y]\)</span> depends on <span class="math inline">\(\phi\)</span> and possibly also <span class="math inline">\(\theta\)</span>. Various choices for functions <span class="math inline">\(b(\cdot)\)</span> and <span class="math inline">\(c(\cdot)\)</span> produce a wide variety of familiar distributions (see below). Sometimes we may set <span class="math inline">\(\phi=1\)</span>; then <a href="#eq-exponential-family">Equation&nbsp;<span>3.3</span></a> is called the <em>one-parameter exponential family</em>.</p>
+<p>Most of the common statistical distributions are member of the regular exponential family, such as binomial, Poisson, geometric, gamma, normal, but not the Student’s t and uniform with unknown bounds.</p>
 <p>Further, note that in some references to generalized linear models (such as Dobson and Barnett, 3rd edn.), <span class="math inline">\(\phi\)</span> does not appear at all in the exponential family formula <a href="#eq-exponential-family">Equation&nbsp;<span>3.3</span></a>, instead it is absorbed into <span class="math inline">\(\theta\)</span> and <span class="math inline">\(b(\theta)\)</span>.</p>
-<p>In this module, we will generally assume that each observation <span class="math inline">\(Y_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, is <em>independently</em> drawn from an exponential family where <span class="math inline">\(\theta\)</span> depends on the covariates. Thus we write <span class="math display">\[
+<p>In this module, we will generally assume that each observation <span class="math inline">\(Y_i\)</span>, <span class="math inline">\(i=1,\dots,n,\)</span> is <em>independently</em> drawn from an exponential family where <span class="math inline">\(\theta\)</span> depends on the covariates. Thus we write <span class="math display">\[
 f(y_i; \theta_i, \phi) = \exp \left\{ \frac{y_i \theta_i - b(\theta_i)}   {\phi} + c(y_i, \phi) \right\}.
 \]</span> Note the subscripts on both <span class="math inline">\(y\)</span> and <span class="math inline">\(\theta\)</span>, and hence the observations may not be identically distributed.</p>
 <p><strong>Systematic part:</strong> This is a <em>linear predictor</em>: <span id="eq-linpred"><span class="math display">\[
@@ -368,6 +369,21 @@ f(y_i; \theta_i, \phi) = \exp \left\{ \frac{y_i \theta_i - b(\theta_i)}   {\phi}
 \tag{3.5}\]</span></span></p>
 <p>Here, <span class="math inline">\(g(\mu)\)</span> is called the <em>link function</em>, and <span class="math inline">\(h(\eta)\)</span> is called the <em>inverse link function</em>.</p>
 <p>We will now discuss each of these parts in more detail.</p>
+</section>
+<section id="focus-on-glm-structure-quiz" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="focus-on-glm-structure-quiz">Focus on GLM structure quiz</h2>
+<p>Test your knowledge recall and application to reinforce basic ideas and prepare for similar concepts later in the Chapter</p>
+<div class="webex-box">
+<div class="webex-check">
+<ol type="1">
+<li><p>What symbols are usually used for the parameters in the definition of the two-parameter exponential family? <select class="webex-select"><option value="blank"></option><option value="">y, θ and φ</option><option value="">b and c</option><option value="answer">θ and φ</option><option value="">y and φ</option><option value="">y and x</option><option value="">None of the above</option></select></p></li>
+<li><p>Which of the following is NOT a member of the two-parameter exponential family? <select class="webex-select"><option value="blank"></option><option value="answer">Student’s t</option><option value="">Poisson</option><option value="">normal</option><option value="">binomial</option><option value="">Bernoulli</option><option value="">None of the above</option></select></p></li>
+<li><p>Which of the following is NOT part of the usual definition of a generalised linear model? <select class="webex-select"><option value="blank"></option><option value="">Random part</option><option value="answer">Design matrix</option><option value="">Systematic part</option><option value="">Link function</option><option value="">None of the above</option></select></p></li>
+<li><p>In the definition of a GLM, which of the following best describes an assumption about the distribution of the response variable? <select class="webex-select"><option value="blank"></option><option value="">Systematic</option><option value="">Linear function of the explanatory variables</option><option value="">Link function</option><option value="answer">Member of the exponential family</option><option value="">None of the above</option></select></p></li>
+<li><p>Which part of the GLM definition involves the mean of the response variable and the explanatory variables? <select class="webex-select"><option value="blank"></option><option value="">Regression parameters, β</option><option value="answer">Link function</option><option value="">Linear predictor</option><option value="">Expectation of Y</option><option value="">None of the above</option></select></p></li>
+</ol>
+</div>
+</div>
 </section>
 <section id="the-random-part-of-a-glm" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="the-random-part-of-a-glm"><span class="header-section-number">3.3</span> The random part of a GLM</h2>
@@ -404,18 +420,20 @@ f(y) = \frac{e^{-\lambda} \lambda^y} {y!}
 <div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>season <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">13</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cyclones <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(cyclones)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(season, cyclones, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Season"</span>, <span class="at">ylab=</span><span class="st">"No. of cyclones"</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(cyclones), <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cyclones, <span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">13</span><span class="fl">-0.5</span>, <span class="at">main=</span><span class="st">""</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>fitted<span class="ot">=</span>n<span class="sc">*</span><span class="fu">dpois</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>,<span class="fu">mean</span>(cyclones))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>, fitted, <span class="at">type=</span><span class="st">'h'</span>, <span class="at">lwd=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">mgp=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>season <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">13</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>cyclones <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">4</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(cyclones)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(season, cyclones, <span class="at">pch=</span><span class="dv">16</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">12</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Season"</span>, <span class="at">ylab=</span><span class="st">"No. of cyclones"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(cyclones), <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cyclones, <span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">13</span><span class="fl">-0.5</span>, <span class="at">main=</span><span class="st">""</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>fitted<span class="ot">=</span>n<span class="sc">*</span><span class="fu">dpois</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>,<span class="fu">mean</span>(cyclones))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">12</span>, fitted, <span class="at">type=</span><span class="st">'h'</span>, <span class="at">lwd=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-cyclone" class="cell quarto-layout-panel">
 <figure class="figure">
@@ -634,7 +652,7 @@ f(y; \mu, \sigma^2) &amp;= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left\{ \frac{-1
 <li>Quantitative — for example, <span class="math inline">\(x \in (-\infty, \infty)\)</span> etc.</li>
 <li>Qualitative — for example, <span class="math inline">\(x \in \{A, B, C\}\)</span> etc.</li>
 </ul>
-<p>As discussed in <span class="quarto-unresolved-ref">?sec-designmatrix</span>, each quantitative variable is represented in <span class="math inline">\(X\)</span> by an <span class="math inline">\(n \times 1\)</span> column vector. Each qualitative variable, with <span class="math inline">\(k+1\)</span> levels, say, is represented by a dummy <span class="math inline">\(n \times k\)</span> matrix (one column, usually the first, being dropped to avoid identification problems) of 0’s and 1’s .</p>
+<p>As discussed in <a href="2_linearmodels.html#sec-matrix"><span>Section&nbsp;2.4</span></a>, each quantitative variable is represented in <span class="math inline">\(X\)</span> by an <span class="math inline">\(n \times 1\)</span> column vector. Each qualitative variable, with <span class="math inline">\(k+1\)</span> levels, say, is represented by a dummy <span class="math inline">\(n \times k\)</span> matrix (one column, usually the first, being dropped to avoid identification problems) of 0’s and 1’s .</p>
 </section>
 <section id="the-link-function" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="the-link-function"><span class="header-section-number">3.6</span> The link function</h2>
@@ -656,7 +674,7 @@ g(\mu) = \log(\mu).
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">3.5</span>,<span class="fl">3.5</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">2.5</span>,<span class="fl">0.75</span>,<span class="dv">0</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>beetle <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"data/beetle.txt"</span>, <span class="at">header=</span>T)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>beetle <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"https://rgaykroyd.github.io/MATH3823/Datasets/beetle.txt"</span>, <span class="at">header=</span>T)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">=</span> beetle<span class="sc">$</span>dose</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>mortality <span class="ot">=</span> beetle<span class="sc">$</span>died<span class="sc">/</span>beetle<span class="sc">$</span>total</span>
@@ -870,25 +888,92 @@ f(\mathbf{y}; X, \boldsymbol{\beta},\phi) = \prod_{i=1}^n f(y_i; \theta_i, \phi)
 S_j = \sum_{i=1}^n  y_i  x_{ij}.
 \]</span> Thus, in the log-likelihood <a href="#eq-canonicallinkfunloglik">Equation&nbsp;<span>3.23</span></a>, it is only the first term that involves both the observations <span class="math inline">\(\mathbf{y}=\{y_i,\ i=1,\dots,n\}\)</span> and the parameters <span class="math inline">\(\boldsymbol{\beta}=\{\beta_j, j=1,\dots,p\}\)</span>, and this term depends on the observations only through the statistics <span class="math inline">\(\mathbf{S}=\{S_j, j=1,\dots,p\}\)</span> – these are called <em>sufficient statistics</em>, and their appearance in <a href="#eq-canonicallinkfunloglik">Equation&nbsp;<span>3.23</span></a> confers both theoretical and practical advantages.</p>
 </section>
+<section id="focus-on-link-functions-quiz" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="focus-on-link-functions-quiz">Focus on link functions quiz</h2>
+<p>Test your knowledge recall and application to reinforce basic ideas and prepare for similar concepts later in the module.</p>
+<div class="webex-box">
+<div class="webex-check">
+<ol type="1">
+<li><p>If the reponse variable Y can take only positive values, then which of the following transformations would produce an unrestricted range? <select class="webex-select"><option value="blank"></option><option value="">exp(Y)</option><option value="">logit(Y)</option><option value="answer">log(Y)</option><option value="">1/Y</option><option value="">None of the above</option></select></p></li>
+<li><p>If the range of the reponse variable Y is restricted to the interval (0,1), then which of the following transformations would produce an unrestricted range? <select class="webex-select"><option value="blank"></option><option value="">exp(Y)</option><option value="">log(Y)</option><option value="answer">logit(Y)</option><option value="">1/Y</option><option value="">None of the above</option></select></p></li>
+<li><p>If response variable Y follows a normal distribution, then which of the following transformations would produce an unrestricted range? <select class="webex-select"><option value="blank"></option><option value="">√Y</option><option value="">logit(Y)</option><option value="">exp(Y)</option><option value="">log(Y)</option><option value="answer">None of the above</option></select></p></li>
+<li><p>If the range of the reponse variable Y is a percentage, then which of the following transformations would produce an unrestricted range? <select class="webex-select"><option value="blank"></option><option value="answer">logit(Y/100)</option><option value="">log(Y)</option><option value="">1/Y</option><option value="">exp(Y)</option><option value="">None of the above</option></select></p></li>
+<li><p>If the reponse variable Y can take an real value, then which of the following transformations would produce an unrestricted range? <select class="webex-select"><option value="blank"></option><option value="">Log</option><option value="">Logistic</option><option value="">Square-root</option><option value="answer">Identity</option><option value="">None of the above</option></select></p></li>
+</ol>
+</div>
+</div>
+</section>
 <section id="exercises" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.7</span> Exercises</h2>
-<p>3.1 Consider the beetle data again, see <a href="1_intro.html#tbl-beetle-data">Table&nbsp;<span>1.1</span></a>, but suppose that we had only been given the <span class="math inline">\(y\)</span> values, that is the number killed, and misinformed that each came from a sample of size <span class="math inline">\(62\)</span>. Further, suppose that we did not know that different doses had been used. That is, we where given data: <span class="math inline">\(\mathbf{y}=\{6, 13, 18, 28, 52, 53, 61, 60\}\)</span> and led to believe that the model <span class="math inline">\(Y\sim \mbox{Bin}(62,p)\)</span> was appropriate. Use the given data to estimate <span class="math inline">\(p\)</span>. Then, calculate the fitted probabilities and superimpose them on a histogram of the data. [<em>Hint: see the code chunk used to create <a href="#fig-cyclone">Figure&nbsp;<span>3.2</span></a>.</em>]</p>
+<p><strong>Hints and solutions will be added next week.</strong></p>
+<div class="webex-box">
+<p>3.1 Consider the beetle data again, see <a href="1_intro.html#tbl-beetle-data">Table&nbsp;<span>1.1</span></a>, but suppose that we had only been given the <span class="math inline">\(y\)</span> values, that is the number killed, and misinformed that each came from a sample of size <span class="math inline">\(62\)</span>. Further, suppose that we did not know that different doses had been used. That is, we where given data: <span class="math inline">\(\mathbf{y}=\{6, 13, 18, 28, 52, 53, 61, 60\}\)</span> and led to believe that the model <span class="math inline">\(Y\sim \mbox{Bin}(62,p)\)</span> was appropriate. Use the given data to estimate <span class="math inline">\(p\)</span>. Then, calculate the fitted probabilities and superimpose them on a histogram of the data. <!--
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+See the code chunk used to create @fig-cyclone.
+
+</div>
+
+--></p>
 <p>3.2 Verify that, in general, if <span class="math inline">\(q = 1/(1+e^{-x})\)</span> then <span class="math inline">\(x = \log(q/(1-q))\)</span> and then for the binomial distribution, <span class="math inline">\(Y\sim \mbox{Bin}(m,p)\)</span>, show that <span class="math display">\[
 -m\log(1-p)=m\log(1+e^\theta)
-\]</span> where <span class="math inline">\(\theta=\mbox{logit }p = \log(p/(1-p))\)</span>.</p>
-<p>[See Solution for Questions 1 and 3 from <em>Exercises from Last Year</em>.]</p>
+\]</span> where <span class="math inline">\(\theta=\mbox{logit }p = \log(p/(1-p))\)</span>. <!--
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+
+</div>
+
+--></p>
 <p>3.3 Suppose that <span class="math inline">\(Y\)</span> has a gamma distribution with parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, that is <span class="math inline">\(Y\sim \mbox{Gamma}(\alpha, \beta)\)</span>, with probability density function <span class="math display">\[
 f(x;\alpha, \beta) = \frac{\beta^\alpha x^{\alpha-1} e^{-\beta x}}{\Gamma(\alpha)} \quad \qquad x &gt; 0; \alpha,\beta&gt;0.
-\]</span> Write this in the form of the exponential family and clearly identify <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\phi\)</span>, <span class="math inline">\(b(\theta)\)</span> and <span class="math inline">\(c(y,\phi)\)</span> – as in <a href="#tbl-glm-poisson">Table&nbsp;<span>3.2</span></a> and <a href="#tbl-glm-binomial">Table&nbsp;<span>3.3</span></a>.</p>
-<p>[See Solution for Question 3 from <em>Exercises from Last Year</em>.]</p>
+\]</span> Write this in the form of the exponential family and clearly identify <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\phi\)</span>, <span class="math inline">\(b(\theta)\)</span> and <span class="math inline">\(c(y,\phi)\)</span> – as in <a href="#tbl-glm-poisson">Table&nbsp;<span>3.2</span></a> and <a href="#tbl-glm-binomial">Table&nbsp;<span>3.3</span></a>. <!--
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+
+</div>
+
+--></p>
 <p>3.4 Express the geometric distribution, <span class="math inline">\(Y\sim\mbox{Geom}(p), 0 &lt; p &lt; 1\)</span>, with probability mass function <span class="math display">\[
 f(y) = (1 - p)^{y-1} p; \hspace{1cm} y = 1, 2, 3 \ldots
-\]</span> as an exponential family distribution, possibly with a scale parameter.</p>
-<p>3.5 Prove <a href="#prp-moments">Proposition&nbsp;<span>3.1</span></a> assuming that <span class="math inline">\(Y\)</span> follows a discrete distribution. Verify the results for the Poisson in <a href="#tbl-moments">Table&nbsp;<span>3.5</span></a> and then derive similar results for the binomial, <span class="math inline">\(Y\sim \mbox{Bin}(n,p)\)</span>. From these results, what are the mean and variance of <span class="math inline">\(Y\)</span>.</p>
-<p>3.6 Use the properties of exponential families to find the expectation and variance of each of the geometric and gamma distributions defined above.</p>
-<p>[<em>Hint for the gamma, treat</em> <span class="math inline">\(1/\alpha\)</span> as a scale parameter and let <span class="math inline">\(\theta\)</span> be a suitable function of <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\alpha\)</span>.]</p>
-<p>3.7 Using <a href="#prp-canonicallinkderiv">Proposition&nbsp;<span>3.2</span></a>, verify the canonical link function, <span class="math inline">\(g(\mu)\)</span>, for the binomial and gamma distributions shown in <a href="#tbl-canonicalrange">Table&nbsp;<span>3.6</span></a>.</p>
-<p>[See Solution for Question 4 from <em>Exercises from Last Year</em>.]</p>
+\]</span> as an exponential family distribution, possibly with a scale parameter. <!--
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+
+</div>
+
+--></p>
+<p>3.5 Prove <a href="#prp-moments">Proposition&nbsp;<span>3.1</span></a> assuming that <span class="math inline">\(Y\)</span> follows a discrete distribution. Verify the results for the Poisson in <a href="#tbl-moments">Table&nbsp;<span>3.5</span></a> and then derive similar results for the binomial, <span class="math inline">\(Y\sim \mbox{Bin}(n,p)\)</span>. From these results, what are the mean and variance of <span class="math inline">\(Y\)</span>. <!--
+
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+
+</div>
+
+--></p>
+<p>3.6 Use the properties of exponential families to find the expectation and variance of each of the geometric and gamma distributions defined above.<br>
+<!--
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+For the gamma distribution, treat $1/\alpha$ as a scale parameter and let
+$\theta$ be a suitable function of $\lambda$ and $\alpha$.
+
+</div>
+
+--></p>
+<p>3.7 Using <a href="#prp-canonicallinkderiv">Proposition&nbsp;<span>3.2</span></a>, verify the canonical link function, <span class="math inline">\(g(\mu)\)</span>, for the binomial and gamma distributions shown in <a href="#tbl-canonicalrange">Table&nbsp;<span>3.6</span></a>. <!--
+
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+
+</div>
+
+--></p>
+</div>
+<!--
+::: {.callout-note appearance="default"}
+[Exercise 3 Solutions can be found here.](https://rgaykroyd.github.io/MATH3823/Solutions_3.html)
+:::
+-->
 
 
 </section>
@@ -1346,9 +1431,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./4_GLM-Fitting.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM Estimation</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
