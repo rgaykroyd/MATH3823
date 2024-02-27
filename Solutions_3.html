@@ -1727,7 +1727,7 @@ function: <span class="math display">\[\begin{align*}
 f(y)
 &amp;= \exp\{(y-1)\log (1-p) + \log p \} \\
 &amp;= \exp\{y \log (1-p) +\log \left\{ p/(1-p)\right\}.
-\end{align*}\]</span> Hence, we have that <span class="math inline">\(\theta = \log(1-p)\)</span> and hence <span class="math inline">\(p=1-e^\theta\)</span> and <span class="math inline">\(1-p=e^\theta\)</span>. Further, <span class="math inline">\(b(\theta)= \log \left\{ p/(1-p)\right\} = \log
+\end{align*}\]</span> Hence, we have that <span class="math inline">\(\theta = \log(1-p)\)</span> and hence <span class="math inline">\(p=1-e^\theta\)</span> and <span class="math inline">\(1-p=e^\theta\)</span>. Further, <span class="math inline">\(b(\theta)= -\log \left\{ p/(1-p)\right\} = -\log
 \left\{ e^{-\theta}-1\right\}\)</span>, <span class="math inline">\(c(y,
 \theta)=0\)</span> and <span class="math inline">\(\phi=1\)</span>.</p>
 <p><br />
@@ -1817,8 +1817,7 @@ where $\theta = \log (1-p),\  - \infty < \theta < 0, \ p = 1 - e^\theta$,
 <p>For the <span class="math inline">\(Y\sim\texttt{Geom}(p)\)</span>,
 the mean and variance of <span class="math inline">\(Y\)</span> are, of
 course, well-known and can also be found by differentiating <span class="math inline">\(b(\theta)\)</span>, <span class="math display">\[\begin{align*}
-          E[Y] &amp;= b&#39;(\theta) = 1 + \frac{e^\theta}{1-e^\theta}
-          = \frac{1}{1-e^\theta} = 1/p,\\
+          E[Y] &amp;= b&#39;(\theta) = \frac{1}{1-e^\theta} = 1/p,\\
                 \operatorname{Var}[Y] &amp;= b&#39;&#39;(\theta) =
                 \frac{e^\theta}{(1-e^\theta)^2} = (1-p)/p^2.
 \end{align*}\]</span></p>
