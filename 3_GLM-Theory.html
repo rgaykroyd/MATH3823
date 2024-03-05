@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -120,10 +91,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="webex.css">
@@ -133,11 +106,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3_GLM-Theory.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -145,68 +123,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">MATH3823 Generalized Linear Models</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Weekly schedule</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly schedule</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./0_preface.html" class="sidebar-item-text sidebar-link">Overview</a>
+  <a href="./0_preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1_intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./1_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_linearmodels.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Essentials of Normal Linear Models</span></a>
+  <a href="./2_linearmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Essentials of Normal Linear Models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3_GLM-Theory.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></a>
+  <a href="./3_GLM-Theory.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_GLM-Fitting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM Estimation</span></a>
+  <a href="./4_GLM-Fitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GLM Estimation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling Proportions</span></span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#motivating-examples" id="toc-motivating-examples" class="nav-link active" data-scroll-target="#motivating-examples"><span class="toc-section-number">3.1</span>  Motivating examples</a></li>
+  <li><a href="#motivating-examples" id="toc-motivating-examples" class="nav-link active" data-scroll-target="#motivating-examples"><span class="header-section-number">3.1</span> Motivating examples</a></li>
   <li><a href="#focus-on-distributions-quiz" id="toc-focus-on-distributions-quiz" class="nav-link" data-scroll-target="#focus-on-distributions-quiz">Focus on distributions quiz</a></li>
-  <li><a href="#sec-glmstructure" id="toc-sec-glmstructure" class="nav-link" data-scroll-target="#sec-glmstructure"><span class="toc-section-number">3.2</span>  The GLM structure</a></li>
+  <li><a href="#sec-glmstructure" id="toc-sec-glmstructure" class="nav-link" data-scroll-target="#sec-glmstructure"><span class="header-section-number">3.2</span> The GLM structure</a></li>
   <li><a href="#focus-on-glm-structure-quiz" id="toc-focus-on-glm-structure-quiz" class="nav-link" data-scroll-target="#focus-on-glm-structure-quiz">Focus on GLM structure quiz</a></li>
-  <li><a href="#the-random-part-of-a-glm" id="toc-the-random-part-of-a-glm" class="nav-link" data-scroll-target="#the-random-part-of-a-glm"><span class="toc-section-number">3.3</span>  The random part of a GLM</a></li>
-  <li><a href="#sec-exponential-family" id="toc-sec-exponential-family" class="nav-link" data-scroll-target="#sec-exponential-family"><span class="toc-section-number">3.4</span>  Moments of exponential-family distributions</a></li>
-  <li><a href="#sec-systematic" id="toc-sec-systematic" class="nav-link" data-scroll-target="#sec-systematic"><span class="toc-section-number">3.5</span>  The systematic part of the model</a></li>
-  <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function"><span class="toc-section-number">3.6</span>  The link function</a></li>
+  <li><a href="#the-random-part-of-a-glm" id="toc-the-random-part-of-a-glm" class="nav-link" data-scroll-target="#the-random-part-of-a-glm"><span class="header-section-number">3.3</span> The random part of a GLM</a></li>
+  <li><a href="#sec-exponential-family" id="toc-sec-exponential-family" class="nav-link" data-scroll-target="#sec-exponential-family"><span class="header-section-number">3.4</span> Moments of exponential-family distributions</a></li>
+  <li><a href="#sec-systematic" id="toc-sec-systematic" class="nav-link" data-scroll-target="#sec-systematic"><span class="header-section-number">3.5</span> The systematic part of the model</a></li>
+  <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function"><span class="header-section-number">3.6</span> The link function</a></li>
   <li><a href="#focus-on-link-functions-quiz" id="toc-focus-on-link-functions-quiz" class="nav-link" data-scroll-target="#focus-on-link-functions-quiz">Focus on link functions quiz</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">3.7</span>  Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.7</span> Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -215,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GLM Theory</span></h1>
 </div>
 
 
@@ -334,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-nonnormal-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-nonnormal-1.png" class="img-fluid figure-img" data-ref-parent="fig-nonnormal" width="672"></p>
-<p></p><figcaption class="figure-caption">(a) Binomial model</figcaption><p></p>
+<figcaption class="figure-caption">(a) Binomial model</figcaption>
 </figure>
 </div>
 </div>
@@ -342,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-nonnormal-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-nonnormal-2.png" class="img-fluid figure-img" data-ref-parent="fig-nonnormal" width="672"></p>
-<p></p><figcaption class="figure-caption">(b) Poisson model</figcaption><p></p>
+<figcaption class="figure-caption">(b) Poisson model</figcaption>
 </figure>
 </div>
 </div>
@@ -464,7 +455,7 @@ f(y) = \frac{e^{-\lambda} \lambda^y} {y!}
 <div id="fig-cyclone-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-cyclone-1.png" class="img-fluid figure-img" data-ref-parent="fig-cyclone" width="672"></p>
-<p></p><figcaption class="figure-caption">(a) No.&nbsp;of cyclones against season with mean</figcaption><p></p>
+<figcaption class="figure-caption">(a) No.&nbsp;of cyclones against season with mean</figcaption>
 </figure>
 </div>
 </div>
@@ -472,7 +463,7 @@ f(y) = \frac{e^{-\lambda} \lambda^y} {y!}
 <div id="fig-cyclone-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-cyclone-2.png" class="img-fluid figure-img" data-ref-parent="fig-cyclone" width="672"></p>
-<p></p><figcaption class="figure-caption">(b) Fitted Poisson model assuming constant rate</figcaption><p></p>
+<figcaption class="figure-caption">(b) Fitted Poisson model assuming constant rate</figcaption>
 </figure>
 </div>
 </div>
@@ -537,7 +528,7 @@ f(y)  = \exp \left\{ y\ \mbox{logit } p  + m \log (1-p) + \log {m \choose y}\rig
 <div id="fig-binomial" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-binomial-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3.3: Binomial model fitted to beetle data.</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;3.3: Binomial model fitted to beetle data.</figcaption>
 </figure>
 </div>
 </div>
@@ -750,7 +741,7 @@ g(\mu) = \log(\mu).
 <div id="fig-beetlelinks-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-beetlelinks-1.png" class="img-fluid figure-img" data-ref-parent="fig-beetlelinks" width="672"></p>
-<p></p><figcaption class="figure-caption">(a) Logit link</figcaption><p></p>
+<figcaption class="figure-caption">(a) Logit link</figcaption>
 </figure>
 </div>
 </div>
@@ -758,7 +749,7 @@ g(\mu) = \log(\mu).
 <div id="fig-beetlelinks-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-beetlelinks-2.png" class="img-fluid figure-img" data-ref-parent="fig-beetlelinks" width="672"></p>
-<p></p><figcaption class="figure-caption">(b) Probit link</figcaption><p></p>
+<figcaption class="figure-caption">(b) Probit link</figcaption>
 </figure>
 </div>
 </div>
@@ -768,7 +759,7 @@ g(\mu) = \log(\mu).
 <div id="fig-beetlelinks-3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-beetlelinks-3.png" class="img-fluid figure-img" data-ref-parent="fig-beetlelinks" width="672"></p>
-<p></p><figcaption class="figure-caption">(c) cloglog link</figcaption><p></p>
+<figcaption class="figure-caption">(c) cloglog link</figcaption>
 </figure>
 </div>
 </div>
@@ -776,7 +767,7 @@ g(\mu) = \log(\mu).
 <div id="fig-beetlelinks-4" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="3_GLM-Theory_files/figure-html/fig-beetlelinks-4.png" class="img-fluid figure-img" data-ref-parent="fig-beetlelinks" width="672"></p>
-<p></p><figcaption class="figure-caption">(d) Cauchit link</figcaption><p></p>
+<figcaption class="figure-caption">(d) Cauchit link</figcaption>
 </figure>
 </div>
 </div>
@@ -984,12 +975,12 @@ Click here to see hints.
 <p>Use the appropriate <span class="math inline">\(b'(\theta)\)</span> and, using <span class="math inline">\(\mu=b'(\theta)\)</span> and <a href="#eq-canonicallinkfun">Equation&nbsp;<span>3.20</span></a>, rearrange to find <span class="math inline">\(\theta\)</span> and hence <span class="math inline">\(g(\mu)\)</span>.</p>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -1241,9 +1232,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1308,6 +1313,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
