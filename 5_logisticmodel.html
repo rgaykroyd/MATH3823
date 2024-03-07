@@ -191,8 +191,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-linearlogistic" id="toc-sec-linearlogistic" class="nav-link" data-scroll-target="#sec-linearlogistic"><span class="header-section-number">5.2</span> The logistic model</a></li>
   <li><a href="#focus-on-model-choice-quiz" id="toc-focus-on-model-choice-quiz" class="nav-link" data-scroll-target="#focus-on-model-choice-quiz">Focus on model choice quiz</a></li>
   <li><a href="#sec-overdispersion" id="toc-sec-overdispersion" class="nav-link" data-scroll-target="#sec-overdispersion"><span class="header-section-number">5.3</span> Overdispersion</a></li>
-  <li><a href="#application-to-doseresponse-experiments" id="toc-application-to-doseresponse-experiments" class="nav-link" data-scroll-target="#application-to-doseresponse-experiments"><span class="header-section-number">5.4</span> Application to dose–response experiments</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.5</span> Exercises</a></li>
+  <li><a href="#odds-ratios-for-2x2-tables" id="toc-odds-ratios-for-2x2-tables" class="nav-link" data-scroll-target="#odds-ratios-for-2x2-tables"><span class="header-section-number">5.4</span> Odds ratios for 2x2 tables</a></li>
+  <li><a href="#application-to-doseresponse-experiments" id="toc-application-to-doseresponse-experiments" class="nav-link" data-scroll-target="#application-to-doseresponse-experiments"><span class="header-section-number">5.5</span> Application to dose–response experiments</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.6</span> Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -375,16 +376,16 @@ X^2 = \sum_{j=1}^2 \sum_{i=1}^n \frac{(O_{ji} - E_{ji})^2}{E_{ji}}.
 <div class="webex-check">
 <ol type="1">
 <li>Which of the following is NOT a true statements about modelling?
-<div id="radio_NLZJCBNQED" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NLZJCBNQED" value=""> <span>Goodness of fit can be assessed using the model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_NLZJCBNQED" value=""> <span>Some situations might suggest more than one model to try.</span></label><label><input type="radio" autocomplete="off" name="radio_NLZJCBNQED" value="answer"> <span>The context of the problem and description of the data can be ignored – it's only the data that matter</span></label><label><input type="radio" autocomplete="off" name="radio_NLZJCBNQED" value=""> <span>All model assumptions should be checked.</span></label><label><input type="radio" autocomplete="off" name="radio_NLZJCBNQED" value=""> <span>It is important to plot the fitted model on the same graph as the data.</span></label>
+<div id="radio_VMTUHMYLLW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>All model assumptions should be checked.</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>It is important to plot the fitted model on the same graph as the data.</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>Goodness of fit can be assessed using the model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value="answer"> <span>The context of the problem and description of the data can be ignored – it's only the data that matter</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>Some situations might suggest more than one model to try.</span></label>
 </div></li>
 <li>Which of the following is a true statements about linear regression?
-<div id="radio_IZUTUVXDPY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IZUTUVXDPY" value=""> <span>A linear model should always be the first model considered.</span></label><label><input type="radio" autocomplete="off" name="radio_IZUTUVXDPY" value=""> <span>When there is a moderate correlation then the relationship between variables is always linear.</span></label><label><input type="radio" autocomplete="off" name="radio_IZUTUVXDPY" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_IZUTUVXDPY" value=""> <span>A linear model will fit best when the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_IZUTUVXDPY" value="answer"> <span>It is always important to check model residuals.</span></label>
+<div id="radio_ZAXGUTFPBI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>A linear model should always be the first model considered.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value="answer"> <span>It is always important to check model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>A linear model will fit best when the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>When there is a moderate correlation then the relationship between variables is always linear.</span></label>
 </div></li>
 <li>Which of the following is a true statements about logistic regression?
-<div id="radio_MFRWVUIURG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MFRWVUIURG" value="answer"> <span>The response variable follows a binomial distribution.</span></label><label><input type="radio" autocomplete="off" name="radio_MFRWVUIURG" value=""> <span>A logisitc model should always be used if the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_MFRWVUIURG" value=""> <span>The explanatory variables follow a binomial distribution</span></label><label><input type="radio" autocomplete="off" name="radio_MFRWVUIURG" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_MFRWVUIURG" value=""> <span>Should only be used if a linear model is not a good fit to the data.</span></label>
+<div id="radio_WSIWGFWEMT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>Should only be used if a linear model is not a good fit to the data.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>A logisitc model should always be used if the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value="answer"> <span>The response variable follows a binomial distribution.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>The explanatory variables follow a binomial distribution</span></label>
 </div></li>
 </ol>
 </div>
@@ -418,8 +419,70 @@ The graphs below are for use in the following questions.
 <p>One solution is to include an extra parameter <span class="math inline">\(\tau\)</span> in the model so that <span class="math inline">\(\text{Var}(Y_i) = \tau \times m_i p_i (1 - p_i)\)</span>. For more details, see Section 7.7 of Dobson or Chapter 6 of Collett (1991) <em>Modelling Binary data</em>, Chapman &amp; Hall.</p>
 <p>The <span class="math inline">\(\texttt{glm}\)</span> function in <strong>R</strong> allows for <em>extra-Binomial</em> variation by setting <span class="math inline">\(\texttt{family=quasibinomial()}\)</span> with the usual link functions available.</p>
 </section>
-<section id="application-to-doseresponse-experiments" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="application-to-doseresponse-experiments"><span class="header-section-number">5.4</span> Application to dose–response experiments</h2>
+<section id="odds-ratios-for-2x2-tables" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="odds-ratios-for-2x2-tables"><span class="header-section-number">5.4</span> Odds ratios for 2x2 tables</h2>
+<p>In the special case of the data forming a <span class="math inline">\(2 \times 2\)</span> table, then a commonly calculated summary statistic is the <em>odds ratio</em>. This is a measure of association between the presence or absence of some property and an outcome. It represents the odds that an outcome will occur given presence, compared to the odds of the outcome occurring in the absence of that property.</p>
+<p>The following <span class="math inline">\(2 \times 2\)</span> table summarizes the different possibilities.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Success</th>
+<th>Failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Present</td>
+<td><span class="math inline">\(y_1\)</span></td>
+<td><span class="math inline">\(m_1-y_1\)</span></td>
+</tr>
+<tr class="even">
+<td>Absent</td>
+<td><span class="math inline">\(y_2\)</span></td>
+<td><span class="math inline">\(m_2-y_2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Similarly, by dividing by the corresponding row total, the probabilities are summaries as follows.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Success</th>
+<th>Failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Present</td>
+<td><span class="math inline">\(\pi_1\)</span></td>
+<td><span class="math inline">\(1-\pi_1\)</span></td>
+</tr>
+<tr class="even">
+<td>Absent</td>
+<td><span class="math inline">\(\pi_2\)</span></td>
+<td><span class="math inline">\(1-\pi_2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>There are conditional probabilities, for example <span class="math inline">\(\text{Pr}(\text{Success} | \text{Present})\)</span> etc., and form a <em>stochastic matrix</em> where sum of each row is now 1.</p>
+<p>For each row, the <em>odds</em> of success is defined by <span class="math display">\[
+O_i = \pi_i/(1-\pi_i), \quad i=1,2,
+\]</span> and a comparison between these two probabilities is given by the <em>odds ratio</em> <span class="math display">\[
+\phi = \frac{O_1}{O_2} = \frac{\pi_1(1-\pi_2)}{\pi_2(1-\pi_1)}.
+\]</span> If <span class="math inline">\(\phi=1\)</span> then the property does not affect the odds of success, <span class="math inline">\(\phi&gt;1\)</span> indicates that the property is associated with higher odds of success, and <span class="math inline">\(\phi&lt;1\)</span> indicates the property is associated with lower odds of success.</p>
+<p>Note that the <em>log-odds</em>, <span class="math inline">\(\log O_i = \log \left(\pi_i/(1-\pi_i) \right)\)</span>, which is the <span class="math inline">\(\text{logit}(\pi_i),\)</span> and hence is the natural parameter in the regular exponential family form of the binomial distribution.</p>
+<p>Finally, an approximate 100(1-<span class="math inline">\(\alpha\)</span>)% confidence interval, <span class="math inline">\(\left(\phi_{\alpha/2},\phi_{1-\alpha/2}\right)\)</span>, for the odds ratio is calculated using the formulas: <span class="math display">\[
+\phi_{\alpha/2} = \phi \times \exp\left(-z_{1-\alpha/2}\sqrt{\frac{1}{y_1}+\frac{1}{(m_1-y_1)}+\frac{1}{y_2}+\frac{1}{(m_2-y_2)}}\right)
+\]</span> and <span class="math display">\[
+\phi_{1-\alpha/2} = \phi \times \exp\left(+z_{1-\alpha/2}
+\sqrt{\frac{1}{y_1}+\frac{1}{(m_1-y_1)}+\frac{1}{y_2}+\frac{1}{(m_2-y_2)}}\right)
+\]</span> where <span class="math inline">\(z_{1-\alpha/2}\)</span> is such that <span class="math inline">\(\text{Pr}(Z \le z_{1-\alpha/2})=1-\alpha/2\)</span>. In particular, for a 95% confidence interval <span class="math inline">\(z_{1-\alpha/2}=z_{0.975}=1.96\)</span>.</p>
+<p>If the confidence interval for the odds ratio includes the value 1 then the calculated odds ratio would not be considered statistically significant.</p>
+</section>
+<section id="application-to-doseresponse-experiments" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="application-to-doseresponse-experiments"><span class="header-section-number">5.5</span> Application to dose–response experiments</h2>
 <p>A variable dose of some reagent is administered to each study subject, and the occurrence of a specific response is recorded. This is a <em>dose–response</em> experiment, one of the first uses of regression models for Bernoulli (or Binomial) responses.</p>
 <p>For example, the <a href="#tbl-beetledata2">Table&nbsp;<span>5.2</span></a> (including the information from <a href="1_intro.html#tbl-beetle-data">Table&nbsp;<span>1.1</span></a>) gives the number of beetles killed <span class="math inline">\(y_i\)</span> and the number not killed <span class="math inline">\((m_i-y_i)\)</span> out of a total number <span class="math inline">\(m_i\)</span> that were exposed to a dose <span class="math inline">\(x_i\)</span> of gaseous carbon disulphide, for <span class="math inline">\(n=8\)</span> dose levels <span class="math inline">\(i=1,\dots,8\)</span> (Dobson: pp.109 in 1st edn; pp.119 in 2nd edn; pp.127 in 3rd edn). The proportion killed <span class="math inline">\(p_i = y_i/m_i\)</span> at each dose level <span class="math inline">\(i\)</span> is also shown in <a href="#tbl-beetledata2">Table&nbsp;<span>5.2</span></a> and plotted in <a href="#fig-beetle2">Figure&nbsp;<span>5.1</span></a>.</p>
 <div id="tbl-beetledata2" class="anchored">
@@ -710,8 +773,8 @@ m_0 \, \hat p_i =  56.2
 x_p= \frac{1}{\beta} \left\{ \log\left(\frac{p}{1-p}\right)-\alpha \right\}
 \]</span> and hence here <span class="math inline">\(\hat x_p= 1.856\)</span>.</p>
 </section>
-<section id="exercises" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.6</span> Exercises</h2>
 <p>Hints and answers to be added later.</p>
 <div class="webex-box">
 <p>5.1. Which of the following descriptions suggest that a logistic regression should be considered. Justify your answers.</p>
@@ -743,7 +806,7 @@ x_p= \frac{1}{\beta} \left\{ \log\left(\frac{p}{1-p}\right)-\alpha \right\}
 --></p></li>
 </ol>
 <p>5.3 In the beetle example, use the fitted logistic regression model, <a href="#eq-fittedlogisitc">Equation&nbsp;<span>5.7</span></a>, to predict what dose of gaseous carbon disulphide would kill 90% of beetles. Then, fit alternative link functions to the data and plot the results. Do you think that the choice of link function makes a difference to your conclusions? Justify your answer.</p>
-<p>5.4 (Based on Dobson &amp; Barnett, pp 144–145). Suppose there are 2 groups of people: the first group is exposed to some pollutant and the second group is not. In a prospective study, each group is followed for several years and categorized according to the presence or absence of some disease. Let <span class="math inline">\(\pi_i\)</span> denote the probability that a person in group <span class="math inline">\(i\)</span> contracts the disease, <span class="math inline">\(i=1,2\)</span>. The following <span class="math inline">\(2 \times 2\)</span> table summarizes the different possibilities.</p>
+<p>5.4 (Based on Dobson &amp; Barnett, pp 144–145). Suppose there are 2 groups of people: the first group is exposed to some pollutant and the second group is not. In a prospective study, each group is followed for several years and categorized according to the presence or absence of some disease. Let <span class="math inline">\(\pi_i\)</span> denote the probability that a person in group <span class="math inline">\(i\)</span> contracts the disease, <span class="math inline">\(i=1,2.\)</span> The following <span class="math inline">\(2 \times 2\)</span> table summarizes the different possibilities.</p>
 <table class="table">
 <thead>
 <tr class="header">
