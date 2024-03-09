@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./6_loglinearmodel.html" rel="next">
 <link href="./4_GLM-Fitting.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -175,6 +176,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./5_logisticmodel.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Modelling Proportions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_loglinearmodel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></span></a>
   </div>
 </li>
     </ul>
@@ -376,16 +383,16 @@ X^2 = \sum_{j=1}^2 \sum_{i=1}^n \frac{(O_{ji} - E_{ji})^2}{E_{ji}}.
 <div class="webex-check">
 <ol type="1">
 <li>Which of the following is NOT a true statements about modelling?
-<div id="radio_VMTUHMYLLW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>All model assumptions should be checked.</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>It is important to plot the fitted model on the same graph as the data.</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>Goodness of fit can be assessed using the model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value="answer"> <span>The context of the problem and description of the data can be ignored – it's only the data that matter</span></label><label><input type="radio" autocomplete="off" name="radio_VMTUHMYLLW" value=""> <span>Some situations might suggest more than one model to try.</span></label>
+<div id="radio_ZZOSVLWRSD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZZOSVLWRSD" value=""> <span>Some situations might suggest more than one model to try.</span></label><label><input type="radio" autocomplete="off" name="radio_ZZOSVLWRSD" value="answer"> <span>The context of the problem and description of the data can be ignored – it's only the data that matter</span></label><label><input type="radio" autocomplete="off" name="radio_ZZOSVLWRSD" value=""> <span>All model assumptions should be checked.</span></label><label><input type="radio" autocomplete="off" name="radio_ZZOSVLWRSD" value=""> <span>Goodness of fit can be assessed using the model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_ZZOSVLWRSD" value=""> <span>It is important to plot the fitted model on the same graph as the data.</span></label>
 </div></li>
 <li>Which of the following is a true statements about linear regression?
-<div id="radio_ZAXGUTFPBI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>A linear model should always be the first model considered.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value="answer"> <span>It is always important to check model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>A linear model will fit best when the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_ZAXGUTFPBI" value=""> <span>When there is a moderate correlation then the relationship between variables is always linear.</span></label>
+<div id="radio_KADLFXFGFQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KADLFXFGFQ" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_KADLFXFGFQ" value=""> <span>A linear model will fit best when the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_KADLFXFGFQ" value="answer"> <span>It is always important to check model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_KADLFXFGFQ" value=""> <span>A linear model should always be the first model considered.</span></label><label><input type="radio" autocomplete="off" name="radio_KADLFXFGFQ" value=""> <span>When there is a moderate correlation then the relationship between variables is always linear.</span></label>
 </div></li>
 <li>Which of the following is a true statements about logistic regression?
-<div id="radio_WSIWGFWEMT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>Should only be used if a linear model is not a good fit to the data.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>A logisitc model should always be used if the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value="answer"> <span>The response variable follows a binomial distribution.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_WSIWGFWEMT" value=""> <span>The explanatory variables follow a binomial distribution</span></label>
+<div id="radio_VQSFJKKUWA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VQSFJKKUWA" value=""> <span>A logisitc model should always be used if the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_VQSFJKKUWA" value=""> <span>The explanatory variables follow a binomial distribution</span></label><label><input type="radio" autocomplete="off" name="radio_VQSFJKKUWA" value=""> <span>Should only be used if a linear model is not a good fit to the data.</span></label><label><input type="radio" autocomplete="off" name="radio_VQSFJKKUWA" value="answer"> <span>The response variable follows a binomial distribution.</span></label><label><input type="radio" autocomplete="off" name="radio_VQSFJKKUWA" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label>
 </div></li>
 </ol>
 </div>
@@ -775,37 +782,47 @@ x_p= \frac{1}{\beta} \left\{ \log\left(\frac{p}{1-p}\right)-\alpha \right\}
 </section>
 <section id="exercises" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.6</span> Exercises</h2>
-<p>Hints and answers to be added later.</p>
+<p>Further hints to be added later.</p>
 <div class="webex-box">
 <p>5.1. Which of the following descriptions suggest that a logistic regression should be considered. Justify your answers.</p>
 <ol type="a">
 <li><p>A pharmaceutical company perform clinical trials where volunteers are given varying doses of an experimental drug to study the chances of potential negative side effects. From historical data 4 previous volunteers out of a total of 120 have had negative side effects.</p></li>
 <li><p>A credit card company monitors sales to identify fraudulent transactions. On the previous five days, 26, 20, 18, 19 and 21 regular transactions occurred before the first fraudulent transaction was identified.</p></li>
 <li><p>A national internet service provider monitors the frequency of helpline phone calls regarding internet failures. From records, there are an average of 0.27 calls per day.</p></li>
-<li><p>The University Student Education Services monitor the success of registered students every year. In particular, they record whether students pass their examinations, or not, and what <em>application score</em> they were given when they applied for a place at University. <!--
-
-<div class='webex-solution'><button>Click here to see hints.</button>
-
-
-</div>
-
---></p></li>
+<li><p>The University Student Education Services monitor the success of registered students every year. In particular, they record whether students pass their examinations, or not, and what <em>application score</em> they were given when they applied for a place at University.</p></li>
 </ol>
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>For each, consider what is response, is it binomial and what is the explanatory variable. In cases which are not binomial, suggest an alternative distribution.</p>
+</div>
+<p><br>
+</p>
 <p>5.2. For each of the situation produce appropriate graphs within RStudio. Describe the type of relationship, if any, shown in the plots. Is a linear, a logistic, or some other model appropriate? If linear or logistic, go ahead with model fitting and perform a residual analysis. Do you think that prediction from the model would be reliable? Justify each step of your analysis.</p>
 <ol type="a">
 <li><p>A UK loan company requires a detailed questionnaire to be completed for any loan application including such information as income, regular expenditure, previous loan details and other information from data analytics and consumer credit reporting companies. All the information is combined into a single <em>credit score</em> from 0 to 1000. A large sample of credit applicants were contacted by an independent market research company to discover the outcome of their application. The data file <em>loans.csv</em> gives the number of successful application, number declined and the credit scores.</p></li>
 <li><p>A small estate agent company is interested in studying the changes in sales of houses due to targeted advertising campaigns and in particular to determine if additional spending is worthwhile. The company record the weekly sales before each advertising campaign and then again for one week a full month later, along with the cost of each campaign. The datafile <em>advertising.csv</em> contains the advertising budget values in pounds and corresponding changes in sale, also in pounds.</p></li>
 <li><p>The yield of arable crops is sensitive to the nutrient levels in the soil. A key fertilizer used to boost production is the mineral phosphorus which is applied as phosphorus pentoxide, <span class="math inline">\(P_2O_5\)</span>. At a wheat large farm, various amounts from 0 kg/ha to 80 kg/ha were applied to investigate the effect on wheat yield, in kg/ha. Use the data in file <em>wheat.csv</em> to investigate this situation.</p></li>
-<li><p>Cardiac troponin (cTn) is a human protein which is commonly measured in the diagnosis of heart attacks. A small sample of blood is taken from patients suspected of having heart attacks and the level of cardiac troponin is recorded The cardiac troponin levels, in ng/mL, of 100 patients arriving at a hospital Accident &amp; Emergency department with significant chest discomfort along with the later confirmed diagnosis (0=No and 1=Yes). <!--
-
-<div class='webex-solution'><button>Click here to see hints.</button>
-
-
-</div>
-
---></p></li>
+<li><p>Cardiac troponin (cTn) is a human protein which is commonly measured in the diagnosis of heart attacks. A small sample of blood is taken from patients suspected of having heart attacks and the level of cardiac troponin is recorded The cardiac troponin levels, in ng/mL, of 100 patients arriving at a hospital Accident &amp; Emergency department with significant chest discomfort along with the later confirmed diagnosis (0=No and 1=Yes).</p></li>
 </ol>
-<p>5.3 In the beetle example, use the fitted logistic regression model, <a href="#eq-fittedlogisitc">Equation&nbsp;<span>5.7</span></a>, to predict what dose of gaseous carbon disulphide would kill 90% of beetles. Then, fit alternative link functions to the data and plot the results. Do you think that the choice of link function makes a difference to your conclusions? Justify your answer.</p>
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>For each, consider what is response, is it binomial and what is the explanatory variable. If the plot reveals a relationship which is either linear or logistic, then follow the appropriate steps previously discussed – check the code blocks in various examples. For the residual analysis, plot a graph of residuals against fitted values and check to a lack of pattern. For the linear cases, also consider the assumption of normality. For example using a histogram.</p>
+</div>
+<p><br>
+</p>
+5.3 In the beetle example, use the fitted logistic regression model, <a href="#eq-fittedlogisitc">Equation&nbsp;<span>5.7</span></a>, to predict what dose of gaseous carbon disulphide would kill 90% of beetles. Then, fit alternative link functions to the data and plot the results. Do you think that the choice of link function makes a difference to your conclusions? Justify your answer.
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>For the prediction, rearrange the usual expression for <em>p</em> in terms of <em>x</em> and the model parameters to give an expression for <em>x</em>. To fit alternative link functions, just change the argument in the <em>family</em> option.</p>
+</div>
+<p><br>
+</p>
 <p>5.4 (Based on Dobson &amp; Barnett, pp 144–145). Suppose there are 2 groups of people: the first group is exposed to some pollutant and the second group is not. In a prospective study, each group is followed for several years and categorized according to the presence or absence of some disease. Let <span class="math inline">\(\pi_i\)</span> denote the probability that a person in group <span class="math inline">\(i\)</span> contracts the disease, <span class="math inline">\(i=1,2.\)</span> The following <span class="math inline">\(2 \times 2\)</span> table summarizes the different possibilities.</p>
 <table class="table">
 <thead>
@@ -842,6 +859,16 @@ j=1,\ldots,m,
 <li><p>Give a practical example where such a model might be appropriate.</p></li>
 <li><p>How would you express this model in the R computer language?</p></li>
 </ol>
+<!--
+
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+
+</div>
+
+-->
+<p><br>
+</p>
 <p>5.5. Consider again the beetle example, but suppose that rather than the actual dose concentration had been measured, instead only whether a <em>Low dose</em> or <em>High dose</em> was used recorded. This would lead to the following table:</p>
 <table class="table">
 <thead>
@@ -869,6 +896,29 @@ j=1,\ldots,m,
 </table>
 <p>What are the respective probability of death values in the two dose groups? The <em>relative risk</em> is defined as the ratio of these two values. Calculate the risk of death due to High dose exposure relative to Low dose for this example. How could this value be used to measure the association between dose and death?</p>
 <p>What are the respective odds of death in each of the two groups? Calculate the <em>odds ratio</em>, defined as the ratio of these two values. How could this value be used to interpret the data?</p>
+<!--
+
+<div class='webex-solution'><button>Click here to see hints.</button>
+
+
+</div>
+
+-->
+</div>
+<p><br>
+</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://rgaykroyd.github.io/MATH3823/Solutions_5.html">Exercise 5 Solutions can be found here.</a></p>
+</div>
 </div>
 
 
@@ -1321,6 +1371,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./6_loglinearmodel.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loglinear Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
