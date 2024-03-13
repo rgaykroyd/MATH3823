@@ -383,16 +383,16 @@ X^2 = \sum_{j=1}^2 \sum_{i=1}^n \frac{(O_{ji} - E_{ji})^2}{E_{ji}}.
 <div class="webex-check">
 <ol type="1">
 <li>Which of the following is NOT a true statements about modelling?
-<div id="radio_DXDJRHTIVA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DXDJRHTIVA" value=""> <span>Goodness of fit can be assessed using the model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_DXDJRHTIVA" value=""> <span>Some situations might suggest more than one model to try.</span></label><label><input type="radio" autocomplete="off" name="radio_DXDJRHTIVA" value=""> <span>All model assumptions should be checked.</span></label><label><input type="radio" autocomplete="off" name="radio_DXDJRHTIVA" value="answer"> <span>The context of the problem and description of the data can be ignored – it's only the data that matter</span></label><label><input type="radio" autocomplete="off" name="radio_DXDJRHTIVA" value=""> <span>It is important to plot the fitted model on the same graph as the data.</span></label>
+<div id="radio_SXOLAMNGLA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SXOLAMNGLA" value=""> <span>It is important to plot the fitted model on the same graph as the data.</span></label><label><input type="radio" autocomplete="off" name="radio_SXOLAMNGLA" value=""> <span>All model assumptions should be checked.</span></label><label><input type="radio" autocomplete="off" name="radio_SXOLAMNGLA" value=""> <span>Some situations might suggest more than one model to try.</span></label><label><input type="radio" autocomplete="off" name="radio_SXOLAMNGLA" value="answer"> <span>The context of the problem and description of the data can be ignored – it's only the data that matter</span></label><label><input type="radio" autocomplete="off" name="radio_SXOLAMNGLA" value=""> <span>Goodness of fit can be assessed using the model residuals.</span></label>
 </div></li>
 <li>Which of the following is a true statements about linear regression?
-<div id="radio_MUJSHZWIAR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MUJSHZWIAR" value="answer"> <span>It is always important to check model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_MUJSHZWIAR" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_MUJSHZWIAR" value=""> <span>When there is a moderate correlation then the relationship between variables is always linear.</span></label><label><input type="radio" autocomplete="off" name="radio_MUJSHZWIAR" value=""> <span>A linear model will fit best when the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_MUJSHZWIAR" value=""> <span>A linear model should always be the first model considered.</span></label>
+<div id="radio_QSXQTLUWUN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QSXQTLUWUN" value="answer"> <span>It is always important to check model residuals.</span></label><label><input type="radio" autocomplete="off" name="radio_QSXQTLUWUN" value=""> <span>A linear model will fit best when the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_QSXQTLUWUN" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_QSXQTLUWUN" value=""> <span>A linear model should always be the first model considered.</span></label><label><input type="radio" autocomplete="off" name="radio_QSXQTLUWUN" value=""> <span>When there is a moderate correlation then the relationship between variables is always linear.</span></label>
 </div></li>
 <li>Which of the following is a true statements about logistic regression?
-<div id="radio_UXPFRAMANK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UXPFRAMANK" value="answer"> <span>The response variable follows a binomial distribution.</span></label><label><input type="radio" autocomplete="off" name="radio_UXPFRAMANK" value=""> <span>Should only be used if a linear model is not a good fit to the data.</span></label><label><input type="radio" autocomplete="off" name="radio_UXPFRAMANK" value=""> <span>A logisitc model should always be used if the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_UXPFRAMANK" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_UXPFRAMANK" value=""> <span>The explanatory variables follow a binomial distribution</span></label>
+<div id="radio_HYMTVXJHMO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HYMTVXJHMO" value=""> <span>A logisitc model should always be used if the correlation is close to zero.</span></label><label><input type="radio" autocomplete="off" name="radio_HYMTVXJHMO" value=""> <span>It is always possible to use the fitted model for extrapolation.</span></label><label><input type="radio" autocomplete="off" name="radio_HYMTVXJHMO" value=""> <span>Should only be used if a linear model is not a good fit to the data.</span></label><label><input type="radio" autocomplete="off" name="radio_HYMTVXJHMO" value=""> <span>The explanatory variables follow a binomial distribution</span></label><label><input type="radio" autocomplete="off" name="radio_HYMTVXJHMO" value="answer"> <span>The response variable follows a binomial distribution.</span></label>
 </div></li>
 </ol>
 </div>
@@ -421,7 +421,7 @@ The graphs below are for use in the following questions.
 </section>
 <section id="sec-overdispersion" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="sec-overdispersion"><span class="header-section-number">5.3</span> Overdispersion</h2>
-<p>Examination of residuals and deviances may indicate that a model is not an adequate fit to the data. One possible reason is <em>overdispersion</em>. This can occur for any error distribution where the variance is linked to the mean — e.g.&nbsp;Binomial, Poisson. In the binomial case, overdispersion is called <em>extra-Binomial</em> variation.</p>
+<p>Examination of residuals and deviances may indicate that a model is not an adequate fit to the data. One possible reason is <em>overdispersion</em>. In particular, it is advisable to compare the residual deviance of the proposed model with the corresponding degrees of freedom. If the ratio, deviance divided by degrees of freedom, is substantially greater than 1, then there is evidence for overdispersion – substantially less than 1 indicates under dispersion but that is very rare. Overdispersion can occur for any error distribution where the variance is linked to the mean — e.g.&nbsp;Binomial, Poisson. In the binomial case, overdispersion is called <em>extra-Binomial</em> variation.</p>
 <p>Recall that if <span class="math inline">\(Y_i \sim \text{Bin}(m_i, p_i)\)</span>, <span class="math inline">\(\text{Var}(Y_i) = m_i p_i (1 - p_i)\)</span>. Overdispersion occurs if observations which have been modelled by a <span class="math inline">\(\text{Bin}(m_i, \hat{p}_i)\)</span> distribution have substantially greater variation than <span class="math inline">\(m_i \hat{p}_i (1 - \hat{p}_i)\)</span>. This will lead to a value of <span class="math inline">\(D\)</span> substantially greater than the expected value of <span class="math inline">\(n - r\)</span>. This can occur if the model is missing appropriate explanatory variables or has the wrong link function, or if the <span class="math inline">\(Y_i\)</span> are not independent.</p>
 <p>One solution is to include an extra parameter <span class="math inline">\(\tau\)</span> in the model so that <span class="math inline">\(\text{Var}(Y_i) = \tau \times m_i p_i (1 - p_i)\)</span>. For more details, see Section 7.7 of Dobson or Chapter 6 of Collett (1991) <em>Modelling Binary data</em>, Chapman &amp; Hall.</p>
 <p>The <span class="math inline">\(\texttt{glm}\)</span> function in <strong>R</strong> allows for <em>extra-Binomial</em> variation by setting <span class="math inline">\(\texttt{family=quasibinomial()}\)</span> with the usual link functions available.</p>
@@ -782,7 +782,6 @@ x_p= \frac{1}{\beta} \left\{ \log\left(\frac{p}{1-p}\right)-\alpha \right\}
 </section>
 <section id="exercises" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.6</span> Exercises</h2>
-<p>Further hints to be added later.</p>
 <div class="webex-box">
 <p>5.1. Which of the following descriptions suggest that a logistic regression should be considered. Justify your answers.</p>
 <ol type="a">
@@ -859,14 +858,12 @@ j=1,\ldots,m,
 <li><p>Give a practical example where such a model might be appropriate.</p></li>
 <li><p>How would you express this model in the R computer language?</p></li>
 </ol>
-<!--
-
-<div class='webex-solution'><button>Click here to see hints.</button>
-
-
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>In (a), one way is easy. For the other way, rearrange the odds ration and consider the ratios of the event occurring and the ratio that the events not occurring. These are only equal if the probabilities are the same. In (b), note that the log odds ratio is exactly the logistic transform. Substitute in and simplify. An example should be easy, and check ealier for the R command.</p>
 </div>
-
--->
 <p><br>
 </p>
 <p>5.5. Consider again the beetle example, but suppose that rather than the actual dose concentration had been measured, instead only whether a <em>Low dose</em> or <em>High dose</em> was used recorded. This would lead to the following table:</p>
@@ -896,14 +893,12 @@ j=1,\ldots,m,
 </table>
 <p>What are the respective probability of death values in the two dose groups? The <em>relative risk</em> is defined as the ratio of these two values. Calculate the risk of death due to High dose exposure relative to Low dose for this example. How could this value be used to measure the association between dose and death?</p>
 <p>What are the respective odds of death in each of the two groups? Calculate the <em>odds ratio</em>, defined as the ratio of these two values. How could this value be used to interpret the data?</p>
-<!--
-
-<div class='webex-solution'><button>Click here to see hints.</button>
-
-
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>If there is no difference then the relative risk should be 1 and a value substantially different indicates an association. The odds and the odds ratio have a similar interpretation. All measures are do the same thing, but each is standard in particular application areas.</p>
 </div>
-
--->
 </div>
 <p><br>
 </p>
