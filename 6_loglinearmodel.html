@@ -731,16 +731,21 @@ Y_{ijk} \sim \text{Po}(\lambda_{ijk})
 </section>
 <section id="exercises" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.6</span> Exercises</h2>
-<p>Hints to be added later.</p>
 <div class="webex-box">
 <p>6.1 Overdispersion is an occasional problem when fitting generalized linear models with a known scale parameter in situations where there is unexplained variation. In this exercise we illustrate the problem in Poisson regression. The starting point is the observation that if <span class="math inline">\(Y \sim P(\lambda)\)</span>, then <span class="math inline">\(\mbox{E}[Y] = \lambda\)</span> and <span class="math inline">\(\mbox{Var}[Y] = \lambda\)</span>.</p>
 <ol type="a">
 <li><p>Consider joint random variables <span class="math inline">\((X,Y)\)</span> where <span class="math inline">\(X\)</span> takes two possible values with equal probabilities, <span class="math inline">\(Pr(X=1) = Pr(X=2) = 1/2\)</span>.</p>
 <p>Suppose the conditional distribution of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span> is Poisson, <span class="math display">\[\begin{equation*} \label{eq:pmix}
-Y|X=1 \sim P(\lambda_1), \quad Y|X=2 \sim P(\lambda_2), \quad \quad \quad (*)
+Y|(X=1) \sim P(\lambda_1), \quad Y|(X=2) \sim P(\lambda_2), \quad \quad \quad (*)
 \end{equation*}\]</span> where <span class="math inline">\(\lambda_1 &lt; \lambda_2\)</span>. Let <span class="math inline">\(\lambda = (\lambda_1 + \lambda_2)/2\)</span> denote the average value. Thus the marginal distribution of <span class="math inline">\(Y\)</span> is a mixture of two Poisson distributions. Show that <span class="math display">\[\begin{equation*}
 \mbox{E}[Y] = \lambda, \quad \mbox{Var}[Y] = \lambda + (\lambda_1 - \lambda_2)^2/4,
-\end{equation*}\]</span> that is, although the mean of <span class="math inline">\(Y\)</span> is the same under the mixture (or conditional Poisson) model as under the Poisson model, the variance is larger.</p></li>
+\end{equation*}\]</span> that is, although the mean of <span class="math inline">\(Y\)</span> is the same under the mixture (or conditional Poisson) model as under the Poisson model, the variance is larger.</p>
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>Start with the definition of expectation as a weighted average of the conditional expectations. Then, for the variance, apply a similar result to find the expectation of the square.</p>
+</div></li>
 <li><p>This phenomenon might be observed in data as follows. Let <span class="math inline">\(n=60\)</span> and let an explanatory variable <span class="math inline">\(x_i\)</span> take the value <span class="math inline">\(x_i=1\)</span> for <span class="math inline">\(i=1, \ldots, 30\)</span> and <span class="math inline">\(x_i=2\)</span> for <span class="math inline">\(i=31, \ldots, 60\)</span>. Suppose that the observations <span class="math inline">\(y_i | x_i\)</span> come from the above conditional Poisson model <span class="math inline">\((*)\)</span>.</p>
 <p>Consider fitting the following two models in R with Poisson errors and a log link function: <span class="math display">\[\begin{equation*}
 \text{(i)} ~~ y \sim 1, \quad \quad \text{(ii)} ~~ y \sim x.
@@ -750,8 +755,20 @@ Y|X=1 \sim P(\lambda_1), \quad Y|X=2 \sim P(\lambda_2), \quad \quad \quad (*)
 \mbox{E}[S^2] = \lambda +
 \frac{60}{59}(\lambda_1 - \lambda_2)^2/4.
 \end{equation*}\]</span></p>
-<p>Hence show that the Pearson <span class="math inline">\(\chi^2\)</span> goodness of fit statistic for model (i) will indicate a poorly fitting model if <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are far apart.</p></li>
-<li><p>This example is very simple, but overdispersion can occur much more widely. Why is overdisperson not a problem for generalized linear models in which the response distribution includes a scale parameter?</p></li>
+<p>Hence show that the Pearson <span class="math inline">\(\chi^2\)</span> goodness of fit statistic for model (i) will indicate a poorly fitting model if <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are far apart.</p>
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>For the expectation of the sample variance, first find the expectation of the square of the sample mean. Next, note that the Pearson goodness of fit statistics depends on the ratio of the sample variance divided by the sample mean. Under the conditional Poisson model the variance would be larger but the mean unchanged, hence the statistics gets bigger and so will be further into the upper tail.</p>
+</div></li>
+<li><p>This example is very simple, but overdispersion can occur much more widely. Why is overdisperson not a problem for generalized linear models in which the response distribution includes a scale parameter?</p>
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>In the Poisson, and the Binomial, the problem is caused by the mean and variance being defined by the same model parameter.</p>
+</div></li>
 </ol>
 <p>6.2 (From Dobson &amp; Barnett, p 163) This question should be done in a computer package such as R. You should think carefully about which variables, if any, to condition on in your analysis: HOME = 1,2,3, CONTACT = 1,2, or SATISFACTION = 1,2,3.</p>
 <p>The data relate to an investigation into satisfaction with housing conditions in Copenhagen. Residents of selected areas living in rented houses built between 1960 and 1968 were questioned about their satisfaction and their degree of contact with other residents. The data were tabulated by type of housing. Investigate the associations between satisfaction, contact with other residents and type of housing.</p>
@@ -818,9 +835,27 @@ Y|X=1 \sim P(\lambda_1), \quad Y|X=2 \sim P(\lambda_2), \quad \quad \quad (*)
 </tbody>
 </table>
 <ol type="a">
-<li><p>Produce appropriate tables of percentages to gain initial insights into the data; for example, percentages in each contact level by type of housing and level of satisfaction, or percentages in each level of satisfaction by contact and type of housing.</p></li>
-<li><p>Using e.g.&nbsp;R, fit various log-linear models to investigate interactions between the variables.</p></li>
-<li><p>For some model that fits (at least moderately) well, calculate the Pearson residuals and use them to find where the largest discrepancies are between the observed and expected values.</p></li>
+<li>Produce appropriate tables of percentages to gain initial insights into the data; for example, percentages in each contact level by type of housing and level of satisfaction, or percentages in each level of satisfaction by contact and type of housing.
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>Consider many 2x2 tables for separate levels of the third variable, Each time re-scaling to create rows or columns, as appropriate, summing to 100%.</p>
+</div></li>
+<li>Using e.g.&nbsp;R, fit various log-linear models to investigate interactions between the variables.
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>Define your own variables and make sure the explanatory variables are converted to factor. Including the three-way interaction would lead to the saturated model – why? – and hence only consider pair-wise two-way interactions (as well as the variables separately).</p>
+</div></li>
+<li>For some model that fits (at least moderately) well, calculate the Pearson residuals and use them to find where the largest discrepancies are between the observed and expected values.
+<div class="webex-solution">
+<button>
+Click here to see hints.
+</button>
+<p>Use the residuals command with type=“pearson”</p>
+</div></li>
 </ol>
 </div>
 <p><br>
