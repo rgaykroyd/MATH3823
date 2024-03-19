@@ -200,7 +200,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-flucount" id="toc-sec-flucount" class="nav-link" data-scroll-target="#sec-flucount"><span class="header-section-number">6.2.2</span> Flu vaccine</a></li>
   </ul></li>
   <li><a href="#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#maximum-likelihood-estimation"><span class="header-section-number">6.3</span> Maximum likelihood estimation</a></li>
-  <li><a href="#model-fitting-in-r" id="toc-model-fitting-in-r" class="nav-link" data-scroll-target="#model-fitting-in-r"><span class="header-section-number">6.4</span> Model fitting in <strong>R</strong></a></li>
+  <li><a href="#model-fitting-in-r" id="toc-model-fitting-in-r" class="nav-link" data-scroll-target="#model-fitting-in-r"><span class="header-section-number">6.4</span> Model fitting in <strong>R</strong></a>
+  <ul class="collapse">
+  <li><a href="#malignant-melanoma" id="toc-malignant-melanoma" class="nav-link" data-scroll-target="#malignant-melanoma"><span class="header-section-number">6.4.1</span> Malignant melanoma</a></li>
+  <li><a href="#flu-vaccine" id="toc-flu-vaccine" class="nav-link" data-scroll-target="#flu-vaccine"><span class="header-section-number">6.4.2</span> Flu vaccine</a></li>
+  </ul></li>
   <li><a href="#multi-way-contingency-tables" id="toc-multi-way-contingency-tables" class="nav-link" data-scroll-target="#multi-way-contingency-tables"><span class="header-section-number">6.5</span> Multi-way contingency tables</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.6</span> Exercises</a></li>
   </ul>
@@ -654,6 +658,8 @@ y_{+j} = e^{\widehat{\mu}}  e^{\widehat{\beta}_j} \left(\sum_i e^{\widehat{\alph
 </section>
 <section id="model-fitting-in-r" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="model-fitting-in-r"><span class="header-section-number">6.4</span> Model fitting in <strong>R</strong></h2>
+<section id="malignant-melanoma" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="malignant-melanoma"><span class="header-section-number">6.4.1</span> Malignant melanoma</h3>
 <p>Consider an analysis of Melanoma data introduced in <a href="#sec-melanoma"><span>Section&nbsp;6.2.1</span></a>.</p>
 <p>To test the independence of <span class="math inline">\(\texttt{Type}\)</span> and <span class="math inline">\(\texttt{Size}\)</span>, we fit the model <span class="math display">\[
 \texttt{Count} \sim \texttt{Type} + \texttt{Site}
@@ -713,6 +719,169 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <p>For the saturated model, <span class="math inline">\(\widehat{\lambda}_{ij} = y_{ij}\)</span>. In this example, <span class="math inline">\(\sum_{ij} \widehat{\lambda}_{ij} = \sum_{ij} y_{ij} = 400\)</span>, so the probability of a tumour being in category <span class="math inline">\((i,j)\)</span> is <span class="math inline">\(y_{ij}/400\)</span> — just the observed proportions.</p>
 <p>Note that in <a href="#tbl-melanomacount1">Table&nbsp;<span>6.2</span></a> we have a total of <span class="math inline">\(y_{++} = 400\)</span> observations. If the data were truly Poisson, this would be a suspiciously round number. In reality, this total was fixed by design, so we should take into account the fact that <span class="math inline">\(y_{++} = 400\)</span> and fit a more suitable model, such as the <em>multinomial</em> model which we will meet in the next chapter.</p>
 <p>Overdispersion can occur for the Poisson model, just as in the binomial case – see <a href="5_logisticmodel.html#sec-overdispersion"><span>Section&nbsp;5.3</span></a>. This is called <em>extra-Poisson</em> variation. The <span class="math inline">\(\texttt{glm}\)</span> function in <strong>R</strong> can take this into account by including an extra parameter <span class="math inline">\(\tau\)</span> in the model using <span class="math inline">\(\texttt{family=quasipoisson()}\)</span>.</p>
+</section>
+<section id="flu-vaccine" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="flu-vaccine"><span class="header-section-number">6.4.2</span> Flu vaccine</h3>
+<p>There is no saved data file for this example – recall it is very small - and so define R variables for the <span class="math inline">\(\texttt{count}\)</span>, <span class="math inline">\(\texttt{response}\)</span> (perhaps not a good name as it may be confusing but it seems the correct description from the context) and <span class="math inline">\(\texttt{drug}\)</span> used. Don’t forget to declare the explanatory variables as factors.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>count <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">6</span>,<span class="dv">18</span>,<span class="dv">11</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>response <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"L"</span>,<span class="st">"M"</span>,<span class="st">"H"</span>, <span class="st">"L"</span>,<span class="st">"M"</span>,<span class="st">"H"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>drug <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"P"</span>,<span class="st">"P"</span>,<span class="st">"P"</span>,<span class="st">"V"</span>,<span class="st">"V"</span>,<span class="st">"V"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>response.F <span class="ot">=</span> <span class="fu">as.factor</span>(response)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>drug.F <span class="ot">=</span> <span class="fu">as.factor</span>(drug)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now fit the first model, here consider the saturated model with main effects and interaction.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">##########################################</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a log-linear model - saturated model</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>glm.fit0 <span class="ot">=</span> <span class="fu">glm</span>(count <span class="sc">~</span> response.F <span class="sc">*</span> drug.F, <span class="at">family=</span>poisson)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fit0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = count ~ response.F * drug.F, family = poisson)
+
+Coefficients:
+                    Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)          1.60944    0.44721   3.599  0.00032 ***
+response.FL          1.60944    0.48990   3.285  0.00102 ** 
+response.FM          0.47000    0.57009   0.824  0.40969    
+drug.FV              0.78846    0.53936   1.462  0.14379    
+response.FL:drug.FV -2.21557    0.70539  -3.141  0.00168 ** 
+response.FM:drug.FV  0.02247    0.68663   0.033  0.97389    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2.3807e+01  on 5  degrees of freedom
+Residual deviance: 1.7764e-15  on 0  degrees of freedom
+AIC: 37.128
+
+Number of Fisher Scoring iterations: 3</code></pre>
+</div>
+</div>
+<p>Even though the model is a perfect fit – the fitted values are exactly the data values (check next) we see that <span class="math inline">\(\texttt{response.F="M"}\)</span> is not significantly different to the baseline <span class="math inline">\(\texttt{response.F="H"}\)</span> and also that <span class="math inline">\(\texttt{drug.F="V"}\)</span> is not significantly different to <span class="math inline">\(\texttt{drug.F="P"}\)</span>.</p>
+<p>Let’s check the fitted values:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(glm.fit0, <span class="at">type=</span><span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1  2  3  4  5  6 
+25  8  5  6 18 11 </code></pre>
+</div>
+</div>
+<p>where we see that, indeed, they are the same as the data.</p>
+<p>The Null deviance is <span class="math inline">\(23.807\)</span> and follows a <span class="math inline">\(\chi^2\)</span> distribution on <span class="math inline">\(5\)</span> degrees of freedom (under the Null hypothesis). This has a p-value of <!-- round(pchisq(23.807, 5, lower.tail=F),5) ---> <span class="math inline">\(p&lt;0.001\)</span> which is highly significant and hence the null model is not adequate.</p>
+<p>We cannot test the saturated model as it fits perfectly.</p>
+<p>Next let’s try a reduced model with the interaction removed:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">##########################################</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit model without interaction</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>glm.fit1 <span class="ot">=</span> <span class="fu">glm</span>(count <span class="sc">~</span> response.F <span class="sc">+</span> drug.F, <span class="at">family=</span>poisson)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = count ~ response.F + drug.F, family = poisson)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  2.11972    0.27408   7.734 1.04e-14 ***
+response.FL  0.66140    0.30783   2.149   0.0317 *  
+response.FM  0.48551    0.31774   1.528   0.1265    
+drug.FV     -0.08224    0.23428  -0.351   0.7256    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 23.807  on 5  degrees of freedom
+Residual deviance: 18.643  on 2  degrees of freedom
+AIC: 51.771
+
+Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+</div>
+<p>The <span class="math inline">\(\texttt{response.F="M"}\)</span> is again not significantly different to the baseline <span class="math inline">\(\texttt{response.F="H"}\)</span> and <span class="math inline">\(\texttt{drug.F="V"}\)</span> is not significantly different to <span class="math inline">\(\texttt{drug.F="P"}\)</span>.</p>
+<p>The model deviance is <span class="math inline">\(18.643\)</span> following a <span class="math inline">\(\chi^2_2\)</span> distribution with corresponding p-value of <span class="math inline">\(p &lt;0.001\)</span>. <!-- round(pchisq(18.643, 2, lower.tail=F),5) ---> This is highly significant suggesting that this and any model without an interaction term is unlikely to be adequate.</p>
+<p>Let use return to a model with interaction, and let’s try merging response <span class="math inline">\(\texttt{response.F="M"}\)</span> and <span class="math inline">\(\texttt{"H"}\)</span> – calling them <span class="math inline">\(\texttt{"HM"}\)</span> (I chose this name so that alphabetically it would be first just as <span class="math inline">\(\texttt{"H"}\)</span> was first):</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Medium response not significant</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge response M with response H -- to response HM</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>response2 <span class="ot">=</span> response</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>response2[response<span class="sc">==</span><span class="st">"H"</span>] <span class="ot">=</span> <span class="st">"HM"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>response2[response<span class="sc">==</span><span class="st">"M"</span>] <span class="ot">=</span> <span class="st">"HM"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>response2.F <span class="ot">=</span> <span class="fu">as.factor</span>(response2)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>glm.fit2 <span class="ot">=</span> <span class="fu">glm</span>(count <span class="sc">~</span> response2.F<span class="sc">*</span>drug.F, <span class="at">family=</span>poisson)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = count ~ response2.F * drug.F, family = poisson)
+
+Coefficients:
+                     Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)            1.8718     0.2774   6.749 1.49e-11 ***
+response2.FL           1.3471     0.3419   3.940 8.17e-05 ***
+drug.FV                0.8023     0.3338   2.404   0.0162 *  
+response2.FL:drug.FV  -2.2295     0.5640  -3.953 7.71e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 23.807  on 5  degrees of freedom
+Residual deviance:  2.405  on 2  degrees of freedom
+AIC: 35.533
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<p>Interestingly all terms in this model are significant but let’s check the overall goodness of fit.</p>
+<p>The model deviance is <span class="math inline">\(2.405\)</span> following a <span class="math inline">\(\chi^2_2\)</span> distribution with corresponding p-value of <span class="math inline">\(p=0.3\)</span>. <!-- round(pchisq(2.405, 2, lower.tail=F),5) ---> This is non-significant suggesting that this model is a good fit to the data.</p>
+<p>The fitted values are:</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(glm.fit2, <span class="at">type=</span><span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   1    2    3    4    5    6 
+25.0  6.5  6.5  6.0 14.5 14.5 </code></pre>
+</div>
+</div>
+<p>and the residuals (which I have rounded for display purposes):</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">residuals</span>(glm.fit2, <span class="at">type=</span><span class="st">"response"</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   1    2    3    4    5    6 
+ 0.0  1.5 -1.5  0.0  3.5 -3.5 </code></pre>
+</div>
+</div>
+<p>The fitted values are a good fit to the data and hence, of course, the residuals are not too large.</p>
+<p>The overall conclusion is that the model with response and drug, and their interaction, but with the merging of response levels H and M is an appropriate model. This indicates that the vaccine does have an effect on the antibody response but that it does not influence whether that is a medium or high response.</p>
+</section>
 </section>
 <section id="multi-way-contingency-tables" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="multi-way-contingency-tables"><span class="header-section-number">6.5</span> Multi-way contingency tables</h2>
