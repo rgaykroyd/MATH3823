@@ -1641,17 +1641,36 @@ E(Y^2) = \lambda + \lambda^2\)</span>. Hence for the mixture model <span class="
    = \lambda + (\lambda_1 - \lambda_2)^2/4.
 \]</span></p></li>
 <li><p>Writing <span class="math inline">\(\overline{Y} = \frac{1}{2}
-(\overline{Y}_1 + \overline{Y}_2)\)</span>, where <span class="math inline">\(\overline{Y}_j\)</span> has mean <span class="math inline">\(\lambda_j\)</span> and variance <span class="math inline">\(\lambda_j/30\)</span>, <span class="math inline">\(j=1,2\)</span>, we see that <span class="math display">\[\begin{equation*}
-  E[(\overline{Y})^2] = \frac{1}{4} E\left[ (\overline{Y}_1)^2 +
+(\overline{Y}_1 + \overline{Y}_2)\)</span>, then <span class="math display">\[
+E[\bar Y_1] = E\left[\frac{1}{30} \sum_{i=1}^{30} Y_i\right]
+= \frac{1}{30} \times 30 \times \lambda_1 = \lambda_1.
+\]</span> Similarly, <span class="math display">\[
+Var[\bar Y_1] = Var\left[\frac{1}{30} \sum Y_i\right]
+= \frac{1}{30^2} \times 30 \times \lambda_1 = \frac{\lambda_1}{30}
+\]</span> hence, <span class="math display">\[
+E[\bar Y_1^2] = \left(E[\bar Y_1]\right)^2 + Var[\bar Y_1]
+=  \lambda_1^2 + \frac{\lambda_1}{30}.
+\]</span> Similarly, <span class="math inline">\(\overline{Y}_2\)</span>
+has mean <span class="math inline">\(\lambda_2\)</span>, variance <span class="math inline">\(\lambda_2/30\)</span>, and <span class="math inline">\(E[\bar Y_1^2] = \lambda_2^2 + {\lambda_2
+}/{30}\)</span>.</p>
+<p>So, <span class="math display">\[
+E[\bar Y] = \frac12 \left(E[\bar Y_1]+E[\bar Y_2]\right)
+=\frac12 \left(\lambda_1+\lambda_2\right) = \lambda.
+\]</span></p>
+<p>For <span class="math inline">\(E[S^2]= \frac{1}{n-1} E\left[\sum
+Y_i^2 - n (\overline{Y})^2\right]\)</span> we see that we will need,
+<span class="math display">\[\begin{equation*}
+E\left[\sum_{i=1}^{60} Y_i^2\right]  = E\left[\sum_{i=1}^{30}
+Y_i^2\right] + E\left[ \sum_{i=31}^{60} Y_i^2\right] = 30(\lambda_1^2 +
+\lambda_1 + \lambda_2^2 + \lambda_2).
+\end{equation*}\]</span><br />
+and <span class="math display">\[\begin{equation*}
+  E[\overline{Y}^2] = \frac{1}{4} E\left[ (\overline{Y}_1)^2 +
 2\overline{Y}_1\overline{Y}_2  + (\overline{Y}_2)^2\right]
   = \frac{1}{4} \{\lambda_1^2 + \lambda_1/30 + 2 \lambda_1 \lambda_2 +
 \lambda_2^2\ + \lambda_2/30\}.
-\end{equation*}\]</span> Also <span class="math display">\[\begin{equation*}
-  E[\sum_{i=1}^{60} Y_i^2]  = E[\sum_{i=1}^{30} Y_i^2] + E[
-\sum_{i=31}^{60} Y_i^2] = 30(\lambda_1^2 + \lambda_1 + \lambda_2^2 +
-\lambda_2).
 \end{equation*}\]</span> Hence <span class="math display">\[
-  E(S^2) = \frac{1}{59} E\left[\sum_{i=1}^{60} Y_i^2 - 60
+E(S^2) = \frac{1}{59} E\left[\sum_{i=1}^{60} Y_i^2 - 60
 (\overline{Y})^2\right]
    = \frac{1}{2} (\lambda_1 + \lambda_2) + \frac{60}{4 \cdot 59}
 (\lambda_1-\lambda_2)^2,
@@ -1659,12 +1678,16 @@ E(Y^2) = \lambda + \lambda^2\)</span>. Hence for the mixture model <span class="
 <p>The <span class="math inline">\(\chi^2\)</span> goodness of fit
 statistic is just <span class="math display">\[\begin{equation*}
 X^2 = \sum_k (O_k-E_k)^2/E_k = (n-1) S^2/\overline{Y},
-\end{equation*}\]</span> in terms of observed values <span class="math inline">\(O_i = Y_i\)</span> and expected values <span class="math inline">\(E_i = \overline{Y}\)</span>. Here <span class="math inline">\(n=60\)</span>. Under the null Poisson model, the
-numerator and denominator have the same expectation and for large n,
-<span class="math inline">\(X^2 \sim \chi^2_{n-1}\)</span>
-approximately. Under the mixture model the numerator has a larger
-expectation and <span class="math inline">\(X^2\)</span> will be larger
-in distribution than <span class="math inline">\(\chi^2_{n-1}\)</span>.</p></li>
+\end{equation*}\]</span> in terms of observed values <span class="math inline">\(O_i = Y_i\)</span> and expected values <span class="math inline">\(E_i = \overline{Y}\)</span>. Here <span class="math inline">\(n=60\)</span>. Under the null hypothesis that the
+model is a good fit, the <span class="math inline">\(S^2\)</span> and
+<span class="math inline">\(\bar Y\)</span> have the same expectation
+and for large n, <span class="math inline">\(X^2 \sim
+\chi^2_{n-1}\)</span> approximately. Under the mixture model the
+numerator has a larger expectation and <span class="math inline">\(X^2\)</span> will be larger in distribution than
+<span class="math inline">\(\chi^2_{n-1}\)</span>. Hence the statistic
+is bigger and so will be further into the upper tail. This means that
+the hypothesis is more likely to be rejected and the model deemed a poor
+fit.</p></li>
 <li><p>When a scale parameter <span class="math inline">\(\phi\)</span>
 is present, it can be used to represent the true scale variability in
 the model, plus the effects of overdispersion.</p></li>
