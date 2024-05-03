@@ -1630,9 +1630,12 @@ typical R session. Your report will then have summarized the main ideas,
 with the R commands moved to an appendix.</p>
 <div id="initial-data-analysis" class="section level2">
 <h2>Initial data analysis</h2>
-<pre class="r"><code># As instructed, read in the data with a command such as:
-adelaide = read.csv(&quot;adelaide-00.csv&quot;)
+<p>As instructed, read in the data with a command such as:</p>
+<pre class="r"><code>adelaide = read.csv(&quot;http://rgaykroyd.github.io/MATH3823/Datasets/adelaide-00.csv&quot;)
 attach(adelaide)</code></pre>
+<p>though 00 should be replaced by the appropriate last two digits of
+the Student Identification Number (SID).</p>
+<p><strong>The following assumed the SID=00.</strong></p>
 <p>It is always a good idea to inspect the data, for example using:</p>
 <pre class="r"><code>str(adelaide)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    60 obs. of  5 variables:
@@ -1730,10 +1733,10 @@ increase in year, the coefficients for faculty indicate the contribution
 for each faculty (with Arts having a value 0); similarly the coefficient
 for sexM indicates the contribution for Male (with Female having a value
 0).</p>
-<p>The coefficient for year has a p-value bigger than 0.05. Hence, we
-can say that, although there is a hint of increasing probability of
-survival with year, but it is not significant. Below we consider a
-simpler model, removing year.</p>
+<p>The coefficient for year has a p-value (p=0.1834) bigger than 0.05.
+Hence, we can say that, although there is a hint of increasing
+probability of survival with year, but it is not significant. Below we
+consider a simpler model, removing year.</p>
 <p>The fitted model can now be used for prediction. For example, with
 explanatory variables <span class="math inline">\(\texttt{sex=M}\)</span>, <span class="math inline">\(\texttt{year=1941}\)</span>, <span class="math inline">\(\texttt{faculty=M}\)</span>:</p>
 <pre class="r"><code>predict(M1, newdata = data.frame(sex=&quot;M&quot;, year=1941, faculty=&quot;M&quot;), type=&quot;response&quot;)    </code></pre>
@@ -1759,9 +1762,8 @@ done Engineering, assuming the fitted model is true.</p>
 <div id="further-statistical-analysis" class="section level2">
 <h2>Further statistical analysis</h2>
 <p>A good starting point is to judge the goodness of fit of the model
-just fitted by looking at the residual deviance, <span class="math inline">\(D_1=50.403 \sim \chi^2 _{52}\)</span>. The p-value
-is 0.5369, <!-- $\texttt{pchisq(50.403,52,lower.tail=FALSE)}$ --> and
-hence the model fits the data well.</p>
+just fitted by looking at the residual deviance, <span class="math inline">\(D_1=\)</span> 50.4 <span class="math inline">\(\sim \chi^2\)</span> with <span class="math inline">\(df=\)</span> 52. The p-value is 0.5369 (which is
+greater than 0.05), and hence the model fits the data well.</p>
 <p>Since it appears that <span class="math inline">\(\texttt{year}\)</span> is not important, it is
 reasonable to consider a model with this removed, Model 2, with
 results:</p>
@@ -1790,11 +1792,11 @@ summary(M2)</code></pre>
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Comparing the deviance of Model 2 to Model 1, the change in deviance
-is <span class="math inline">\(D_2-D_1 = 52.176-50.403 = 1.773 \sim
-\chi^2_1\)</span> with p-value 0.18301.
-<!-- $\texttt{pchisq(1.773, 1,lower.tail=FALSE)}=0.1830112$ --> Hence,
-we accept the hypothesis that the simpler Model 2 is adequate, and that
-the more complicated Model 1 is not significantly better.</p>
+is <span class="math inline">\(D_2-D_1 =\)</span> 52.18-50.4 <span class="math inline">\(=\)</span> 1.77 <span class="math inline">\(\sim
+\chi^2\)</span> (<span class="math inline">\(df=\)</span> 1) with
+p-value 0.183 (which is greater than 0.05). Hence, we accept the
+hypothesis that the simpler Model 2 is adequate, and that the more
+complicated Model 1 is not significantly better.</p>
 <p><strong>From now, there is no single correct analysis but you were
 expected to try other sensible alternatives and write about them in a
 logical way. What follows are some alternative models which you might
@@ -1828,11 +1830,11 @@ summary(M3)</code></pre>
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Comparing the deviance of Model 3 to Model 2, the change in deviance
-is <span class="math inline">\(D_2-D_3 = 52.176-50.387 = 1.789 \sim
-\chi^2_1\)</span> with p-value 0.1810.
-<!-- $\texttt{pchisq(1.789, 1,lower.tail=FALSE)}$ --> Hence, we accept
-the hypothesis that the simpler Model 2 is adequate and the more
-complicated Model 3 is not significantly better.</p>
+is <span class="math inline">\(D_2-D_3 =\)</span> 52.18-50.39 <span class="math inline">\(=\)</span> 1.79 <span class="math inline">\(\sim
+\chi^2\)</span> (<span class="math inline">\(df=\)</span> 1) with
+p-value 0.1811 (which is greater than 0.05). Hence, we accept the
+hypothesis that the simpler Model 2 is adequate and the more complicated
+Model 3 is not significantly better.</p>
 <p>It is now reasonable to consider the removal, in turn, of <span class="math inline">\(\texttt{sex}\)</span> and <span class="math inline">\(\texttt{faculty}\)</span> to see if an even
 simpler model is adequate.</p>
 <p>First consider the model with <span class="math inline">\(\texttt{faculty}\)</span> only:</p>
@@ -1843,11 +1845,11 @@ deviance(M4)-deviance(M2)</code></pre>
 <pre class="r"><code>df.residual(M4)-df.residual(M2)</code></pre>
 <pre><code>## [1] 1</code></pre>
 <p>Comparing the deviance of Model 4 to Model 2, the change in deviance
-is <span class="math inline">\(D_4-D_2 = 14.17711 \sim \chi^2_1\)</span>
-with p-value less than 0.001.
-<!-- $\texttt{pchisq(14.17711, 1,lower.tail=FALSE)}$ --> Hence, we
-reject the hypothesis that the simpler Model 4 is adequate and hence
-that variable <span class="math inline">\(\texttt{sex}\)</span> is
+is <span class="math inline">\(D_4-D_2 =\)</span> 66.35-52.18 <span class="math inline">\(=\)</span> 14.18 <span class="math inline">\(\sim
+\chi^2\)</span> (<span class="math inline">\(df=\)</span> 1) with
+p-value 0.0002 (which is less than 0.05). Hence, we reject the
+hypothesis that the simpler Model 4 is adequate and hence conclude that
+variable <span class="math inline">\(\texttt{sex}\)</span> is
 important.</p>
 <p>Next consider the model with <span class="math inline">\(\texttt{sex}\)</span> only:</p>
 <pre class="r"><code>M5=glm( ym ~ sex,     family=binomial)
@@ -1856,12 +1858,10 @@ deviance(M5)-deviance(M2)</code></pre>
 <pre class="r"><code>df.residual(M5)-df.residual(M2)</code></pre>
 <pre><code>## [1] 3</code></pre>
 <p>Comparing the deviance of Model 5 to Model 2, the change in deviance
-is <span class="math inline">\(D_5-D_2 = 27.55253 \sim \chi^2_3\)</span>
-with p-value is almost zero.
-<!-- $\texttt{pchisq(27.55253, 3,lower.tail=FALSE)}$ --> Hence, we
-reject the hypothesis that the simpler Model 5 is adequate and hence
-that <span class="math inline">\(\texttt{faculty}\)</span> is
-important.</p>
+is <span class="math inline">\(D_5-D_2 =\)</span> 79.73-52.18 <span class="math inline">\(=\)</span> 27.55 <span class="math inline">\(\sim
+\chi^2\)</span> (<span class="math inline">\(df=\)</span> 3) with
+p-value 0 (which is less than 0.05). Hence, we reject the hypothesis
+that the simpler Model 5 is adequate and hence that <span class="math inline">\(\texttt{faculty}\)</span> is important.</p>
 <p>Before moving to further models, consider the residuals for the best
 fit model so far considered.</p>
 <pre class="r"><code>res2=residuals(M2)
@@ -1890,9 +1890,9 @@ with probability of survival depending on <span class="math inline">\(\texttt{se
 \]</span> where <span class="math inline">\(i=\{A, E, M, S\}\)</span>,
 <span class="math inline">\(j=\{F, M\}\)</span> and <span class="math inline">\(k=\{1938,\dots, 1947\}\)</span>.</p>
 <p>Then, from the output for Model 2 which is duplicated below, we have:
-<span class="math inline">\(\hat \alpha =1.41\)</span>, <span class="math inline">\(\hat{\boldsymbol{\beta}}=\{0, 0.76, -0.19,
-0.60\}\)</span> and <span class="math inline">\(\hat{\boldsymbol{\gamma}}=\{0,
--0.83\}\)</span>.</p>
+<span class="math inline">\(\hat \alpha =\)</span> 1.41, <span class="math inline">\(\hat{\boldsymbol{\beta}}=\{\)</span> 0, 0.76,
+-0.19, 0.6 <span class="math inline">\(\}\)</span> and <span class="math inline">\(\hat{\boldsymbol{\gamma}}=\{\)</span> 0, -0.83
+<span class="math inline">\(\}\)</span>.</p>
 <pre class="r"><code>summary(M2)</code></pre>
 <pre><code>## 
 ## Call:
@@ -1949,10 +1949,9 @@ summary(M6)</code></pre>
 <pre><code>## [1] 0.9162625</code></pre>
 <pre class="r"><code>df.residual(M6)-df.residual(M2)</code></pre>
 <pre><code>## [1] 1</code></pre>
-<pre class="r"><code>pchisq(0.9162625, 1, lower.tail = F)</code></pre>
-<pre><code>## [1] 0.3384582</code></pre>
-<p>The change in deviance is 0.9163 with 1 degree of freedom and a
-p-value of 0.3385. Hence, we accept the null hypothesis and conclude
+<p>The change in deviance is <span class="math inline">\(D_6-D_2
+=\)</span> 0.92 <span class="math inline">\(\sim \chi^2\)</span> (<span class="math inline">\(df=\)</span> 1) with p-value 0.3385 (which is
+greater than 0.05). Hence, we accept the null hypothesis and conclude
 that the simpler model (with levels combined) is adequate.</p>
 <p>Also that <span class="math inline">\(\texttt{facultyS}\)</span> and
 <span class="math inline">\(\texttt{facultyE}\)</span> have similar
@@ -1989,14 +1988,17 @@ summary(M7)</code></pre>
 <pre><code>## [1] 2</code></pre>
 <pre class="r"><code>pchisq(1.350863, 2, lower.tail = F)</code></pre>
 <pre><code>## [1] 0.5089368</code></pre>
-<p>The change in deviance is 1.3509 with 2 degree of freedom and a
-p-value of 0.5089. Hence, again,we accept the null hypothesis and
+<p>The change in deviance is <span class="math inline">\(D_7-D_2
+=\)</span> 1.35 <span class="math inline">\(\sim \chi^2\)</span> (<span class="math inline">\(df=\)</span> 2) with p-value 0.5089 (which is
+greater than 0.05). Hence, again,we accept the null hypothesis and
 conclude that the simpler model (with further levels combined) is
 adequate. This has lead us to a model whee faculty is only included as
 either “<em>Arts/Medicine</em>” or “<em>Engineering/Science</em>” –
 which does seem to make some sense.</p>
 <p>Although there was little pattern seen in survival from year to year,
-the following model considers <span class="math inline">\(\texttt{year}\)</span> as a factor.</p>
+the following model considers <span class="math inline">\(\texttt{year}\)</span> again, but this time as a
+factor which can be a good alternative if the relationship is
+non-linear.</p>
 <pre class="r"><code>yearf=as.factor(year)
 
 M7 = glm(ym ~ yearf+faculty+sex,family=binomial) # year as factor
@@ -2058,16 +2060,13 @@ summary(M8)</code></pre>
 <pre><code>## [1] 10.8909</code></pre>
 <pre class="r"><code>df.residual(M8)-df.residual(M7)</code></pre>
 <pre><code>## [1] 9</code></pre>
-<pre class="r"><code>pchisq(10.8909, 9, lower.tail = F)</code></pre>
-<pre><code>## [1] 0.2832614</code></pre>
-<p>The difference between the deviances is 10.8909 on 9 degrees of
-freedom, which has a p-value of 0.2833. Hence, the simpler model without
-<span class="math inline">\(\texttt{year}\)</span> is an adequate fit
-and treating <span class="math inline">\(\texttt{year}\)</span> as a
-factor has not altered this conclusion. There is little point in
-considering models with years combined unless, for example, we
-suspected, or saw from the data, clear periods were the survival was
-constant with occasional abrupt changes.</p>
+<p>The difference between the deviances is <span class="math inline">\(D_8-D_7 =\)</span> 10.89 <span class="math inline">\(\sim \chi^2\)</span> (<span class="math inline">\(df=\)</span> 9) with p-value 0.2833 (which is
+greater than 0.05). Hence, the simpler model without <span class="math inline">\(\texttt{year}\)</span> is an adequate fit and
+treating <span class="math inline">\(\texttt{year}\)</span> as a factor
+has not altered this conclusion. There is little point in considering
+models with years combined unless, for example, we suspected, or saw
+from the data, clear periods were the survival was constant with
+occasional abrupt changes.</p>
 </div>
 <div id="seperate-analysis-of-male-and-female-graduates" class="section level2">
 <h2>Seperate analysis of Male and Female graduates</h2>
@@ -2131,25 +2130,31 @@ if combining level of <span class="math inline">\(\texttt{faculty}\)</span> as e
 sensible.</p>
 <p>For Females, of course, there are no estimates for Engineers and
 Medical graduates, but there is no significant difference between Arts
-and Science graduates. Fitting the simpler model with <span class="math inline">\(\texttt{faculty}\)</span> gives a change in
-deviance of 0.0135 on 1 degree of freedom, which has a p-value of
-0.9077. Hence, the simpler model is adequate and faculty is not
-important for the survival of females.</p>
+and Science graduates.</p>
 <pre class="r"><code>M10f=glm(ymf ~ 1, family=binomial)
 
 deviance(M10f)-deviance(M9f)</code></pre>
 <pre><code>## [1] 0.01345215</code></pre>
 <pre class="r"><code>df.residual(M10f)-df.residual(M9f)</code></pre>
 <pre><code>## [1] 1</code></pre>
-<pre class="r"><code>pchisq(0.01345215, 1, lower.tail=F)</code></pre>
-<pre><code>## [1] 0.9076657</code></pre>
+<p>Fitting the simpler model without <span class="math inline">\(\texttt{faculty}\)</span> gives a change in
+deviance of 0.01 <span class="math inline">\(\sim \chi^2\)</span> (<span class="math inline">\(df=\)</span> 1) with p-value 0.9077 (which is
+greater than 0.05). Hence, the simpler model is adequate and faculty is
+not important for the survival of females.</p>
 <p>We are now left with the Null model, which has a deviance of 12.54 on
-19 degrees of freedom. The p-value is 0.8611 and hence this is combined
-as an adequate fit to female data.</p>
+19 degrees of freedom. The p-value is 0.8611 (which is greater than
+0.05) and hence this is confirmed as an adequate fit to female data.</p>
 <p>So, the conclusions have changed slight. In particular, although the
 previous overall conclusion about survival of graduates from different
 faculties still holds for male graduates it is no longer true for female
 graduates.</p>
+<p><br />
+</p>
+<div id="end-of-math3823-assessed-practical---outline-analysis" class="section level4">
+<h4>End of MATH3823 Assessed Practical - Outline Analysis</h4>
+<p><br />
+</p>
+</div>
 </div>
 
 
